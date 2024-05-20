@@ -11,8 +11,8 @@ import game.GameObject;
 @SuppressWarnings("serial")
 public class Draw extends JLabel{
 	
-	private int screenwidth;
-	private int screenheight;
+	public static int screenwidth;
+	public static int screenheight;
 	ArrayList<GameObject> objekteImSpiel;
 
 	public Draw(GameLogic spiellogik, int screenBreite, int screenHoehe) {
