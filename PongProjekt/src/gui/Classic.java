@@ -7,8 +7,8 @@ import game.GameLogic;
 
 public class Classic {
 	
-	private int screenwidth;
-	private int screenheight;
+	private static int screenwidth;
+	private static int screenheight;
 	private static JFrame Pongframe;
 	
 	public Classic(GameLogic spiellogik) { 	// KeyHandler -> infos
@@ -41,5 +41,15 @@ public class Classic {
 			Pongframe.dispose();
 		}
 	}
+
+	public static int getScreenwidth() {
+		return screenwidth;
+	}
+
+	public static int getScreenheight() {
+		return screenheight;
+	}
+
+
 
 }

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import game.GameLogic;
 import game.GameObject;
-import gui.Classik;
+import gui.Classic;
 import gui.StartScreen;
 
 public class BeweglichesRechteck extends GameObject {
@@ -35,17 +35,16 @@ public class BeweglichesRechteck extends GameObject {
 	public void move() {
 		positionX += xGeschwindigkeit;
 		positionY += yGeschwindigkeit;
-		System.out.println(xGeschwindigkeit);
 	}
 
 	public void collisionwithwall() {
-		if (positionX <= 0 || positionX >= Classik.getScreenwidth() - diameter) {
+		if (positionX <= 0 || positionX >= Classic.getScreenwidth() - diameter) {
 			xGeschwindigkeit = (-(xGeschwindigkeit));
-			positionX = Math.max(0, Math.min(positionX, Classik.getScreenwidth() - diameter));
+			positionX = Math.max(0, Math.min(positionX, Classic.getScreenwidth() - diameter));
 		}
-		if (positionY <= 0 || positionY >= Classik.getScreenheight() - (diameter + 30)) {
+		if (positionY <= 0 || positionY >= Classic.getScreenheight() - (diameter + 30)) {
 			yGeschwindigkeit = (-(yGeschwindigkeit));
-			 positionY = Math.max(0, Math.min(positionY, Classik.getScreenheight() - (diameter + 30)));
+			 positionY = Math.max(0, Math.min(positionY, Classic.getScreenheight() - (diameter + 30)));
 		}
 	}
 
@@ -53,7 +52,7 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck spielerPaddle = GameLogic.getRechteckSpieler();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegener();
 
-		// Check collision with player paddle
+		//  Kollusion mit Paddle 
 		if (this.positionX <= spielerPaddle.positionX + spielerPaddle.groesseX &&
 		    this.positionX + this.groesseX >= spielerPaddle.positionX &&
 		    this.positionY <= spielerPaddle.positionY + spielerPaddle.groesseY &&
@@ -85,7 +84,7 @@ public class BeweglichesRechteck extends GameObject {
 	    }
 
 	    // Sicherstellen, dass das Paddle nicht aus dem Bildschirmbereich bewegt wird
-	    gegnerPaddle.positionY = Math.max(0, Math.min(gegnerPaddle.positionY, Classik.getScreenheight() - gegnerPaddle.groesseY));
+	    gegnerPaddle.positionY = Math.max(0, Math.min(gegnerPaddle.positionY, Classic.getScreenheight() - gegnerPaddle.groesseY));
 	}
 
 	public void Punktesystem() {
@@ -97,7 +96,7 @@ public class BeweglichesRechteck extends GameObject {
 			System.out.println("Gegner hat : " + getGegenerPunkte());
 			
 		}
-		if(positionX ==  Classik.getScreenwidth() - diameter ) {
+		if(positionX ==  Classic.getScreenwidth() - diameter ) {
 			setSpielerPunkte(SpielerPunkte + 1);   
 			positionX = GameLogic.getX();
 			positionY = GameLogic.getY();
@@ -115,7 +114,7 @@ public class BeweglichesRechteck extends GameObject {
 			yGeschwindigkeit = 0;
 			System.out.println("Gegner hat gewonnen" );
 			StartScreen.FrameErstellen();
-			Classik.Classikclose();
+			Classic.Classikclose();
 			GameLogic.instance.stopGameTimer();
 		}else if(getSpielerPunkte() == 10) {
 			setGegenerPunkte(0);
@@ -125,7 +124,7 @@ public class BeweglichesRechteck extends GameObject {
 			xGeschwindigkeit = 0;
 			yGeschwindigkeit = 0;
 			System.out.println("Spieler hat gewonnen" );
-			Classik.Classikclose();
+			Classic.Classikclose();
 			StartScreen.FrameErstellen();
 			GameLogic.instance.stopGameTimer();
 		}

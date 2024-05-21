@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import gameObjects.BeweglichesRechteck;
-import gui.Classik;
 import gui.Draw;
 
 public class GameLogic {
