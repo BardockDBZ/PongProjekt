@@ -36,7 +36,7 @@ public class Classic {
 		Pongframe.setVisible(true);
 	}
 
-	public static void Classikclose() { //Pong Schließen
+	public static void Classicclose() { //Pong Schließen
 		if(Pongframe != null) {
 			Pongframe.dispose();
 		}

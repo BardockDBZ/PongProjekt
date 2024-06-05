@@ -52,7 +52,7 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck spielerPaddle = GameLogic.getRechteckSpieler();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegener();
 
-		//  Kollusion mit Paddle 
+		//  Kollision mit Paddle 
 		if (this.positionX <= spielerPaddle.positionX + spielerPaddle.groesseX &&
 		    this.positionX + this.groesseX >= spielerPaddle.positionX &&
 		    this.positionY <= spielerPaddle.positionY + spielerPaddle.groesseY &&
@@ -114,7 +114,7 @@ public class BeweglichesRechteck extends GameObject {
 			yGeschwindigkeit = 0;
 			System.out.println("Gegner hat gewonnen" );
 			StartScreen.FrameErstellen();
-			Classic.Classikclose();
+			Classic.Classicclose();
 			GameLogic.instance.stopGameTimer();
 		}else if(getSpielerPunkte() == 10) {
 			setGegenerPunkte(0);
@@ -124,7 +124,7 @@ public class BeweglichesRechteck extends GameObject {
 			xGeschwindigkeit = 0;
 			yGeschwindigkeit = 0;
 			System.out.println("Spieler hat gewonnen" );
-			Classic.Classikclose();
+			Classic.Classicclose();
 			StartScreen.FrameErstellen();
 			GameLogic.instance.stopGameTimer();
 		}
