@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import actions.Main;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -14,6 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Color;
+import javax.swing.JButton;
 
 public class Shop extends JFrame {
 
@@ -38,35 +42,31 @@ public class Shop extends JFrame {
 	}
 	public Shop() {
 		setTitle("Shop");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 450);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JMenuBar mbShop = new JMenuBar();
-		mbShop.setBackground(Color.WHITE);
-		setJMenuBar(mbShop);
+		JLabel lblShop = new JLabel("Shop");
+		lblShop.setForeground(new Color(255, 255, 255));
+		lblShop.setHorizontalAlignment(SwingConstants.CENTER);
+		lblShop.setFont(Main.KnightWarriors);
+		lblShop.setBounds(0, 0, 484, 36);
+		contentPane.add(lblShop);
 		
-		JMenu mnShopDatei = new JMenu("Datei");
-		mbShop.add(mnShopDatei);
-		
-		JMenuItem mntmShopClose = new JMenuItem("Shop schließen");
-		mntmShopClose.addActionListener(new ActionListener() {
+	
+		JButton btnSchliessen = new JButton("Shop schließen");
+		btnSchliessen.setBackground(new Color(128, 128, 255));
+		btnSchliessen.setBounds(44, 339, 114, 23);
+		contentPane.add(btnSchliessen);
+		btnSchliessen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			Shopclose();
 			}
 		});
-		mnShopDatei.add(mntmShopClose);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.GRAY);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Shop");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		lblNewLabel.setBounds(0, 0, 484, 36);
-		contentPane.add(lblNewLabel);
 	}
 	public static void Shopclose() {	//so wird der Shop geschlossen
 		if(Shopframe != null) {

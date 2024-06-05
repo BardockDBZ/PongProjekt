@@ -30,7 +30,7 @@ public static Font KnightWarriors;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	audioManager.playSound("/actions/resources/UndertaleOst087-HopesandDreams.wav");
+	audioManager.playSound("/actions/resources/twash.wav");
 		StartScreen.FrameErstellen();	
 		//Beim Starten wird der StartScreen erstellt 
 		
