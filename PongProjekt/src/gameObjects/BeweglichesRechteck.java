@@ -27,27 +27,39 @@ public class BeweglichesRechteck extends GameObject {
 
 	public void actionPerformed(ActionEvent e) {
 		start();
-		move();
-		collisionwithwall();
-		collisionWithPaddle();
-		if(GameLogic.getSpiel() == 0) {
-			Punktesystem();
-			Gewonnen();
-		}else if(GameLogic.getSpiel() == 1) {
-			EndlessPunkte();
-			EndlessVerloren();
+		if(GameLogic.getCounter() > 750) {
+			move();
+			collisionwithwall();
+			collisionWithPaddle();
+			if(GameLogic.getSpiel() == 0) {
+				Punktesystem();
+				Gewonnen();
+			}else if(GameLogic.getSpiel() == 1) {
+				EndlessPunkte();
+				EndlessVerloren();
+			}
 		}
+
 	}
 
 	public void move() {
+
 		positionX += xGeschwindigkeit;
 		positionY += yGeschwindigkeit;
+
 	}
 	public void start() {
-		if(GameLogic.getCounter() >= 0 && GameLogic.getCounter() <= 1) {
-		positionX = GameLogic.getX();
 		
+		if(GameLogic.getCounter() ==0) {
+			System.out.println("ACHTUNG");
+		}else if(GameLogic.getCounter() ==250 ) {
+			System.out.println("FERIG");
+		}else if(GameLogic.getCounter() ==500) {
+			System.out.println("LOS");
+		}else if(GameLogic.getCounter()== 750 ) {
+			
 		}
+	
 	}
 	public void collisionwithwall() {
 		if (positionX <= 0 || positionX >= Classic.getScreenwidth() - diameter) {
@@ -64,12 +76,12 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck spielerPaddle = GameLogic.getRechteckSpieler();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 		BeweglichesRechteck sicherheitSpiele = GameLogic.getSicherheit();
-		
+
 		if(this.positionX <= sicherheitSpiele.positionX + sicherheitSpiele.groesseX &&
 				this.positionX + this.groesseX >= sicherheitSpiele.positionX &&
 				this.positionY <= sicherheitSpiele.positionY + sicherheitSpiele.groesseY &&
 				this.positionY + this.groesseY >= sicherheitSpiele.positionY) {
-			
+
 		}else {
 			if (this.positionX <= spielerPaddle.positionX + spielerPaddle.groesseX &&
 					this.positionX + this.groesseX >= spielerPaddle.positionX &&
@@ -78,13 +90,13 @@ public class BeweglichesRechteck extends GameObject {
 				xGeschwindigkeit = -xGeschwindigkeit;
 				yGeschwindigkeit += (this.positionY - (spielerPaddle.positionY + spielerPaddle.groesseY / 2)) / 10;
 				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
-				
-				 if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {
-			            yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));
-			        }
-				
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));
+				}
+
 			}
-	
+
 			if (this.positionX <= gegnerPaddle.positionX + gegnerPaddle.groesseX &&
 					this.positionX + this.groesseX >= gegnerPaddle.positionX &&
 					this.positionY <= gegnerPaddle.positionY + gegnerPaddle.groesseY &&
@@ -92,15 +104,15 @@ public class BeweglichesRechteck extends GameObject {
 				xGeschwindigkeit = -xGeschwindigkeit;
 				yGeschwindigkeit += (this.positionY - (gegnerPaddle.positionY + gegnerPaddle.groesseY / 2)) / 10;
 				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
-				
-				 if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {
-			            yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));
-			        }
-			        
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+
 			}
-			 if(yGeschwindigkeit == 0) {
-				 yGeschwindigkeit += 1;
-			 }
+			if(yGeschwindigkeit == 0) {				//wenn alles schief geht und y trotzdem 0 ist 
+				yGeschwindigkeit += 1;
+			}
 		}
 	}
 	public static void GegnerKI() {
@@ -118,22 +130,20 @@ public class BeweglichesRechteck extends GameObject {
 	}
 
 	public void Punktesystem() {
-		
-			if (positionX == 0) {
-				setGegenerPunkte(GegenerPunkte + 1);  
-				positionX = GameLogic.getX();
-				positionY = GameLogic.getY();
-				yGeschwindigkeit = -yGeschwindigkeit;
-				System.out.println("Gegner hat : " + getGegenerPunkte());
 
-			}
-			if(positionX ==  Classic.getScreenwidth() - diameter ) {
-				setSpielerPunkte(SpielerPunkte + 1);   
-				positionX = GameLogic.getX();
-				positionY = GameLogic.getY();
-				yGeschwindigkeit = -yGeschwindigkeit;
-				System.out.println("Spieler hat : " + getSpielerPunkte());
-			
+		if (positionX == 0) {
+			setGegenerPunkte(GegenerPunkte + 1);  
+			positionX = GameLogic.getX();
+			positionY = GameLogic.getY();
+			yGeschwindigkeit = -yGeschwindigkeit;
+			System.out.println("Gegner hat : " + getGegenerPunkte());
+		}
+		if(positionX ==  Classic.getScreenwidth() - diameter ) {
+			setSpielerPunkte(SpielerPunkte + 1);   
+			positionX = GameLogic.getX();
+			positionY = GameLogic.getY();
+			yGeschwindigkeit = -yGeschwindigkeit;
+			System.out.println("Spieler hat : " + getSpielerPunkte());
 		}
 	}
 	public void Gewonnen() {
@@ -162,19 +172,19 @@ public class BeweglichesRechteck extends GameObject {
 		}
 	}
 	public void EndlessPunkte() {
-		
-			if(positionX ==  Classic.getScreenwidth() - diameter ) {
-				setSpielerPunkte(SpielerPunkte + 1);   
-				positionX = GameLogic.getX();
-				positionY = GameLogic.getY();
-				yGeschwindigkeit = -yGeschwindigkeit;
-				System.out.println("Spieler hat : " + getSpielerPunkte());
-			
+
+		if(positionX ==  Classic.getScreenwidth() - diameter ) {
+			setSpielerPunkte(SpielerPunkte + 1);   
+			positionX = GameLogic.getX();
+			positionY = GameLogic.getY();
+			yGeschwindigkeit = -yGeschwindigkeit;
+			System.out.println("Spieler hat : " + getSpielerPunkte());
+
 		}
 	}
 	public void EndlessVerloren() {
 		if(GameLogic.getCounter() < 1) {
-			
+
 		}else {
 			if (positionX == 0) {
 				setGegenerPunkte(0);
@@ -187,11 +197,10 @@ public class BeweglichesRechteck extends GameObject {
 				StartScreen.FrameErstellen();
 				Classic.Classicclose();
 				GameLogic.instance.stopGameTimer();
-	
+
 			}
 		}
 	}
-	
 
 
 	public int getGegenerPunkte() {
@@ -209,6 +218,4 @@ public class BeweglichesRechteck extends GameObject {
 	public static void setSpielerPunkte(int spielerPunkte) {
 		SpielerPunkte = spielerPunkte;
 	}
-
-
 }

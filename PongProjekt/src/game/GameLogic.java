@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import gameObjects.BeweglichesRechteck;
+import gui.Classic;
 import gui.Draw;
 
 public class GameLogic {
 
 	private Timer gameTimer;
-	public int screenwidth;
-	private static int screenheight;
+	private static int screenwidth = Classic.getScreenwidth() ;
+	private static int screenheight = Classic.getScreenheight();
 	public ArrayList<GameObject> spielObjekte;
 
 	public boolean keyLeftarrowpressed;
@@ -28,41 +29,46 @@ public class GameLogic {
 	private static int counter = 0;
 
 	public GameLogic() {
+
+		instance = this;
+		gameTimer = new Timer();
+		spielObjekte = new ArrayList<GameObject>();
+
+		keyLeftarrowpressed = false;
+		keyRightarrowpressed = false;
+		keyUparrowpressed = false;
+		keyDownarrowpressed = false;
+
+		ball = new BeweglichesRechteck(getX(), getY(), 20, 20);
+		spielObjekte.add(ball);
 		
-			instance = this;
-			gameTimer = new Timer();
-			spielObjekte = new ArrayList<GameObject>();
+		ball.richtung = 0;
 
-			keyLeftarrowpressed = false;
-			keyRightarrowpressed = false;
-			keyUparrowpressed = false;
-			keyDownarrowpressed = false;
-
-			ball = new BeweglichesRechteck(getX(), getY(), 20, 20);
-			spielObjekte.add(ball);
-			ball.richtung = 0;
-
-			rechteckSpieler = new BeweglichesRechteck(75, 300, breite, hoehe);
-			spielObjekte.add(rechteckSpieler);
-			rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
-			spielObjekte.add(rechteckgegner);
-			sicherheit = new BeweglichesRechteck(75, 299, breite - 2, hoehe + 1);
-			if(Spiel == 0 || Spiel == 1) {	
+		rechteckSpieler = new BeweglichesRechteck(75, 250, breite, hoehe);
+		spielObjekte.add(rechteckSpieler);
+		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
+		spielObjekte.add(rechteckgegner);
+		sicherheit = new BeweglichesRechteck(75, 299, breite - 2, hoehe + 1);
+		if(Spiel == 0 || Spiel == 1) {	
 			gameTimer.scheduleAtFixedRate(new TimerTask(){
 				@Override
 				public void run() {
 					ball.actionPerformed(null);
 					counter++;
 					
-					if (keyUparrowpressed) {
-						if (rechteckSpieler.positionY >= 3) {
-							rechteckSpieler.positionY -= 3;
-							sicherheit.positionY  -= 3;
-						}
-					} else if (keyDownarrowpressed) {
-						if (rechteckSpieler.positionY <= 465) {
-							rechteckSpieler.positionY += 3;
-							sicherheit.positionY += 3;
+					if(GameLogic.getCounter() <= 750) {
+
+					}else {
+						if (keyUparrowpressed) {
+							if (rechteckSpieler.positionY >= 3) {
+								rechteckSpieler.positionY -= 3;
+								sicherheit.positionY  -= 3;
+							}
+						} else if (keyDownarrowpressed) {
+							if (rechteckSpieler.positionY <= 465) {
+								rechteckSpieler.positionY += 3;
+								sicherheit.positionY += 3;
+							}
 						}
 
 					}
@@ -70,7 +76,7 @@ public class GameLogic {
 				}
 			}, 0, 5);
 		}else {
-			
+
 		}
 	}
 	public void stopGameTimer() {
@@ -78,12 +84,16 @@ public class GameLogic {
 		gameTimer.purge();
 	}
 	
+	
+		
+	
+
 	public static int getX() {
-		return Draw.screenwidth/2;
+		return screenwidth/2;
 	}
 
 	public static int getY() {
-		return Draw.screenheight/2;
+		return screenheight/2;
 	}
 
 	public static BeweglichesRechteck getRechteckSpieler() {
@@ -147,5 +157,11 @@ public class GameLogic {
 	}
 	public static void setSicherheit(BeweglichesRechteck sicherheit) {
 		GameLogic.sicherheit = sicherheit;
+	}
+	public static int getScreenwidth() {
+		return screenwidth;
+	}
+	public static void setScreenwidth(int screenwidth) {
+		GameLogic.screenwidth = screenwidth;
 	}
 }

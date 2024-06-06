@@ -12,16 +12,11 @@ import gameObjects.BeweglichesRechteck;
 
 public class Classic {
 
-	private static int screenwidth;
-	private static int screenheight;
+	private static int screenwidth = 800;
+	private static int screenheight = 600;
 	private static JFrame Pongframe;
 
 	public Classic(GameLogic spiellogik) { // KeyHandler -> infos
-
-		screenwidth = 800;
-		screenheight = 600;
-		spiellogik.screenwidth = screenwidth;
-		spiellogik.setScreenheight(screenheight);
 
 		Pongframe = new JFrame();
 		Pongframe.setSize(screenwidth, screenheight);
@@ -67,6 +62,14 @@ public class Classic {
 		StartScreen.FrameErstellen();
 		Classic.Classicclose();
 		GameLogic.instance.stopGameTimer();
+	}
+
+	public static void setScreenwidth(int screenwidth) {
+		Classic.screenwidth = screenwidth;
+	}
+
+	public static void setScreenheight(int screenheight) {
+		Classic.screenheight = screenheight;
 	}
 
 }
