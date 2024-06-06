@@ -53,7 +53,7 @@ public class BeweglichesRechteck extends GameObject {
 		if(GameLogic.getCounter() ==0) {
 			System.out.println("ACHTUNG");
 		}else if(GameLogic.getCounter() ==250 ) {
-			System.out.println("FERIG");
+			System.out.println("FERTIG");
 		}else if(GameLogic.getCounter() ==500) {
 			System.out.println("LOS");
 		}else if(GameLogic.getCounter()== 750 ) {
