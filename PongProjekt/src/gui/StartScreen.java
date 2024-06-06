@@ -27,6 +27,7 @@ import javax.swing.event.ChangeListener;
 import actions.Main;
 import actions.audioManager;
 import game.GameLogic;
+import gameObjects.BeweglichesRechteck;
 
 public class StartScreen extends JFrame {
 
@@ -93,10 +94,15 @@ public class StartScreen extends JFrame {
 		
 		JButton btnClassic = new JButton("Geschichte");
 		btnClassic.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		//Pong wird ausgeführt						
-				GameLogic spiellogik = new GameLogic();
+			public void actionPerformed(ActionEvent e) {
+				GameLogic.setSpiel(0);		
+				GameLogic.setCounter(0);
+				GameLogic spiellogik = new GameLogic();		//Pong wird ausgeführt	
 				new Classic(spiellogik);							//Frame wird erstellt zum Pong
-				Startclose();									//StartScreen Schließen -> soll Nach Gewinnen oder Verlieren der Runde/Level als Abfrage wieder Erstellt werden
+				Startclose();	//StartScreen Schließen -> soll Nach Gewinnen oder Verlieren der Runde/Level als Abfrage wieder Erstellt werden
+				BeweglichesRechteck.setGegenerPunkte(0);
+				BeweglichesRechteck.setSpielerPunkte(0);
+			
 			}
 		});
 		
@@ -107,9 +113,14 @@ public class StartScreen extends JFrame {
 		JButton btnEndless = new JButton("Endlos");
 		btnEndless.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GameLogic.setSpiel(1);
+				GameLogic.setCounter(0);
 				GameLogic spiellogik = new GameLogic();
-				new EndlessRunner(spiellogik);				//EndlessRunner wird ausgeführt
-				Startclose();								//StartScreen Schließen -> soll Nach Verlieren der Runde als Abfrage wieder Erstellt werden
+				new Classic(spiellogik);				//EndlessRunner wird ausgeführt
+				Startclose();	//StartScreen Schließen -> soll Nach Verlieren der Runde als Abfrage wieder Erstellt werden
+				BeweglichesRechteck.setGegenerPunkte(0);
+				BeweglichesRechteck.setSpielerPunkte(0);
+				
 			}
 		});
 		
@@ -291,4 +302,5 @@ public class StartScreen extends JFrame {
 	public static void setLaenge(int laenge) {
 		StartScreen.laenge = laenge;
 	}
+	
 }
