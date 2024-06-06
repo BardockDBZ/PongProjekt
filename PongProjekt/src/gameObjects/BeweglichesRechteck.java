@@ -120,9 +120,9 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 
 		if (ball.positionY + ball.groesseY / 2 > gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
-			gegnerPaddle.positionY += 2; // Paddle nach unten bewegen
+			gegnerPaddle.positionY += 1; // Paddle nach unten bewegen
 		} else if (ball.positionY + ball.groesseY / 2 < gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
-			gegnerPaddle.positionY -= 2; // Paddle nach oben bewegen
+			gegnerPaddle.positionY -= 1; // Paddle nach oben bewegen
 		}
 
 		// Sicherstellen, dass das Paddle nicht aus dem Bildschirmbereich bewegt wird
@@ -155,7 +155,6 @@ public class BeweglichesRechteck extends GameObject {
 			xGeschwindigkeit = 0;
 			yGeschwindigkeit = 0;
 			System.out.println("Gegner hat gewonnen" );
-			StartScreen.FrameErstellen();
 			Classic.Classicclose();
 			GameLogic.instance.stopGameTimer();
 		}else if(getSpielerPunkte() == 10) {
@@ -193,10 +192,10 @@ public class BeweglichesRechteck extends GameObject {
 				positionY = GameLogic.getY();
 				xGeschwindigkeit = 0;
 				yGeschwindigkeit = 0;
-				System.out.println("Gegner hat gewonnen" );
-				StartScreen.FrameErstellen();
+				System.out.println("Verloren" );
 				Classic.Classicclose();
 				GameLogic.instance.stopGameTimer();
+				
 
 			}
 		}
