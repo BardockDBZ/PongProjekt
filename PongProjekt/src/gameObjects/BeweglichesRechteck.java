@@ -155,6 +155,7 @@ public class BeweglichesRechteck extends GameObject {
 			xGeschwindigkeit = 0;
 			yGeschwindigkeit = 0;
 			System.out.println("Gegner hat gewonnen" );
+			Classic.Classicclose();
 			GameLogic.instance.stopGameTimer();
 		}else if(getSpielerPunkte() == 10) {
 			setGegenerPunkte(0);
@@ -191,6 +192,7 @@ public class BeweglichesRechteck extends GameObject {
 				xGeschwindigkeit = 0;
 				yGeschwindigkeit = 0;
 				System.out.println("Verloren" );
+				Classic.Classicclose();
 				GameLogic.instance.stopGameTimer();
 				
 
