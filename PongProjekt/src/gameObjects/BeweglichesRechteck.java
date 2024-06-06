@@ -18,6 +18,7 @@ public class BeweglichesRechteck extends GameObject {
 	private static int GegenerPunkte = 0;
 	private static int SpielerPunkte = 0;
 	private  int xGeschwindigkeit = 2, yGeschwindigkeit = 2;
+	final int minYGeschwindigkeit = 1;
 
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
@@ -45,6 +46,7 @@ public class BeweglichesRechteck extends GameObject {
 	public void start() {
 		if(GameLogic.getCounter() >= 0 && GameLogic.getCounter() <= 1) {
 		positionX = GameLogic.getX();
+		
 		}
 	}
 	public void collisionwithwall() {
@@ -61,23 +63,44 @@ public class BeweglichesRechteck extends GameObject {
 	public void collisionWithPaddle() {
 		BeweglichesRechteck spielerPaddle = GameLogic.getRechteckSpieler();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
-
-		if (this.positionX <= spielerPaddle.positionX + spielerPaddle.groesseX &&
-				this.positionX + this.groesseX >= spielerPaddle.positionX &&
-				this.positionY <= spielerPaddle.positionY + spielerPaddle.groesseY &&
-				this.positionY + this.groesseY >= spielerPaddle.positionY) {
-			xGeschwindigkeit = -xGeschwindigkeit;
-			yGeschwindigkeit += (this.positionY - (spielerPaddle.positionY + spielerPaddle.groesseY / 2)) / 10;
-			yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
-		}
-
-		if (this.positionX <= gegnerPaddle.positionX + gegnerPaddle.groesseX &&
-				this.positionX + this.groesseX >= gegnerPaddle.positionX &&
-				this.positionY <= gegnerPaddle.positionY + gegnerPaddle.groesseY &&
-				this.positionY + this.groesseY >= gegnerPaddle.positionY) {
-			xGeschwindigkeit = -xGeschwindigkeit;
-			yGeschwindigkeit += (this.positionY - (gegnerPaddle.positionY + gegnerPaddle.groesseY / 2)) / 10;
-			yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+		BeweglichesRechteck sicherheitSpiele = GameLogic.getSicherheit();
+		
+		if(this.positionX <= sicherheitSpiele.positionX + sicherheitSpiele.groesseX &&
+				this.positionX + this.groesseX >= sicherheitSpiele.positionX &&
+				this.positionY <= sicherheitSpiele.positionY + sicherheitSpiele.groesseY &&
+				this.positionY + this.groesseY >= sicherheitSpiele.positionY) {
+			
+		}else {
+			if (this.positionX <= spielerPaddle.positionX + spielerPaddle.groesseX &&
+					this.positionX + this.groesseX >= spielerPaddle.positionX &&
+					this.positionY <= spielerPaddle.positionY + spielerPaddle.groesseY &&
+					this.positionY + this.groesseY >= spielerPaddle.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (spielerPaddle.positionY + spielerPaddle.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+				
+				 if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {
+			            yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));
+			        }
+				
+			}
+	
+			if (this.positionX <= gegnerPaddle.positionX + gegnerPaddle.groesseX &&
+					this.positionX + this.groesseX >= gegnerPaddle.positionX &&
+					this.positionY <= gegnerPaddle.positionY + gegnerPaddle.groesseY &&
+					this.positionY + this.groesseY >= gegnerPaddle.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (gegnerPaddle.positionY + gegnerPaddle.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+				
+				 if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {
+			            yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));
+			        }
+			        
+			}
+			 if(yGeschwindigkeit == 0) {
+				 yGeschwindigkeit += 1;
+			 }
 		}
 	}
 	public static void GegnerKI() {
@@ -150,21 +173,25 @@ public class BeweglichesRechteck extends GameObject {
 		}
 	}
 	public void EndlessVerloren() {
-		if (positionX == 0) {
-			setGegenerPunkte(0);
-			setSpielerPunkte(0);
-			positionX = GameLogic.getX();
-			positionY = GameLogic.getY();
-			xGeschwindigkeit = 0;
-			yGeschwindigkeit = 0;
-			System.out.println("Gegner hat gewonnen" );
-			StartScreen.FrameErstellen();
-			Classic.Classicclose();
-			GameLogic.instance.stopGameTimer();
-
+		if(GameLogic.getCounter() < 1) {
+			
+		}else {
+			if (positionX == 0) {
+				setGegenerPunkte(0);
+				setSpielerPunkte(0);
+				positionX = GameLogic.getX();
+				positionY = GameLogic.getY();
+				xGeschwindigkeit = 0;
+				yGeschwindigkeit = 0;
+				System.out.println("Gegner hat gewonnen" );
+				StartScreen.FrameErstellen();
+				Classic.Classicclose();
+				GameLogic.instance.stopGameTimer();
+	
+			}
 		}
 	}
-
+	
 
 
 	public int getGegenerPunkte() {

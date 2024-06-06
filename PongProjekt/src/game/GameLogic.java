@@ -20,6 +20,7 @@ public class GameLogic {
 	private static BeweglichesRechteck rechteckSpieler;
 	private static BeweglichesRechteck ball;
 	private static BeweglichesRechteck rechteckgegner;
+	private static BeweglichesRechteck sicherheit;
 	private int breite = 5;
 	private int hoehe = 100;
 	public static GameLogic instance;
@@ -45,6 +46,7 @@ public class GameLogic {
 			spielObjekte.add(rechteckSpieler);
 			rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
 			spielObjekte.add(rechteckgegner);
+			sicherheit = new BeweglichesRechteck(75, 299, breite - 2, hoehe + 1);
 			if(Spiel == 0 || Spiel == 1) {	
 			gameTimer.scheduleAtFixedRate(new TimerTask(){
 				@Override
@@ -55,10 +57,12 @@ public class GameLogic {
 					if (keyUparrowpressed) {
 						if (rechteckSpieler.positionY >= 3) {
 							rechteckSpieler.positionY -= 3;
+							sicherheit.positionY  -= 3;
 						}
 					} else if (keyDownarrowpressed) {
 						if (rechteckSpieler.positionY <= 465) {
 							rechteckSpieler.positionY += 3;
+							sicherheit.positionY += 3;
 						}
 
 					}
@@ -137,5 +141,11 @@ public class GameLogic {
 	}
 	public static void setCounter(int counter) {
 		GameLogic.counter = counter;
+	}
+	public static BeweglichesRechteck getSicherheit() {
+		return sicherheit;
+	}
+	public static void setSicherheit(BeweglichesRechteck sicherheit) {
+		GameLogic.sicherheit = sicherheit;
 	}
 }
