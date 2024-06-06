@@ -95,9 +95,7 @@ public class BeweglichesRechteck extends GameObject {
 	}
 
 	public void Punktesystem() {
-		if(GameLogic.getCounter() <= 2000){
-
-		}else {
+		
 			if (positionX == 0) {
 				setGegenerPunkte(GegenerPunkte + 1);  
 				positionX = GameLogic.getX();
@@ -112,7 +110,7 @@ public class BeweglichesRechteck extends GameObject {
 				positionY = GameLogic.getY();
 				yGeschwindigkeit = -yGeschwindigkeit;
 				System.out.println("Spieler hat : " + getSpielerPunkte());
-			}
+			
 		}
 	}
 	public void Gewonnen() {
@@ -141,20 +139,17 @@ public class BeweglichesRechteck extends GameObject {
 		}
 	}
 	public void EndlessPunkte() {
-		if(GameLogic.getCounter() <= 2000){
-
-		}else {
+		
 			if(positionX ==  Classic.getScreenwidth() - diameter ) {
 				setSpielerPunkte(SpielerPunkte + 1);   
 				positionX = GameLogic.getX();
 				positionY = GameLogic.getY();
 				yGeschwindigkeit = -yGeschwindigkeit;
 				System.out.println("Spieler hat : " + getSpielerPunkte());
-			}
+			
 		}
 	}
 	public void EndlessVerloren() {
-		System.out.println(positionX);
 		if (positionX == 0) {
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
