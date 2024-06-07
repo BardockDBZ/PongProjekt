@@ -13,7 +13,8 @@ public class BeweglichesRechteck extends GameObject {
 	public byte richtung;
 	public int schritteInGleicherRichtung;
 	private static int  diameter = 27;
-
+	private static int level = 0;
+	private static int PunkteGewonen = -1;
 	private final int maxgeschwindigkeit = 3;
 	private static int GegenerPunkte = 0;
 	private static int SpielerPunkte = 0;
@@ -27,24 +28,24 @@ public class BeweglichesRechteck extends GameObject {
 
 	public void actionPerformed(ActionEvent e) {
 		start();
-		if(GameLogic.getCounter() > 750) {
 		
+		if(GameLogic.getCounter() > 750) {
 			
 		}
 
 	}
 	public void actionPerformedBall(ActionEvent e) {
+		if(GameLogic.getSpiel() == 0) {
+			Levelsystem();
+		}else if(GameLogic.getSpiel() == 1) {
+			EndlessPunkte();
+			EndlessVerloren();
+		}
 		if(GameLogic.getCounter() > 750) {
 			move();
 			collisionwithwall();
 			collisionWithPaddle();
-			if(GameLogic.getSpiel() == 0) {
-				Punktesystem();
-				Gewonnen();
-			}else if(GameLogic.getSpiel() == 1) {
-				EndlessPunkte();
-				EndlessVerloren();
-			}
+			
 			
 		}
 	}
@@ -154,7 +155,7 @@ public class BeweglichesRechteck extends GameObject {
 		}
 	}
 	public void Gewonnen() {
-		if (getGegenerPunkte() == 10 ) {
+		if (getGegenerPunkte() == PunkteGewonen ) {
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
 			positionX = GameLogic.getX();
@@ -164,7 +165,8 @@ public class BeweglichesRechteck extends GameObject {
 			System.out.println("Gegner hat gewonnen" );
 			Classic.Classicclose();
 			GameLogic.instance.stopGameTimer();
-		}else if(getSpielerPunkte() == 10) {
+		}else if(getSpielerPunkte() == PunkteGewonen) {
+			level++;
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
 			positionX = GameLogic.getX();
@@ -206,7 +208,79 @@ public class BeweglichesRechteck extends GameObject {
 			}
 		}
 	}
-
+	public void Levelsystem() {
+		switch (getLevel()) {
+		case 0: {					//Level Tutorial
+			System.out.println("Tutorial");
+			PunkteGewonen = 10;
+			Punktesystem();
+			Gewonnen();	
+		} break;
+		case 1: {					//Level 1
+			System.out.println("level : " + getLevel());
+		}break;
+		case 2: {					//Level 2
+			System.out.println("level : " + getLevel());
+		}break;
+		case 3: {					//Level 3
+			System.out.println("level : " + getLevel());		
+		}break;
+		case 4: {					//Level 4
+			System.out.println("level : " + getLevel());
+		}break;
+		case 5: {					//Level 5
+			System.out.println("level : " + getLevel());
+		}break;
+		case 6: {					//Level 6
+			System.out.println("level : " + getLevel());
+		}break;
+		case 7: { 					//Level 7
+			System.out.println("level : " + getLevel());
+		}break;
+		case 8: {					//Level 8
+			System.out.println("level : " + getLevel());
+		}break;
+		case 9: {					//Level 9
+			System.out.println("level : " + getLevel());
+		}break;
+		case 10: {					//Level 10
+			System.out.println("level : " + getLevel());
+		}break;	
+		case 11: {					//Level 11
+			System.out.println("level : " + getLevel());
+		}break;
+		case 12: {					//Level 12
+			System.out.println("level : " + getLevel());
+		}break;
+		case 13: {					//Level 13
+			System.out.println("level : " + getLevel());	
+		}break;
+		case 14: {					//Level 14
+			System.out.println("level : " + getLevel());
+		}break;
+		case 15: {					//Level 15
+			System.out.println("level : " + getLevel());
+		}break;
+		case 16: {					//Level 16
+			System.out.println("level : " + getLevel());
+		}break;
+		case 17: {					//Level 17
+			System.out.println("level : " + getLevel());
+		}break;
+		case 18: {					//Level 18
+			System.out.println("level : " + getLevel());
+		}break;
+		case 19: {					//Level 19
+			System.out.println("level : " + getLevel());
+		}break;
+		case 20: {					//Level 20
+			System.out.println("level : " + getLevel());
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + level);
+		}
+		
+	}
 
 	public int getGegenerPunkte() {
 		return GegenerPunkte;
@@ -222,5 +296,21 @@ public class BeweglichesRechteck extends GameObject {
 
 	public static void setSpielerPunkte(int spielerPunkte) {
 		SpielerPunkte = spielerPunkte;
+	}
+
+	public static int getLevel() {
+		return level;
+	}
+
+	public static void setLevel(int level) {
+		BeweglichesRechteck.level = level;
+	}
+
+	public static int getPunkteGewonen() {
+		return PunkteGewonen;
+	}
+
+	public static void setPunkteGewonen(int punkteGewonen) {
+		PunkteGewonen = punkteGewonen;
 	}
 }
