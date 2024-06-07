@@ -18,7 +18,7 @@ public class BeweglichesRechteck extends GameObject {
 	private final int maxgeschwindigkeit = 3;
 	private static int GegenerPunkte = 0;
 	private static int SpielerPunkte = 0;
-	private  int xGeschwindigkeit = 2, yGeschwindigkeit = 2;
+	private  int xGeschwindigkeit = GameLogic.getGeschwindigkeitBall(), yGeschwindigkeit = GameLogic.getGeschwindigkeitBall();
 	final int minYGeschwindigkeit = 1;
 
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
@@ -28,15 +28,10 @@ public class BeweglichesRechteck extends GameObject {
 
 	public void actionPerformed(ActionEvent e) {
 		start();
-		
-		if(GameLogic.getCounter() > 750) {
-			
-		}
-
-	}
-	public void actionPerformedBall(ActionEvent e) {
 		if(GameLogic.getSpiel() == 0) {
 			Levelsystem();
+			Punktesystem();
+			Gewonnen();
 		}else if(GameLogic.getSpiel() == 1) {
 			EndlessPunkte();
 			EndlessVerloren();
@@ -45,11 +40,10 @@ public class BeweglichesRechteck extends GameObject {
 			move();
 			collisionwithwall();
 			collisionWithPaddle();
-			
-			
+		
 		}
 	}
-
+	
 	public void move() {
 
 		positionX += xGeschwindigkeit;
@@ -58,7 +52,7 @@ public class BeweglichesRechteck extends GameObject {
 	}
 	public void start() {
 
-		if(GameLogic.getCounter() ==0) {
+		if(GameLogic.getCounter() ==1) {
 			System.out.println("ACHTUNG");
 		}else if(GameLogic.getCounter() ==250 ) {
 			System.out.println("FERTIG");
@@ -128,9 +122,9 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 
 		if (ball.positionY + ball.groesseY / 2 > gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
-			gegnerPaddle.positionY += 2; // Paddle nach unten bewegen
+			gegnerPaddle.positionY += GameLogic.getGeschwindigkeitGegner(); // Paddle nach unten bewegen
 		} else if (ball.positionY + ball.groesseY / 2 < gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
-			gegnerPaddle.positionY -= 2; // Paddle nach oben bewegen
+			gegnerPaddle.positionY -= GameLogic.getGeschwindigkeitGegner(); // Paddle nach oben bewegen
 		}
 
 		// Sicherstellen, dass das Paddle nicht aus dem Bildschirmbereich bewegt wird
@@ -210,11 +204,12 @@ public class BeweglichesRechteck extends GameObject {
 	}
 	public void Levelsystem() {
 		switch (getLevel()) {
-		case 0: {					//Level Tutorial
+		case 0: {	//Level Tutorial
+			if (GameLogic.getCounter()==0) {
 			System.out.println("Tutorial");
+			}
 			PunkteGewonen = 10;
-			Punktesystem();
-			Gewonnen();	
+				
 		} break;
 		case 1: {					//Level 1
 			System.out.println("level : " + getLevel());

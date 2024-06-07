@@ -10,7 +10,6 @@ import gui.Draw;
 public class GameLogic {
 
 	private Timer gameTimer;
-	private Timer gameTimerBall;
 	private static int screenwidth = Classic.getScreenwidth() ;
 	private static int screenheight = Classic.getScreenheight();
 	public ArrayList<GameObject> spielObjekte;
@@ -30,12 +29,14 @@ public class GameLogic {
 	public static GameLogic instance;
 	private static int Spiel = -1;
 	private static int counter = 0;
+	private static int GeschwindigkeitSpieler = 3;
+	private static int GeschwindigkeitGegner = 3;
+	private static int GeschwindigkeitBall = 2;
 
 	public GameLogic() {
 
 		instance = this;
 		gameTimer = new Timer();
-		gameTimerBall = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 
 		keyLeftarrowpressed = false;
@@ -65,23 +66,23 @@ public class GameLogic {
 					}else {
 						if (keyUparrowpressed) {
 							if (rechteckSpieler.positionY >= 3) {
-								rechteckSpieler.positionY -= 3;
-								sicherheit.positionY  -= 3;
+								rechteckSpieler.positionY -= GeschwindigkeitSpieler;
+								sicherheit.positionY  -= GeschwindigkeitSpieler;
 							}
 						} else if (keyDownarrowpressed) {
 							if (rechteckSpieler.positionY <= 465) {
-								rechteckSpieler.positionY += 3;
-								sicherheit.positionY += 3;
+								rechteckSpieler.positionY += GeschwindigkeitSpieler;
+								sicherheit.positionY += GeschwindigkeitSpieler;
 							}
 						} else if (keyUPWarrowpressed) {
 							if (rechteckSpieler.positionY >= 3) {
-								rechteckSpieler.positionY -= 3;
-								sicherheit.positionY -= 3;
+								rechteckSpieler.positionY -= GeschwindigkeitSpieler;
+								sicherheit.positionY -= GeschwindigkeitSpieler;
 							}
 						} else if (keyDownSarrowpressed) {
 							if (rechteckSpieler.positionY <= 465) {
-								rechteckSpieler.positionY += 3;
-								sicherheit.positionY += 3;
+								rechteckSpieler.positionY += GeschwindigkeitSpieler;
+								sicherheit.positionY += GeschwindigkeitSpieler;
 							}
 						}
 
@@ -92,18 +93,16 @@ public class GameLogic {
 		}else {
 
 		}
-		gameTimerBall.scheduleAtFixedRate(new TimerTask(){
-			@Override
-			public void run() {
-				ball.actionPerformedBall(null);
-			}
-		}, 0, 5);
+	}
+	public void Geschwindigkeit(int Ball, int Spieler, int Gegner) {
+		GeschwindigkeitBall = Ball;
+		GeschwindigkeitGegner = Gegner;
+		GeschwindigkeitSpieler = Spieler;
 	}
 	public void stopGameTimer() {
 		gameTimer.cancel();
 		gameTimer.purge();
-		gameTimerBall.cancel();
-		gameTimerBall.purge();
+
 	}
 
 	public static int getX() {
@@ -181,5 +180,23 @@ public class GameLogic {
 	}
 	public static void setScreenwidth(int screenwidth) {
 		GameLogic.screenwidth = screenwidth;
+	}
+	public static int getGeschwindigkeitSpieler() {
+		return GeschwindigkeitSpieler;
+	}
+	public static void setGeschwindigkeitSpieler(int geschwindigkeitSpieler) {
+		GeschwindigkeitSpieler = geschwindigkeitSpieler;
+	}
+	public static int getGeschwindigkeitGegner() {
+		return GeschwindigkeitGegner;
+	}
+	public static void setGeschwindigkeitGegner(int geschwindigkeitGegner) {
+		GeschwindigkeitGegner = geschwindigkeitGegner;
+	}
+	public static int getGeschwindigkeitBall() {
+		return GeschwindigkeitBall;
+	}
+	public static void setGeschwindigkeitBall(int geschwindigkeitBall) {
+		GeschwindigkeitBall = geschwindigkeitBall;
 	}
 }
