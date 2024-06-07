@@ -28,6 +28,14 @@ public class BeweglichesRechteck extends GameObject {
 	public void actionPerformed(ActionEvent e) {
 		start();
 		if(GameLogic.getCounter() > 750) {
+		
+			
+		}
+
+	}
+	public void actionPerformedBall(ActionEvent e) {
+		if(GameLogic.getCounter() > 750) {
+			move();
 			collisionwithwall();
 			collisionWithPaddle();
 			if(GameLogic.getSpiel() == 0) {
@@ -37,13 +45,7 @@ public class BeweglichesRechteck extends GameObject {
 				EndlessPunkte();
 				EndlessVerloren();
 			}
-		}
-
-	}
-	public void actionPerformedBall(ActionEvent e) {
-		System.out.println("Hilfe");
-		if(GameLogic.getCounter() > 750) {
-			move();
+			
 		}
 	}
 

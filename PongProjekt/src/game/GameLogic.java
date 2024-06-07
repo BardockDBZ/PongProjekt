@@ -52,7 +52,7 @@ public class GameLogic {
 		spielObjekte.add(rechteckSpieler);
 		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
 		spielObjekte.add(rechteckgegner);
-		sicherheit = new BeweglichesRechteck(75, 299, breite - 2, hoehe + 1);
+		sicherheit = new BeweglichesRechteck(75, 298, breite - 3, hoehe + 2);
 		if(Spiel == 0 || Spiel == 1) {	
 			gameTimer.scheduleAtFixedRate(new TimerTask(){
 				@Override
@@ -105,11 +105,6 @@ public class GameLogic {
 		gameTimerBall.cancel();
 		gameTimerBall.purge();
 	}
-	
-	
-	
-		
-	
 
 	public static int getX() {
 		return screenwidth/2;
