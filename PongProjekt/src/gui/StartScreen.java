@@ -302,5 +302,4 @@ public class StartScreen extends JFrame {
 	public static void setLaenge(int laenge) {
 		StartScreen.laenge = laenge;
 	}
-	
 }

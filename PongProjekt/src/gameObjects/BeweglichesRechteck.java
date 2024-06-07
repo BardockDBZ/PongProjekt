@@ -28,7 +28,6 @@ public class BeweglichesRechteck extends GameObject {
 	public void actionPerformed(ActionEvent e) {
 		start();
 		if(GameLogic.getCounter() > 750) {
-			move();
 			collisionwithwall();
 			collisionWithPaddle();
 			if(GameLogic.getSpiel() == 0) {
@@ -41,6 +40,12 @@ public class BeweglichesRechteck extends GameObject {
 		}
 
 	}
+	public void actionPerformedBall(ActionEvent e) {
+		System.out.println("Hilfe");
+		if(GameLogic.getCounter() > 750) {
+			move();
+		}
+	}
 
 	public void move() {
 
@@ -49,7 +54,7 @@ public class BeweglichesRechteck extends GameObject {
 
 	}
 	public void start() {
-		
+
 		if(GameLogic.getCounter() ==0) {
 			System.out.println("ACHTUNG");
 		}else if(GameLogic.getCounter() ==250 ) {
@@ -57,9 +62,9 @@ public class BeweglichesRechteck extends GameObject {
 		}else if(GameLogic.getCounter() ==500) {
 			System.out.println("LOS");
 		}else if(GameLogic.getCounter()== 750 ) {
-			
+
 		}
-	
+
 	}
 	public void collisionwithwall() {
 		if (positionX <= 0 || positionX >= Classic.getScreenwidth() - diameter) {
@@ -194,7 +199,7 @@ public class BeweglichesRechteck extends GameObject {
 				System.out.println("Verloren" );
 				Classic.Classicclose();
 				GameLogic.instance.stopGameTimer();
-				
+
 
 			}
 		}

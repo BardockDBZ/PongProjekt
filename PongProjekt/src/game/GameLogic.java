@@ -10,6 +10,7 @@ import gui.Draw;
 public class GameLogic {
 
 	private Timer gameTimer;
+	private Timer gameTimerBall;
 	private static int screenwidth = Classic.getScreenwidth() ;
 	private static int screenheight = Classic.getScreenheight();
 	public ArrayList<GameObject> spielObjekte;
@@ -18,6 +19,8 @@ public class GameLogic {
 	public boolean keyRightarrowpressed;
 	public boolean keyUparrowpressed;
 	public boolean keyDownarrowpressed;
+	public boolean keyDownSarrowpressed;
+	public boolean keyUPWarrowpressed;
 	private static BeweglichesRechteck rechteckSpieler;
 	private static BeweglichesRechteck ball;
 	private static BeweglichesRechteck rechteckgegner;
@@ -32,6 +35,7 @@ public class GameLogic {
 
 		instance = this;
 		gameTimer = new Timer();
+		gameTimerBall = new Timer();
 		spielObjekte = new ArrayList<GameObject>();
 
 		keyLeftarrowpressed = false;
@@ -69,6 +73,16 @@ public class GameLogic {
 								rechteckSpieler.positionY += 3;
 								sicherheit.positionY += 3;
 							}
+						} else if (keyUPWarrowpressed) {
+							if (rechteckSpieler.positionY >= 3) {
+								rechteckSpieler.positionY -= 3;
+								sicherheit.positionY -= 3;
+							}
+						} else if (keyDownSarrowpressed) {
+							if (rechteckSpieler.positionY <= 465) {
+								rechteckSpieler.positionY += 3;
+								sicherheit.positionY += 3;
+							}
 						}
 
 					}
@@ -78,11 +92,20 @@ public class GameLogic {
 		}else {
 
 		}
+		gameTimerBall.scheduleAtFixedRate(new TimerTask(){
+			@Override
+			public void run() {
+				ball.actionPerformedBall(null);
+			}
+		}, 0, 5);
 	}
 	public void stopGameTimer() {
 		gameTimer.cancel();
 		gameTimer.purge();
+		gameTimerBall.cancel();
+		gameTimerBall.purge();
 	}
+	
 	
 	
 		
