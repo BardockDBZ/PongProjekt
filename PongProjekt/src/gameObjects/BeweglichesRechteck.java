@@ -376,3 +376,8 @@ public class BeweglichesRechteck extends GameObject {
 		PunkteGewonen = punkteGewonen;
 	}
 }
+
+
+
+
+// Veränderung
