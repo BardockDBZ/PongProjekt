@@ -381,3 +381,5 @@ public class BeweglichesRechteck extends GameObject {
 
 
 // Veränderung
+
+// Veränderung 2
