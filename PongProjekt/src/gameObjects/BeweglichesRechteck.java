@@ -33,6 +33,7 @@ public class BeweglichesRechteck extends GameObject {
 			Punktesystem();
 			Gewonnen();
 		}else if(GameLogic.getSpiel() == 1) {
+			EndlessRunnerSchwierigkeit();
 			EndlessPunkte();
 			EndlessVerloren();
 		}
@@ -202,9 +203,39 @@ public class BeweglichesRechteck extends GameObject {
 			}
 		}
 	}
+	public void EndlessRunnerSchwierigkeit() {
+		GameLogic.setGeschwindigkeitBall(1);
+		GameLogic.setGeschwindigkeitSpieler(1);
+		GameLogic.setGeschwindigkeitGegner(1);
+		if (SpielerPunkte >= 0 && SpielerPunkte <= 5 ) {
+			GameLogic.setGeschwindigkeitBall(1);
+			GameLogic.setGeschwindigkeitSpieler(1);
+			GameLogic.setGeschwindigkeitGegner(1);
+		}else if(SpielerPunkte >= 5 && SpielerPunkte <= 10) {
+			GameLogic.setGeschwindigkeitSpieler(2);
+		}else if(SpielerPunkte >= 10 && SpielerPunkte <= 15) {
+			GameLogic.setGeschwindigkeitSpieler(2);
+			GameLogic.setGeschwindigkeitBall(2);
+			GameLogic.setGeschwindigkeitGegner(2);
+		}else if(SpielerPunkte >= 15 && SpielerPunkte <= 20) {
+			GameLogic.setGeschwindigkeitSpieler(2);
+			GameLogic.setGeschwindigkeitBall(3);
+			GameLogic.setGeschwindigkeitGegner(2);
+		}else if(SpielerPunkte >= 20) {
+			GameLogic.setGeschwindigkeitSpieler(3);
+			GameLogic.setGeschwindigkeitBall(4);
+			GameLogic.setGeschwindigkeitGegner(2);
+		}
+	}
 	public void Levelsystem() {
+		GameLogic.setGeschwindigkeitBall(1);
+		GameLogic.setGeschwindigkeitSpieler(1);
+		GameLogic.setGeschwindigkeitGegner(1);
 		switch (getLevel()) {
 		case 0: {	//Level Tutorial
+			GameLogic.setGeschwindigkeitBall(1);
+			GameLogic.setGeschwindigkeitSpieler(1);
+			GameLogic.setGeschwindigkeitGegner(1);
 			if (GameLogic.getCounter()==0) {
 			System.out.println("Tutorial");
 			}
@@ -212,65 +243,101 @@ public class BeweglichesRechteck extends GameObject {
 				
 		} break;
 		case 1: {					//Level 1
+			GameLogic.setGeschwindigkeitBall(1);
+			GameLogic.setGeschwindigkeitSpieler(2);
+			GameLogic.setGeschwindigkeitGegner(1);
+			if (GameLogic.getCounter()==0) {
 			System.out.println("level : " + getLevel());
+			}
 		}break;
 		case 2: {					//Level 2
-			System.out.println("level : " + getLevel());
-		}break;
+			GameLogic.setGeschwindigkeitBall(2);
+			GameLogic.setGeschwindigkeitSpieler(2);
+			GameLogic.setGeschwindigkeitGegner(2);
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 3: {					//Level 3
-			System.out.println("level : " + getLevel());		
-		}break;
+			GameLogic.setGeschwindigkeitBall(3);
+			GameLogic.setGeschwindigkeitSpieler(2);
+			GameLogic.setGeschwindigkeitGegner(2);
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 4: {					//Level 4
-			System.out.println("level : " + getLevel());
-		}break;
+			GameLogic.setGeschwindigkeitBall(3);
+			GameLogic.setGeschwindigkeitSpieler(3);
+			GameLogic.setGeschwindigkeitGegner(2);
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 5: {					//Level 5
-			System.out.println("level : " + getLevel());
-		}break;
+			GameLogic.setGeschwindigkeitBall(4);
+			GameLogic.setGeschwindigkeitSpieler(3);
+			GameLogic.setGeschwindigkeitGegner(2);
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 6: {					//Level 6
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 7: { 					//Level 7
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 8: {					//Level 8
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 9: {					//Level 9
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 10: {					//Level 10
-			System.out.println("level : " + getLevel());
-		}break;	
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;	
 		case 11: {					//Level 11
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 12: {					//Level 12
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 13: {					//Level 13
-			System.out.println("level : " + getLevel());	
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 14: {					//Level 14
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 15: {					//Level 15
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 16: {					//Level 16
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 17: {					//Level 17
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 18: {					//Level 18
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 19: {					//Level 19
-			System.out.println("level : " + getLevel());
-		}break;
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}break;
 		case 20: {					//Level 20
-			System.out.println("level : " + getLevel());
-		}
+			if (GameLogic.getCounter()==0) {
+				System.out.println("level : " + getLevel());
+				}		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + level);
 		}

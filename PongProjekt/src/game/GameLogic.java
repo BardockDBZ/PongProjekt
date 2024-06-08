@@ -29,9 +29,9 @@ public class GameLogic {
 	public static GameLogic instance;
 	private static int Spiel = -1;
 	private static int counter = 0;
-	private static int GeschwindigkeitSpieler = 3;
-	private static int GeschwindigkeitGegner = 3;
-	private static int GeschwindigkeitBall = 2;
+	private static int GeschwindigkeitSpieler = 1;
+	private static int GeschwindigkeitGegner = 1;
+	private static int GeschwindigkeitBall = 1;
 
 	public GameLogic() {
 
@@ -53,7 +53,7 @@ public class GameLogic {
 		spielObjekte.add(rechteckSpieler);
 		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
 		spielObjekte.add(rechteckgegner);
-		sicherheit = new BeweglichesRechteck(75, 298, breite - 3, hoehe + 2);
+		sicherheit = new BeweglichesRechteck(75, 298, breite - 1, hoehe + 2);
 		if(Spiel == 0 || Spiel == 1) {	
 			gameTimer.scheduleAtFixedRate(new TimerTask(){
 				@Override
