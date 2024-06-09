@@ -20,6 +20,7 @@ public class GameLogic {
 	public boolean keyDownarrowpressed;
 	public boolean keyDownSarrowpressed;
 	public boolean keyUPWarrowpressed;
+	public static boolean keypausearrowpressed ;
 	private static BeweglichesRechteck rechteckSpieler;
 	private static BeweglichesRechteck ball;
 	private static BeweglichesRechteck rechteckgegner;
@@ -60,7 +61,9 @@ public class GameLogic {
 				public void run() {
 					ball.actionPerformed(null);
 					counter++;
-					
+					if(GameLogic.keypausearrowpressed) {
+						
+					}else {
 					if(GameLogic.getCounter() <= 750) {
 
 					}else {
@@ -86,6 +89,7 @@ public class GameLogic {
 							}
 						}
 
+					}
 					}
 					BeweglichesRechteck.GegnerKI();
 				}
