@@ -3,9 +3,11 @@ package gameObjects;
 import java.awt.event.ActionEvent;
 import java.security.PublicKey;
 
+import Shop.Inventar;
 import game.GameLogic;
 import game.GameObject;
 import gui.Classic;
+import gui.Shop;
 import gui.StartScreen;
 
 public class BeweglichesRechteck extends GameObject {
@@ -27,24 +29,28 @@ public class BeweglichesRechteck extends GameObject {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		start();
-		if(GameLogic.getSpiel() == 0) {
-			Levelsystem();
-			Punktesystem();
-			Gewonnen();
-		}else if(GameLogic.getSpiel() == 1) {
-			EndlessRunnerSchwierigkeit();
-			EndlessPunkte();
-			EndlessVerloren();
-		}
-		if(GameLogic.getCounter() > 750) {
-			move();
-			collisionwithwall();
-			collisionWithPaddle();
-		
+		if(GameLogic.keypausearrowpressed) {
+
+		}else {
+			start();
+			if(GameLogic.getSpiel() == 0) {
+				Levelsystem();
+				Punktesystem();
+				Gewonnen();
+			}else if(GameLogic.getSpiel() == 1) {
+				EndlessRunnerSchwierigkeit();
+				EndlessPunkte();
+				EndlessVerloren();
+			}
+			if(GameLogic.getCounter() > 750) {
+				move();
+				collisionwithwall();
+				collisionWithPaddle();
+
+			}
 		}
 	}
-	
+
 	public void move() {
 
 		positionX += xGeschwindigkeit;
@@ -121,15 +127,18 @@ public class BeweglichesRechteck extends GameObject {
 	public static void GegnerKI() {
 		BeweglichesRechteck ball = GameLogic.getBall();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
+		if(GameLogic.keypausearrowpressed) {
 
-		if (ball.positionY + ball.groesseY / 2 > gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
-			gegnerPaddle.positionY += GameLogic.getGeschwindigkeitGegner(); // Paddle nach unten bewegen
-		} else if (ball.positionY + ball.groesseY / 2 < gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
-			gegnerPaddle.positionY -= GameLogic.getGeschwindigkeitGegner(); // Paddle nach oben bewegen
+		}else {
+			if (ball.positionY + ball.groesseY / 2 > gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
+				gegnerPaddle.positionY += GameLogic.getGeschwindigkeitGegner(); // Paddle nach unten bewegen
+			} else if (ball.positionY + ball.groesseY / 2 < gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
+				gegnerPaddle.positionY -= GameLogic.getGeschwindigkeitGegner(); // Paddle nach oben bewegen
+			}
+
+			// Sicherstellen, dass das Paddle nicht aus dem Bildschirmbereich bewegt wird
+			gegnerPaddle.positionY = Math.max(0, Math.min(gegnerPaddle.positionY, Classic.getScreenheight() - gegnerPaddle.groesseY));
 		}
-
-		// Sicherstellen, dass das Paddle nicht aus dem Bildschirmbereich bewegt wird
-		gegnerPaddle.positionY = Math.max(0, Math.min(gegnerPaddle.positionY, Classic.getScreenheight() - gegnerPaddle.groesseY));
 	}
 
 	public void Punktesystem() {
@@ -162,6 +171,7 @@ public class BeweglichesRechteck extends GameObject {
 			GameLogic.instance.stopGameTimer();
 		}else if(getSpielerPunkte() == PunkteGewonen) {
 			level++;
+			Inventar.TalerGewinn(1);
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
 			positionX = GameLogic.getX();
@@ -234,20 +244,20 @@ public class BeweglichesRechteck extends GameObject {
 		switch (getLevel()) {
 		case 0: {	//Level Tutorial
 			GameLogic.setGeschwindigkeitBall(1);
-			GameLogic.setGeschwindigkeitSpieler(1);
+			GameLogic.setGeschwindigkeitSpieler(2);
 			GameLogic.setGeschwindigkeitGegner(1);
 			if (GameLogic.getCounter()==0) {
-			System.out.println("Tutorial");
+				System.out.println("Tutorial");
 			}
 			PunkteGewonen = 10;
-				
+
 		} break;
 		case 1: {					//Level 1
 			GameLogic.setGeschwindigkeitBall(1);
 			GameLogic.setGeschwindigkeitSpieler(2);
 			GameLogic.setGeschwindigkeitGegner(1);
 			if (GameLogic.getCounter()==0) {
-			System.out.println("level : " + getLevel());
+				System.out.println("level : " + getLevel());
 			}
 		}break;
 		case 2: {					//Level 2
@@ -256,93 +266,94 @@ public class BeweglichesRechteck extends GameObject {
 			GameLogic.setGeschwindigkeitGegner(2);
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 3: {					//Level 3
 			GameLogic.setGeschwindigkeitBall(3);
 			GameLogic.setGeschwindigkeitSpieler(2);
 			GameLogic.setGeschwindigkeitGegner(2);
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 4: {					//Level 4
 			GameLogic.setGeschwindigkeitBall(3);
 			GameLogic.setGeschwindigkeitSpieler(3);
 			GameLogic.setGeschwindigkeitGegner(2);
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 5: {					//Level 5
 			GameLogic.setGeschwindigkeitBall(4);
 			GameLogic.setGeschwindigkeitSpieler(3);
 			GameLogic.setGeschwindigkeitGegner(2);
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 6: {					//Level 6
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 7: { 					//Level 7
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 8: {					//Level 8
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 9: {					//Level 9
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 10: {					//Level 10
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;	
+			}		}break;	
 		case 11: {					//Level 11
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 12: {					//Level 12
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 13: {					//Level 13
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 14: {					//Level 14
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 15: {					//Level 15
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 16: {					//Level 16
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 17: {					//Level 17
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 18: {					//Level 18
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 19: {					//Level 19
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}break;
+			}		}break;
 		case 20: {					//Level 20
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-				}		}
+			}		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + level);
 		}
-		
+
 	}
+
 
 	public int getGegenerPunkte() {
 		return GegenerPunkte;
@@ -376,10 +387,3 @@ public class BeweglichesRechteck extends GameObject {
 		PunkteGewonen = punkteGewonen;
 	}
 }
-
-
-
-
-// Veränderung
-
-// Veränderung 2
