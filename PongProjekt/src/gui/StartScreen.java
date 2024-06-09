@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.sound.sampled.FloatControl;
 import javax.swing.DefaultComboBoxModel;
@@ -42,7 +43,7 @@ public class StartScreen extends JFrame {
 	private JButton btnSpeichern;
 	private JButton btnBack;
 	private JButton btnVerlassen;
-	private static FloatControl volumeControl;
+	
 
 	/**
 	 * Launch the application.
@@ -92,8 +93,8 @@ public class StartScreen extends JFrame {
 			lbStory.setForeground(new Color(255, 255, 255));
 			lbStory.setFont(Main.KnightWarriors);
 		
-		JButton btnClassic = new JButton("Geschichte");
-		btnClassic.addActionListener(new ActionListener() {
+		JButton btnStory = new JButton("Geschichte");
+		btnStory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameLogic.setSpiel(0);		
 				GameLogic.setCounter(0);
@@ -146,59 +147,83 @@ public class StartScreen extends JFrame {
 		
 		btnVerlassen = new JButton("Verlassen");
 		btnVerlassen.addActionListener(e -> System.exit(0));
+		btnVerlassen.setMnemonic('q');
+		
+		
+		JButton btnClassic = new JButton("Klassisch");
+		btnClassic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JLabel lblClassic = new JLabel("Klassisch:");
+		lblClassic.setForeground(new Color(255, 255, 255));
+		lblClassic.setFont(Main.KnightWarriors);
+		
+		JButton btnMultiplayer = new JButton("Mehrspieler");
+		
+		JLabel lblMultiplayer = new JLabel("Mehrspieler:");
+		lblMultiplayer.setForeground(new Color(255, 255, 255));
+		lblMultiplayer.setFont(Main.KnightWarriors);
 		GroupLayout gl_pStartScreen = new GroupLayout(pStartScreen);
 		gl_pStartScreen.setHorizontalGroup(
-			gl_pStartScreen.createParallelGroup(Alignment.TRAILING)
+			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addContainerGap()
 							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 								.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_pStartScreen.createSequentialGroup()
-									.addGap(43)
-									.addComponent(btnEinstellungen, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-									.addGap(91)
-									.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_pStartScreen.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)))
-							.addGap(34))
-						.addGroup(gl_pStartScreen.createSequentialGroup()
-							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_pStartScreen.createSequentialGroup()
-									.addComponent(lbShop, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(btnShop, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.LEADING, gl_pStartScreen.createSequentialGroup()
-									.addComponent(lbEndless, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
 									.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnClassic, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnEndless, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE))))
-							.addGap(163))))
+										.addComponent(lblClassic)
+										.addComponent(lbShop, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblMultiplayer)
+										.addComponent(lbEndless, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(btnClassic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+										.addComponent(btnMultiplayer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnEndless, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnStory, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)))))
+						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addGap(53)
+							.addComponent(btnEinstellungen, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+							.addGap(96)
+							.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(34, Short.MAX_VALUE))
 		);
 		gl_pStartScreen.setVerticalGroup(
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
 					.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addGap(140)
+					.addGap(108)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnClassic))
-					.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(btnStory)
+						.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbEndless, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnEndless))
-					.addGap(10)
+						.addComponent(btnClassic)
+						.addComponent(lblClassic))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbShop, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(91)
+						.addComponent(btnEndless)
+						.addComponent(lbEndless, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnMultiplayer)
+						.addComponent(lblMultiplayer))
+					.addGap(11)
+					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnShop)
+						.addComponent(lbShop, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnEinstellungen)
 						.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addGap(21))
+					.addGap(28))
 		);
 		pStartScreen.setLayout(gl_pStartScreen);
 		

@@ -34,7 +34,7 @@ public static Font KnightWarriors;
 		StartScreen.FrameErstellen();	
 		//Beim Starten wird der StartScreen erstellt 
 		
-		        
+	
 	
 	}
 
