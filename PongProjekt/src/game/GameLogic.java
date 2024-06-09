@@ -24,7 +24,8 @@ public class GameLogic {
 	private static BeweglichesRechteck rechteckSpieler;
 	private static BeweglichesRechteck ball;
 	private static BeweglichesRechteck rechteckgegner;
-	private static BeweglichesRechteck sicherheit;
+	private static BeweglichesRechteck sicherheitSpieler;
+	private static BeweglichesRechteck sicherheitGegner;
 	private int breite = 5;
 	private int hoehe = 100;
 	public static GameLogic instance;
@@ -47,51 +48,80 @@ public class GameLogic {
 
 		ball = new BeweglichesRechteck(getX(), getY(), 20, 20);
 		spielObjekte.add(ball);
-		
-		ball.richtung = 0;
 
+		ball.richtung = 0;
+		
 		rechteckSpieler = new BeweglichesRechteck(75, 250, breite, hoehe);
 		spielObjekte.add(rechteckSpieler);
 		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
 		spielObjekte.add(rechteckgegner);
-		sicherheit = new BeweglichesRechteck(75, 298, breite - 1, hoehe + 2);
-		if(Spiel == 0 || Spiel == 1) {	
+		sicherheitSpieler = new BeweglichesRechteck(75, 298, breite - 1, hoehe + 2);
+		sicherheitGegner = new BeweglichesRechteck(705, 300, breite - 1, hoehe + 2);
+		if(Spiel == 0 || Spiel == 1 || Spiel == 2 || Spiel == 3) {	
 			gameTimer.scheduleAtFixedRate(new TimerTask(){
 				@Override
 				public void run() {
 					ball.actionPerformed(null);
 					counter++;
 					if(GameLogic.keypausearrowpressed) {
-						
-					}else {
-					if(GameLogic.getCounter() <= 750) {
 
 					}else {
-						if (keyUparrowpressed) {
-							if (rechteckSpieler.positionY >= 3) {
-								rechteckSpieler.positionY -= GeschwindigkeitSpieler;
-								sicherheit.positionY  -= GeschwindigkeitSpieler;
-							}
-						} else if (keyDownarrowpressed) {
-							if (rechteckSpieler.positionY <= 465) {
-								rechteckSpieler.positionY += GeschwindigkeitSpieler;
-								sicherheit.positionY += GeschwindigkeitSpieler;
-							}
-						} else if (keyUPWarrowpressed) {
-							if (rechteckSpieler.positionY >= 3) {
-								rechteckSpieler.positionY -= GeschwindigkeitSpieler;
-								sicherheit.positionY -= GeschwindigkeitSpieler;
-							}
-						} else if (keyDownSarrowpressed) {
-							if (rechteckSpieler.positionY <= 465) {
-								rechteckSpieler.positionY += GeschwindigkeitSpieler;
-								sicherheit.positionY += GeschwindigkeitSpieler;
+						if(GameLogic.getCounter() <= 750) {
+
+						}else {
+							if(Spiel == 2) {
+								if (keyUPWarrowpressed) {
+									if (rechteckSpieler.positionY >= 3) {
+										rechteckSpieler.positionY -= GeschwindigkeitSpieler;
+										sicherheitSpieler.positionY -= GeschwindigkeitSpieler;
+									}
+								} else if (keyDownSarrowpressed) {
+									if (rechteckSpieler.positionY <= 465) {
+										rechteckSpieler.positionY += GeschwindigkeitSpieler;
+										sicherheitSpieler.positionY += GeschwindigkeitSpieler;
+									}
+								}
+								if (keyUparrowpressed) {
+									if (rechteckgegner.positionY >= 3) {
+										rechteckgegner.positionY -= GeschwindigkeitSpieler;
+										sicherheitGegner.positionY -= GeschwindigkeitSpieler;
+									}
+								} else if (keyDownarrowpressed) {
+									if (rechteckgegner.positionY <= 465) {
+										rechteckgegner.positionY += GeschwindigkeitSpieler;
+										sicherheitGegner.positionY -= GeschwindigkeitSpieler;
+									}
+								} 
+							}else {
+
+								if (keyUparrowpressed) {
+									if (rechteckSpieler.positionY >= 3) {
+										rechteckSpieler.positionY -= GeschwindigkeitSpieler;
+										sicherheitSpieler.positionY  -= GeschwindigkeitSpieler;
+									}
+								} else if (keyDownarrowpressed) {
+									if (rechteckSpieler.positionY <= 465) {
+										rechteckSpieler.positionY += GeschwindigkeitSpieler;
+										sicherheitSpieler.positionY += GeschwindigkeitSpieler;
+									}
+								} else if (keyUPWarrowpressed) {
+									if (rechteckSpieler.positionY >= 3) {
+										rechteckSpieler.positionY -= GeschwindigkeitSpieler;
+										sicherheitSpieler.positionY -= GeschwindigkeitSpieler;
+									}
+								} else if (keyDownSarrowpressed) {
+									if (rechteckSpieler.positionY <= 465) {
+										rechteckSpieler.positionY += GeschwindigkeitSpieler;
+										sicherheitSpieler.positionY += GeschwindigkeitSpieler;
+									}
+								}
+
 							}
 						}
-
 					}
+					if(Spiel !=2) {
+						BeweglichesRechteck.GegnerKI();
 					}
-					BeweglichesRechteck.GegnerKI();
 				}
 			}, 0, 5);
 		}else {
@@ -173,11 +203,11 @@ public class GameLogic {
 	public static void setCounter(int counter) {
 		GameLogic.counter = counter;
 	}
-	public static BeweglichesRechteck getSicherheit() {
-		return sicherheit;
+	public static BeweglichesRechteck getSicherheitSpieler() {
+		return sicherheitSpieler;
 	}
-	public static void setSicherheit(BeweglichesRechteck sicherheit) {
-		GameLogic.sicherheit = sicherheit;
+	public static void setSicherheitSpieler(BeweglichesRechteck sicherheit) {
+		GameLogic.sicherheitSpieler = sicherheit;
 	}
 	public static int getScreenwidth() {
 		return screenwidth;
@@ -202,5 +232,11 @@ public class GameLogic {
 	}
 	public static void setGeschwindigkeitBall(int geschwindigkeitBall) {
 		GeschwindigkeitBall = geschwindigkeitBall;
+	}
+	public static  BeweglichesRechteck getSicherheitGegner() {
+		return sicherheitGegner;
+	}
+	public static void setSicherheitGegner(BeweglichesRechteck sicherheitGegner) {
+		GameLogic.sicherheitGegner = sicherheitGegner;
 	}
 }

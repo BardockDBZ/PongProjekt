@@ -153,6 +153,13 @@ public class StartScreen extends JFrame {
 		JButton btnClassic = new JButton("Klassisch");
 		btnClassic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GameLogic.setSpiel(3);
+				GameLogic.setCounter(0);
+				GameLogic spiellogik = new GameLogic();
+				new Classic(spiellogik);				
+				Startclose();	
+				BeweglichesRechteck.setGegenerPunkte(0);
+				BeweglichesRechteck.setSpielerPunkte(0);
 			}
 		});
 		
@@ -161,6 +168,17 @@ public class StartScreen extends JFrame {
 		lblClassic.setFont(Main.KnightWarriors);
 		
 		JButton btnMultiplayer = new JButton("Mehrspieler");
+		btnMultiplayer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameLogic.setSpiel(2);
+				GameLogic.setCounter(0);
+				GameLogic spiellogik = new GameLogic();
+				new Classic(spiellogik);				
+				Startclose();	
+				BeweglichesRechteck.setGegenerPunkte(0);
+				BeweglichesRechteck.setSpielerPunkte(0);
+			}
+		});
 		
 		JLabel lblMultiplayer = new JLabel("Mehrspieler:");
 		lblMultiplayer.setForeground(new Color(255, 255, 255));

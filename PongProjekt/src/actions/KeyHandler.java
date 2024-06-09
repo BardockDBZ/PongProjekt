@@ -29,14 +29,15 @@ public class KeyHandler implements KeyListener {
 			gamelogic.keyUparrowpressed = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			gamelogic.keyDownarrowpressed = true;
-		}else if (e.getKeyCode() == KeyEvent.VK_W) {
-			gamelogic.keyUPWarrowpressed = true;
-		}else if (e.getKeyCode() == KeyEvent.VK_S) {
-			gamelogic.keyDownSarrowpressed = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_Q) {
 			gamelogic.keypausearrowpressed = true;
 		}
 		
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+			gamelogic.keyUPWarrowpressed = true;
+		}else if (e.getKeyCode() == KeyEvent.VK_S) {
+			gamelogic.keyDownSarrowpressed = true;
+		}
 	}
 
 	@Override
@@ -50,12 +51,13 @@ public class KeyHandler implements KeyListener {
 			gamelogic.keyUparrowpressed = false;
 		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			gamelogic.keyDownarrowpressed = false;
-		}else if (e.getKeyCode() == KeyEvent.VK_W) {
+		}else if (e.getKeyCode() == KeyEvent.VK_Q) {
+			gamelogic.keypausearrowpressed = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			gamelogic.keyUPWarrowpressed = false;
 		}else if (e.getKeyCode() == KeyEvent.VK_S) {
 			gamelogic.keyDownSarrowpressed = false;
-		}else if (e.getKeyCode() == KeyEvent.VK_Q) {
-			gamelogic.keypausearrowpressed = false;
 		}
 		
 	}
