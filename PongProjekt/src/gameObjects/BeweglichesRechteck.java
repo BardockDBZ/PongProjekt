@@ -5,7 +5,7 @@ import java.security.PublicKey;
 
 import javax.swing.JLabel;
 
-import Shop.Inventar;
+
 import game.GameLogic;
 import game.GameObject;
 import gui.Classic;
@@ -167,6 +167,7 @@ public class BeweglichesRechteck extends GameObject {
 			positionY = GameLogic.getY();
 			yGeschwindigkeit = -yGeschwindigkeit;
 			System.out.println("Gegner hat : " + getGegenerPunkte());
+			
 		}
 		if(positionX ==  Classic.getScreenwidth() - diameter ) {
 			setSpielerPunkte(SpielerPunkte + 1);   
@@ -174,6 +175,7 @@ public class BeweglichesRechteck extends GameObject {
 			positionY = GameLogic.getY();
 			yGeschwindigkeit = -yGeschwindigkeit;
 			System.out.println("Spieler hat : " + getSpielerPunkte());
+			Classic.RefreshPoints();
 		}
 	}
 	
@@ -192,7 +194,7 @@ public class BeweglichesRechteck extends GameObject {
 			GameLogic.instance.stopGameTimer();
 		}else if(getSpielerPunkte() == PunkteGewonen) {
 			level++;
-			Inventar.TalerGewinn(1);
+			// Inventar.TalerGewinn(1);
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
 			positionX = GameLogic.getX();

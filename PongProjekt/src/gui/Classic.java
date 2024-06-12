@@ -13,7 +13,7 @@ import game.GameObject;
 import gameObjects.BeweglichesRechteck;
 
 public class Classic {
-
+	private static JLabel pointsLabel;
 	private static int screenwidth = 800;
 	private static int screenheight = 600;
 	private static JFrame Pongframe;
@@ -40,7 +40,7 @@ public class Classic {
 		lbldraw.setBounds(0, 0, screenwidth, screenheight);
 		lbldraw.setVisible(true);
 		Pongframe.add(lbldraw);
-		JLabel pointsLabel = new JLabel("Points:" + BeweglichesRechteck.SpielerPunkte); 
+		pointsLabel = new JLabel("Points:" + BeweglichesRechteck.SpielerPunkte); 
 		pointsLabel.setBounds(215, 200, 200, 69);
 		pointsLabel.setFont(Main.KnightWarriors);
 		Pongframe.setVisible(true);
@@ -75,5 +75,8 @@ public class Classic {
 	public static void setScreenheight(int screenheight) {
 		Classic.screenheight = screenheight;
 	}
-
+	public static void RefreshPoints() {
+		pointsLabel.setText("Points:" + BeweglichesRechteck.SpielerPunkte);
+		
+	}
 }
