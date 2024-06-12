@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import actions.KeyHandler;
+import actions.Main;
 import game.GameLogic;
 import game.GameObject;
 import gameObjects.BeweglichesRechteck;
@@ -41,6 +42,7 @@ public class Classic {
 		Pongframe.add(lbldraw);
 		JLabel pointsLabel = new JLabel("Points:" + BeweglichesRechteck.SpielerPunkte); 
 		pointsLabel.setBounds(215, 200, 200, 69);
+		pointsLabel.setFont(Main.KnightWarriors);
 		Pongframe.setVisible(true);
 	}
 

@@ -171,6 +171,7 @@ public class StartScreen extends JFrame {
 				GameLogic spiellogik = new GameLogic();
 				new Classic(spiellogik);				
 				Startclose();	
+				
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 			}
@@ -178,14 +179,13 @@ public class StartScreen extends JFrame {
 		
 		JLabel lblMultiplayer = new JLabel("Mehrspieler:");
 		lblMultiplayer.setForeground(new Color(255, 255, 255));
-		lblMultiplayer.setFont(Main.KnightWarriors);
-		
+		lblMultiplayer.setFont(Main.KnightWarriors);		
 		JLabel lblShop = new JLabel("");
 		lblShop.setAutoscrolls(true);
 		lblShop.setBackground(Color.WHITE);
 		lblShop.setForeground(Color.WHITE);
 		lblShop.addMouseListener(new MouseAdapter() {
-			@Override
+		
 			public void mouseClicked(MouseEvent e) {
 				Shop.ShopErstellen();
 				Startclose();
@@ -195,7 +195,6 @@ public class StartScreen extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
 				tausch(pStartScreen, pEinstellungen);
 			}
