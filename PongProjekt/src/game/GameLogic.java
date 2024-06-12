@@ -9,7 +9,7 @@ import gui.Draw;
 
 public class GameLogic {
 
-	private Timer gameTimer;
+	public Timer gameTimer;
 	private static int screenwidth = Classic.getScreenwidth() ;
 	private static int screenheight = Classic.getScreenheight();
 	public ArrayList<GameObject> spielObjekte;
@@ -26,7 +26,7 @@ public class GameLogic {
 	private static BeweglichesRechteck rechteckgegner;
 	private static BeweglichesRechteck sicherheitSpieler;
 	private static BeweglichesRechteck sicherheitGegner;
-	private int breite = 10;
+	private int breite = 10; 
 	private int hoehe = 100;
 	public static GameLogic instance;
 	private static int Spiel = -1;
@@ -34,7 +34,7 @@ public class GameLogic {
 	private static int GeschwindigkeitSpieler = 1;
 	private static int GeschwindigkeitGegner = 1;
 	private static int GeschwindigkeitBall = 1;
-
+	
 	public GameLogic() {
 
 		instance = this;

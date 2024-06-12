@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import game.GameLogic;
+import gui.StartScreen;
 
 public class KeyHandler implements KeyListener {
 
@@ -15,7 +16,9 @@ public class KeyHandler implements KeyListener {
 	
 	@Override
 	public  void keyTyped(KeyEvent e) {
-
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			
+		}
 	}
 
 	@Override

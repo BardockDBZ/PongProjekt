@@ -8,6 +8,7 @@ import java.io.InputStream;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import gui.Shop;
 import gui.StartScreen;
 
 public class Main {
@@ -31,9 +32,11 @@ public static Font KnightWarriors;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	audioManager.playSound("/actions/resources/twash.wav");
-		StartScreen.FrameErstellen();	
+	
+		StartScreen.FrameErstellen();
 		//Beim Starten wird der StartScreen erstellt 
+		
+	
 		
 	
 	

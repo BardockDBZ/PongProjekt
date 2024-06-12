@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -15,6 +16,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,6 +37,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 
 public class StartScreen extends JFrame {
 
@@ -50,6 +55,9 @@ public class StartScreen extends JFrame {
 	private JButton btnBack;
 	private JButton btnVerlassen;
 	int option;
+	static JSlider slider;
+	public static JPanel pPause;
+	private static JButton btnPause_1;
 
 	/**
 	 * Launch the application.
@@ -136,8 +144,6 @@ public class StartScreen extends JFrame {
 		btnVerlassen.setMnemonic('q');
 		btnVerlassen.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-			
 			option = JOptionPane.showConfirmDialog(null, "Bist du dir sicher, das Spiel zu beenden?", "Beenden", JOptionPane.OK_CANCEL_OPTION);
 			if (option == JOptionPane.CANCEL_OPTION) {
 				System.exit(0);	
@@ -156,6 +162,11 @@ public class StartScreen extends JFrame {
 				Startclose();	
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
+				audioManager.stopSound(getName());
+				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				float volume = StartScreen.slider.getValue();
+		        audioManager.setVolume(volume);
+		        StartScreen.slider.getValue();
 			}
 		});
 		
@@ -171,15 +182,16 @@ public class StartScreen extends JFrame {
 				GameLogic spiellogik = new GameLogic();
 				new Classic(spiellogik);				
 				Startclose();	
-				
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
+				audioManager.stopSound(getName());
 			}
 		});
 		
 		JLabel lblMultiplayer = new JLabel("Mehrspieler:");
 		lblMultiplayer.setForeground(new Color(255, 255, 255));
-		lblMultiplayer.setFont(Main.KnightWarriors);		
+		lblMultiplayer.setFont(Main.KnightWarriors);	
+		
 		JLabel lblShop = new JLabel("");
 		lblShop.setAutoscrolls(true);
 		lblShop.setBackground(Color.WHITE);
@@ -189,17 +201,18 @@ public class StartScreen extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Shop.ShopErstellen();
 				Startclose();
+				audioManager.stopSound(getName());
 			}
 		});
 		lblShop.setIcon(new ImageIcon(StartScreen.class.getResource("/actions/resources/image (1).png")));
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.addMouseListener(new MouseAdapter() {
+		JLabel lblSettings = new JLabel("");
+		lblSettings.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				tausch(pStartScreen, pEinstellungen);
 			}
 		});
-		lblNewLabel.setIcon(new ImageIcon(StartScreen.class.getResource("/actions/resources/setting (2) (1).png")));
+		lblSettings.setIcon(new ImageIcon(StartScreen.class.getResource("/actions/resources/setting (2) (1).png")));
 		GroupLayout gl_pStartScreen = new GroupLayout(pStartScreen);
 		gl_pStartScreen.setHorizontalGroup(
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
@@ -213,7 +226,7 @@ public class StartScreen extends JFrame {
 									.addGap(18)
 									.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 478, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE))
+									.addComponent(lblSettings, GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE))
 								.addGroup(gl_pStartScreen.createSequentialGroup()
 									.addGap(28)
 									.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
@@ -237,7 +250,7 @@ public class StartScreen extends JFrame {
 				.addGroup(gl_pStartScreen.createSequentialGroup()
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel))
+						.addComponent(lblSettings))
 					.addGap(125)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnStory)
@@ -275,6 +288,10 @@ public class StartScreen extends JFrame {
 		pEinstellungen.add(lbEinstellungen);
 		
 		btnSpeichern = new JButton("Speichern");
+		btnSpeichern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnSpeichern.setBounds(57, 326, 107, 23);
 		pEinstellungen.add(btnSpeichern);
 		
@@ -288,7 +305,7 @@ public class StartScreen extends JFrame {
 		btnBack.setBounds(269, 326, 90, 23);
 		pEinstellungen.add(btnBack);
 		
-		JSlider slider = new JSlider();
+		slider = new JSlider();
 		slider.setMinimum(-80);
 		slider.setMaximum(0);
 		slider.addChangeListener(e -> {
@@ -334,6 +351,24 @@ public class StartScreen extends JFrame {
 		lblLevelwaehlen.setBounds(0, 36, 485, 37);
 		pLevelauswahl.add(lblLevelwaehlen);
 		lblLevelwaehlen.setFont(Main.KnightWarriors);
+		
+		pPause = new JPanel();
+		pPause.setBackground(Color.DARK_GRAY);
+		contentPane.add(pPause, "name_24353100108700");
+		pPause.setLayout(null);
+		
+		btnPause_1 = new JButton("Pause");
+		btnPause_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showPauseMenu();
+			}
+		});
+		btnPause_1.setBounds(29, 354, 0, 0);
+		btnPause_1.setMnemonic('P');
+		btnPause_1.setBackground(Color.BLACK);
+		pPause.add(btnPause_1);
+		pPause.setVisible(true);
+		
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				int value = slider.getValue();
@@ -342,6 +377,8 @@ public class StartScreen extends JFrame {
 		
 		});
 		  setVisible(true);
+		  audioManager.stopSound(getName());
+		  audioManager.playSound("/actions/resources/twash.wav");
 	}
 	public static void Startclose() {		//Fenster schließen
 		if(startframe != null) {
@@ -375,4 +412,28 @@ public class StartScreen extends JFrame {
 	public static void setLaenge(int laenge) {
 		StartScreen.laenge = laenge;
 	}
+	private void setupPauseMenu() {
+        // Create a modal dialog for the pause menu
+      
+        pPause.setSize(200, 150);
+        pPause.setLayout(new BorderLayout());
+        // Add a label to indicate the game is paused
+        JLabel pausedLabel = new JLabel("Game Paused", SwingConstants.CENTER);
+        pPause.add(pausedLabel, BorderLayout.CENTER);
+
+        // Create a button to resume
+        JButton resumeButton = new JButton("Resume");
+        resumeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hidePauseMenu();
+            }
+        }); }
+	 private void showPauseMenu() {
+	       
+	        pPause.setVisible(true);
+	    }
+	  private void hidePauseMenu() {
+	        pPause.setVisible(false);
+	  }
 }

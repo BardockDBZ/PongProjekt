@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -9,10 +11,13 @@ import javax.swing.JLabel;
 
 import actions.KeyHandler;
 import actions.Main;
+import actions.audioManager;
 import game.GameLogic;
 import game.GameObject;
 import gameObjects.BeweglichesRechteck;
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 
 public class Classic {
 	private static JLabel pointsLabel;
@@ -22,8 +27,10 @@ public class Classic {
 	private static JLabel Counter3;
 	private static int screenwidth = 800;
 	private static int screenheight = 600;
-	private static JFrame Pongframe;
-
+	public static JFrame Pongframe;
+	private static JLabel timerLabel;
+	private static JDialog pauseMenu;
+	private Draw lbldraw;
 	public Classic(GameLogic spiellogik) { // KeyHandler -> infos
 
 		Pongframe = new JFrame();
@@ -42,10 +49,9 @@ public class Classic {
 		Pongframe.setLocationRelativeTo(null);
 		Pongframe.addKeyListener(new KeyHandler(spiellogik));
 		Pongframe.requestFocus();
-		Draw lbldraw = new Draw(spiellogik, screenwidth, screenheight);
+		lbldraw = new Draw(spiellogik, screenwidth, screenheight);
 		lbldraw.setBounds(0, 0, screenwidth, screenheight);
 		lbldraw.setVisible(true);
-		
 		pointsLabel = new JLabel("" + BeweglichesRechteck.getSpielerPunkte()); 
 		pointsLabel.setBounds(279, 48, 200, 69);
 		pointsLabel.setFont(Main.KnightWarriors.deriveFont(70F));
@@ -78,6 +84,9 @@ public class Classic {
 		Pongframe.getContentPane().add(Counter3);
 		Pongframe.getContentPane().add(lbldraw);
 		Pongframe.setVisible(true);
+			
+		
+		
 	}
 
 	public static void Classicclose() { // Pong Schließen
@@ -85,7 +94,7 @@ public class Classic {
 			Pongframe.dispose();
 		}
 	}
-
+	
 	public static int getScreenwidth() {
 		return screenwidth;
 	}
@@ -93,7 +102,11 @@ public class Classic {
 	public static int getScreenheight() {
 		return screenheight;
 	}
-
+	   private void pauseAction() {
+	        GameLogic.instance.stopGameTimer();
+	        pauseMenu.setLocationRelativeTo(StartScreen.pPause);
+	        pauseMenu.setVisible(true);
+	   }
 	public static void beenden() {
 		BeweglichesRechteck.setGegenerPunkte(0);
 		BeweglichesRechteck.setSpielerPunkte(0);
