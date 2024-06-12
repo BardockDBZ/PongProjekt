@@ -4,6 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import actions.KeyHandler;
 import game.GameLogic;
@@ -25,6 +26,7 @@ public class Classic {
 		Pongframe.addWindowListener(new WindowAdapter() {
 			public void windowClosed(WindowEvent e) {
 				beenden();
+		
 			}
 		});
 
@@ -33,12 +35,12 @@ public class Classic {
 		Pongframe.setLocationRelativeTo(null);
 		Pongframe.addKeyListener(new KeyHandler(spiellogik));
 		Pongframe.requestFocus();
-
 		Draw lbldraw = new Draw(spiellogik, screenwidth, screenheight);
 		lbldraw.setBounds(0, 0, screenwidth, screenheight);
 		lbldraw.setVisible(true);
 		Pongframe.add(lbldraw);
-
+		JLabel pointsLabel = new JLabel("Points:" + BeweglichesRechteck.SpielerPunkte); 
+		pointsLabel.setBounds(215, 200, 200, 69);
 		Pongframe.setVisible(true);
 	}
 

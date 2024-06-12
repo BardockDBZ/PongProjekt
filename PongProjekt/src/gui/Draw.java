@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 
 import game.GameLogic;
 import game.GameObject;
+import gameObjects.BeweglichesRechteck;
 
 @SuppressWarnings("serial")
 public class Draw extends JLabel{

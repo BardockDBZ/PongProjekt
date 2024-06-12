@@ -64,6 +64,7 @@ public class Shop extends JFrame {
 		contentPane.add(btnSchliessen);
 		btnSchliessen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			StartScreen.FrameErstellen();
 			Shopclose();
 			}
 		});

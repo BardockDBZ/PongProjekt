@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -29,21 +30,26 @@ import actions.Main;
 import actions.audioManager;
 import game.GameLogic;
 import gameObjects.BeweglichesRechteck;
+import javax.swing.JProgressBar;
+import javax.swing.JTabbedPane;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class StartScreen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	static StartScreen startframe;
-	private static int breite = 500, laenge = 450;
+	private static int breite = 640, laenge = 468;
 	private CardLayout cardLayout;
 	private JPanel pStartScreen;
 	private JPanel pEinstellungen;
-	private JButton btnEinstellungen;
+	private JPanel pLevelauswahl;
 	private JButton btnSpeichern;
 	private JButton btnBack;
 	private JButton btnVerlassen;
-	
+	int option;
 
 	/**
 	 * Launch the application.
@@ -71,7 +77,7 @@ public class StartScreen extends JFrame {
 	public StartScreen() {
 		setTitle("Pong - Gruppe 6 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, breite, laenge);
+		setBounds(100, 100, 640, 468);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,14 +102,15 @@ public class StartScreen extends JFrame {
 		JButton btnStory = new JButton("Geschichte");
 		btnStory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameLogic.setSpiel(0);		
+				tausch(pStartScreen, pLevelauswahl);
+			/*	GameLogic.setSpiel(0);		
 				GameLogic.setCounter(0);
 				GameLogic spiellogik = new GameLogic();		//Pong wird ausgeführt	
 				new Classic(spiellogik);							//Frame wird erstellt zum Pong
 				Startclose();	//StartScreen Schließen -> soll Nach Gewinnen oder Verlieren der Runde/Level als Abfrage wieder Erstellt werden
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
-			
+			*/
 			}
 		});
 		
@@ -125,29 +132,18 @@ public class StartScreen extends JFrame {
 			}
 		});
 		
-		JLabel lbShop = new JLabel("Laden:");
-		lbShop.setForeground(new Color(255, 255, 255));
-		lbShop.setFont(Main.KnightWarriors);
-		
-		JButton btnShop = new JButton("Laden");
-		btnShop.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Shop.setBreite(500); 						//Shop breite wird angegeben
-				Shop.setLaenge(450);						//Shop länge wird angegeben
-				Shop.ShopErstellen();						//Shop wird erstellt / Start Screen bleibt 
-			}
-		});
-		
-		btnEinstellungen = new JButton("Einstellungen");
-		btnEinstellungen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			tausch(pStartScreen,pEinstellungen);				//Von StartScreen zu Einstellungen
-			}
-		});
-		
 		btnVerlassen = new JButton("Verlassen");
-		btnVerlassen.addActionListener(e -> System.exit(0));
 		btnVerlassen.setMnemonic('q');
+		btnVerlassen.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			
+			option = JOptionPane.showConfirmDialog(null, "Bist du dir sicher, das Spiel zu beenden?", "Beenden", JOptionPane.OK_CANCEL_OPTION);
+			if (option == JOptionPane.CANCEL_OPTION) {
+				System.exit(0);	
+				}
+			}
+		});
 		
 		
 		JButton btnClassic = new JButton("Klassisch");
@@ -183,41 +179,67 @@ public class StartScreen extends JFrame {
 		JLabel lblMultiplayer = new JLabel("Mehrspieler:");
 		lblMultiplayer.setForeground(new Color(255, 255, 255));
 		lblMultiplayer.setFont(Main.KnightWarriors);
+		
+		JLabel lblShop = new JLabel("");
+		lblShop.setAutoscrolls(true);
+		lblShop.setBackground(Color.WHITE);
+		lblShop.setForeground(Color.WHITE);
+		lblShop.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Shop.ShopErstellen();
+				Startclose();
+			}
+		});
+		lblShop.setIcon(new ImageIcon(StartScreen.class.getResource("/actions/resources/image (1).png")));
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tausch(pStartScreen, pEinstellungen);
+			}
+		});
+		lblNewLabel.setIcon(new ImageIcon(StartScreen.class.getResource("/actions/resources/setting (2) (1).png")));
 		GroupLayout gl_pStartScreen = new GroupLayout(pStartScreen);
 		gl_pStartScreen.setHorizontalGroup(
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pStartScreen.createSequentialGroup()
-							.addContainerGap()
+							.addComponent(lblShop, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
-								.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_pStartScreen.createSequentialGroup()
+									.addGap(18)
+									.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 478, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE))
+								.addGroup(gl_pStartScreen.createSequentialGroup()
+									.addGap(28)
 									.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblClassic)
-										.addComponent(lbShop, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lblMultiplayer)
-										.addComponent(lbEndless, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
+										.addComponent(lbEndless, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
+									.addGap(14)
 									.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(btnClassic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnShop, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
 										.addComponent(btnMultiplayer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(btnEndless, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnStory, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)))))
-						.addGroup(gl_pStartScreen.createSequentialGroup()
-							.addGap(53)
-							.addComponent(btnEinstellungen, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-							.addGap(96)
-							.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(34, Short.MAX_VALUE))
+										.addComponent(btnStory, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_pStartScreen.createSequentialGroup()
+							.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+							.addGap(242))))
 		);
 		gl_pStartScreen.setVerticalGroup(
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
-					.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addGap(108)
+					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel))
+					.addGap(125)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnStory)
 						.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
@@ -225,23 +247,20 @@ public class StartScreen extends JFrame {
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnClassic)
 						.addComponent(lblClassic))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(7)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnEndless)
 						.addComponent(lbEndless, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnMultiplayer)
 						.addComponent(lblMultiplayer))
-					.addGap(11)
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnShop)
-						.addComponent(lbShop, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
-					.addGap(28)
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnEinstellungen)
-						.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addGap(28))
+					.addGap(18)
+					.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGap(98))
+				.addGroup(gl_pStartScreen.createSequentialGroup()
+					.addComponent(lblShop)
+					.addGap(379))
 		);
 		pStartScreen.setLayout(gl_pStartScreen);
 		
@@ -304,6 +323,18 @@ public class StartScreen extends JFrame {
 		lblPercent.setBounds(191, 89, 46, 26);
 		lblPercent.setFont(Main.KnightWarriors);
 		pEinstellungen.add(lblPercent);
+		
+		pLevelauswahl = new JPanel();
+		pLevelauswahl.setBackground(Color.BLACK);
+		contentPane.add(pLevelauswahl, "name_764749132583500");
+		pLevelauswahl.setLayout(null);
+		
+		JLabel lblLevelwaehlen = new JLabel("Waehle das Level aus!");
+		lblLevelwaehlen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLevelwaehlen.setForeground(Color.WHITE);
+		lblLevelwaehlen.setBounds(0, 36, 485, 37);
+		pLevelauswahl.add(lblLevelwaehlen);
+		lblLevelwaehlen.setFont(Main.KnightWarriors);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				int value = slider.getValue();

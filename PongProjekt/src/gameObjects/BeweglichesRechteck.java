@@ -3,6 +3,8 @@ package gameObjects;
 import java.awt.event.ActionEvent;
 import java.security.PublicKey;
 
+import javax.swing.JLabel;
+
 import Shop.Inventar;
 import game.GameLogic;
 import game.GameObject;
@@ -19,10 +21,10 @@ public class BeweglichesRechteck extends GameObject {
 	private static int PunkteGewonen = -1;
 	private final int maxgeschwindigkeit = 3;
 	private static int GegenerPunkte = 0;
-	private static int SpielerPunkte = 0;
+	public static int SpielerPunkte = 0;
 	private  int xGeschwindigkeit = GameLogic.getGeschwindigkeitBall(), yGeschwindigkeit = GameLogic.getGeschwindigkeitBall();
 	final int minYGeschwindigkeit = 1;
-
+	 
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
 		schritteInGleicherRichtung = 0;
@@ -174,6 +176,9 @@ public class BeweglichesRechteck extends GameObject {
 			System.out.println("Spieler hat : " + getSpielerPunkte());
 		}
 	}
+	
+     
+     
 	public void Gewonnen() {
 		if (getGegenerPunkte() == PunkteGewonen ) {
 			setGegenerPunkte(0);
