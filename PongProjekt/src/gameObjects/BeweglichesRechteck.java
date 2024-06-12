@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import game.GameLogic;
 import game.GameObject;
+import Shop.Inventar;
 import gui.Classic;
 import gui.Shop;
 import gui.StartScreen;
@@ -70,13 +71,13 @@ public class BeweglichesRechteck extends GameObject {
 	public void start() {
 
 		if(GameLogic.getCounter() ==1) {
-			System.out.println("ACHTUNG");
+			Classic.RefreshRate();
 		}else if(GameLogic.getCounter() ==250 ) {
-			System.out.println("FERTIG");
+			Classic.RefreshRate();
 		}else if(GameLogic.getCounter() ==500) {
-			System.out.println("LOS");
+			Classic.RefreshRate();
 		}else if(GameLogic.getCounter()== 750 ) {
-
+			Classic.RefreshRate();
 		}
 
 	}
@@ -166,15 +167,13 @@ public class BeweglichesRechteck extends GameObject {
 			positionX = GameLogic.getX();
 			positionY = GameLogic.getY();
 			yGeschwindigkeit = -yGeschwindigkeit;
-			System.out.println("Gegner hat : " + getGegenerPunkte());
-			
+			Classic.RefreshPoints();
 		}
 		if(positionX ==  Classic.getScreenwidth() - diameter ) {
 			setSpielerPunkte(SpielerPunkte + 1);   
 			positionX = GameLogic.getX();
 			positionY = GameLogic.getY();
 			yGeschwindigkeit = -yGeschwindigkeit;
-			System.out.println("Spieler hat : " + getSpielerPunkte());
 			Classic.RefreshPoints();
 		}
 	}
@@ -182,7 +181,7 @@ public class BeweglichesRechteck extends GameObject {
      
      
 	public void Gewonnen() {
-		if (getGegenerPunkte() == PunkteGewonen ) {
+		if (getGegnerPunkte() == PunkteGewonen ) {
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
 			positionX = GameLogic.getX();
@@ -194,7 +193,7 @@ public class BeweglichesRechteck extends GameObject {
 			GameLogic.instance.stopGameTimer();
 		}else if(getSpielerPunkte() == PunkteGewonen) {
 			level++;
-			// Inventar.TalerGewinn(1);
+			Inventar.TalerGewinn(1);
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
 			positionX = GameLogic.getX();
@@ -384,7 +383,7 @@ public class BeweglichesRechteck extends GameObject {
 	}
 
 
-	public int getGegenerPunkte() {
+	public static int getGegnerPunkte() {
 		return GegenerPunkte;
 	}
 
@@ -392,7 +391,7 @@ public class BeweglichesRechteck extends GameObject {
 		GegenerPunkte = gegenerPunkte;
 	}
 
-	public int getSpielerPunkte() {
+	public static int getSpielerPunkte() {
 		return SpielerPunkte;
 	}
 

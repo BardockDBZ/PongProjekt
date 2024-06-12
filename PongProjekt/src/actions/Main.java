@@ -23,6 +23,7 @@ public static Font KnightWarriors;
 		try {
 			KnightWarriors = Font.createFont(Font.TRUETYPE_FONT, is);
 			KnightWarriors = KnightWarriors.deriveFont(15F);
+			
 		} catch (FontFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -26,7 +26,7 @@ public class GameLogic {
 	private static BeweglichesRechteck rechteckgegner;
 	private static BeweglichesRechteck sicherheitSpieler;
 	private static BeweglichesRechteck sicherheitGegner;
-	private int breite = 5;
+	private int breite = 10;
 	private int hoehe = 100;
 	public static GameLogic instance;
 	private static int Spiel = -1;
