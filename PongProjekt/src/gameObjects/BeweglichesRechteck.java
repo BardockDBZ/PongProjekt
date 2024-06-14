@@ -32,9 +32,10 @@ public class BeweglichesRechteck extends GameObject {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if(GameLogic.keypausearrowpressed) {
-
-		}else {
+		
+		if(GameLogic.keypausearrowpressed) {}
+		
+		else {
 			start();
 			if(GameLogic.getSpiel() == 0) {
 				Levelsystem();
@@ -57,8 +58,8 @@ public class BeweglichesRechteck extends GameObject {
 				move();
 				collisionwithwall();
 				collisionWithPaddle();
-
 			}
+			
 		}
 	}
 
@@ -96,7 +97,9 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck spielerPaddle = GameLogic.getRechteckSpieler();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 		BeweglichesRechteck sicherheitSpiele = GameLogic.getSicherheitSpieler();
-
+		BeweglichesRechteck Stein = GameLogic.getStein();
+	
+		
 		if(this.positionX <= sicherheitSpiele.positionX + sicherheitSpiele.groesseX &&
 				this.positionX + this.groesseX >= sicherheitSpiele.positionX &&
 				this.positionY <= sicherheitSpiele.positionY + sicherheitSpiele.groesseY &&
@@ -130,6 +133,21 @@ public class BeweglichesRechteck extends GameObject {
 				}
 
 			}
+			
+			if (this.positionX <= Stein.positionX + Stein.groesseX &&
+					this.positionX + this.groesseX >= Stein.positionX &&
+					this.positionY <= Stein.positionY + Stein.groesseY &&
+					this.positionY + this.groesseY >= Stein.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein.positionY + Stein.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+
+			}
+			
 			if(yGeschwindigkeit == 0) {				//wenn alles schief geht und y trotzdem 0 ist 
 				yGeschwindigkeit += 1;
 			}

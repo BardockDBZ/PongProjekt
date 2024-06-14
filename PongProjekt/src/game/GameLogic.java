@@ -26,6 +26,10 @@ public class GameLogic {
 	private static BeweglichesRechteck rechteckgegner;
 	private static BeweglichesRechteck sicherheitSpieler;
 	private static BeweglichesRechteck sicherheitGegner;
+	
+	
+	private static BeweglichesRechteck Stein;
+	
 	private int breite = 10; 
 	private int hoehe = 100;
 	public static GameLogic instance;
@@ -55,8 +59,18 @@ public class GameLogic {
 		spielObjekte.add(rechteckSpieler);
 		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
 		spielObjekte.add(rechteckgegner);
+		
 		sicherheitSpieler = new BeweglichesRechteck(75, 298, breite - 1, hoehe + 2);
 		sicherheitGegner = new BeweglichesRechteck(705, 300, breite - 1, hoehe + 2);
+		
+	if(false) {
+		
+		
+			Stein = new BeweglichesRechteck(100, 100, 100, 100);
+			spielObjekte.add(Stein);
+	}
+			
+		
 		if(Spiel == 0 || Spiel == 1 || Spiel == 2 || Spiel == 3) {	
 			gameTimer.scheduleAtFixedRate(new TimerTask(){
 				@Override
@@ -178,6 +192,13 @@ public class GameLogic {
 		GameLogic.rechteckgegner = rechteckGegener;
 	}
 
+	public static BeweglichesRechteck getStein() {
+		return Stein;
+	}
+	
+	
+	
+	
 	public static BeweglichesRechteck getBall() {
 		return ball;
 	}
