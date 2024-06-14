@@ -57,7 +57,7 @@ public class StartScreen extends JFrame {
 	int option;
 	static JSlider slider;
 	public static JPanel pPause;
-	private static JButton btnPause_1;
+	private static JLabel lblpausiert;
 
 	/**
 	 * Launch the application.
@@ -218,9 +218,10 @@ public class StartScreen extends JFrame {
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_pStartScreen.createSequentialGroup()
 							.addComponent(lblShop, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_pStartScreen.createSequentialGroup()
 									.addGap(18)
@@ -241,7 +242,7 @@ public class StartScreen extends JFrame {
 										.addComponent(btnEndless, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(btnStory, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
 							.addContainerGap())
-						.addGroup(Alignment.TRAILING, gl_pStartScreen.createSequentialGroup()
+						.addGroup(gl_pStartScreen.createSequentialGroup()
 							.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 							.addGap(242))))
 		);
@@ -272,7 +273,7 @@ public class StartScreen extends JFrame {
 					.addGap(98))
 				.addGroup(gl_pStartScreen.createSequentialGroup()
 					.addComponent(lblShop)
-					.addGap(379))
+					.addContainerGap())
 		);
 		pStartScreen.setLayout(gl_pStartScreen);
 		
@@ -348,26 +349,227 @@ public class StartScreen extends JFrame {
 		JLabel lblLevelwaehlen = new JLabel("Waehle das Level aus!");
 		lblLevelwaehlen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLevelwaehlen.setForeground(Color.WHITE);
-		lblLevelwaehlen.setBounds(0, 36, 485, 37);
+		lblLevelwaehlen.setBounds(69, 40, 485, 37);
 		pLevelauswahl.add(lblLevelwaehlen);
-		lblLevelwaehlen.setFont(Main.KnightWarriors);
+		lblLevelwaehlen.setFont(Main.KnightWarriors.deriveFont(20F));
+		
+		JLabel lblShop_1 = new JLabel("");
+		lblShop_1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				Shop.ShopErstellen();
+				Startclose();
+				audioManager.stopSound(getName());
+			}
+		});
+		lblShop_1.setIcon(new ImageIcon(StartScreen.class.getResource("/actions/resources/image (1).png")));
+		lblShop_1.setForeground(new Color(255, 255, 255));
+		lblShop_1.setBackground(new Color(255, 255, 255));
+		lblShop_1.setBounds(10, 0, 52, 48);
+		pLevelauswahl.add(lblShop_1);
+		
+		JLabel lblSettings_1 = new JLabel("");
+		lblSettings_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tausch(pLevelauswahl, pEinstellungen);
+			}
+		});
+		lblSettings_1.setIcon(new ImageIcon(StartScreen.class.getResource("/actions/resources/setting (2) (1).png")));
+		lblSettings_1.setBounds(564, 0, 52, 48);
+		pLevelauswahl.add(lblSettings_1);
+		
+		JButton btnLevel1 = new JButton("1");
+		btnLevel1.setForeground(new Color(255, 255, 255));
+		btnLevel1.setBorderPainted(false);
+		btnLevel1.setOpaque(false);
+		btnLevel1.setBackground(new Color(0, 0, 0));
+		btnLevel1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel1.setBounds(40, 148, 46, 29);
+		pLevelauswahl.add(btnLevel1);
+		
+		JButton btnLevel2 = new JButton("2");
+		btnLevel2.setOpaque(false);
+		btnLevel2.setForeground(Color.WHITE);
+		btnLevel2.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel2.setBorderPainted(false);
+		btnLevel2.setBackground(Color.BLACK);
+		btnLevel2.setBounds(96, 148, 46, 29);
+		pLevelauswahl.add(btnLevel2);
+		
+		JButton btnLevel3 = new JButton("3");
+		btnLevel3.setOpaque(false);
+		btnLevel3.setForeground(Color.WHITE);
+		btnLevel3.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel3.setBorderPainted(false);
+		btnLevel3.setBackground(Color.BLACK);
+		btnLevel3.setBounds(152, 148, 46, 29);
+		pLevelauswahl.add(btnLevel3);
+		
+		JButton btnLevel4 = new JButton("4");
+		btnLevel4.setOpaque(false);
+		btnLevel4.setForeground(Color.WHITE);
+		btnLevel4.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel4.setBorderPainted(false);
+		btnLevel4.setBackground(Color.BLACK);
+		btnLevel4.setBounds(208, 148, 46, 29);
+		pLevelauswahl.add(btnLevel4);
+		
+		JButton btnLevel5 = new JButton("5");
+		btnLevel5.setOpaque(false);
+		btnLevel5.setForeground(Color.WHITE);
+		btnLevel5.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel5.setBorderPainted(false);
+		btnLevel5.setBackground(Color.BLACK);
+		btnLevel5.setBounds(264, 148, 46, 29);
+		pLevelauswahl.add(btnLevel5);
+		
+		JButton btnLevel6 = new JButton("6");
+		btnLevel6.setOpaque(false);
+		btnLevel6.setForeground(Color.WHITE);
+		btnLevel6.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel6.setBorderPainted(false);
+		btnLevel6.setBackground(Color.BLACK);
+		btnLevel6.setBounds(320, 148, 46, 29);
+		pLevelauswahl.add(btnLevel6);
+		
+		JButton btnLevel7 = new JButton("7");
+		btnLevel7.setOpaque(false);
+		btnLevel7.setForeground(Color.WHITE);
+		btnLevel7.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel7.setBorderPainted(false);
+		btnLevel7.setBackground(Color.BLACK);
+		btnLevel7.setBounds(376, 148, 46, 29);
+		pLevelauswahl.add(btnLevel7);
+		
+		JButton btnLevel8 = new JButton("8");
+		btnLevel8.setOpaque(false);
+		btnLevel8.setForeground(Color.WHITE);
+		btnLevel8.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel8.setBorderPainted(false);
+		btnLevel8.setBackground(Color.BLACK);
+		btnLevel8.setBounds(432, 148, 46, 29);
+		pLevelauswahl.add(btnLevel8);
+		
+		JButton btnLevel9 = new JButton("9");
+		btnLevel9.setOpaque(false);
+		btnLevel9.setForeground(Color.WHITE);
+		btnLevel9.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel9.setBorderPainted(false);
+		btnLevel9.setBackground(Color.BLACK);
+		btnLevel9.setBounds(488, 148, 46, 29);
+		pLevelauswahl.add(btnLevel9);
+		
+		JButton btnLevel10 = new JButton("10");
+		btnLevel10.setOpaque(false);
+		btnLevel10.setForeground(Color.WHITE);
+		btnLevel10.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel10.setBorderPainted(false);
+		btnLevel10.setBackground(Color.BLACK);
+		btnLevel10.setBounds(544, 148, 57, 29);
+		pLevelauswahl.add(btnLevel10);
+		
+		JButton btnLevel11 = new JButton("11");
+		btnLevel11.setOpaque(false);
+		btnLevel11.setForeground(Color.WHITE);
+		btnLevel11.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel11.setBorderPainted(false);
+		btnLevel11.setBackground(Color.BLACK);
+		btnLevel11.setBounds(29, 188, 57, 29);
+		pLevelauswahl.add(btnLevel11);
+		
+		JButton btnLevel12 = new JButton("12");
+		btnLevel12.setOpaque(false);
+		btnLevel12.setForeground(Color.WHITE);
+		btnLevel12.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel12.setBorderPainted(false);
+		btnLevel12.setBackground(Color.BLACK);
+		btnLevel12.setBounds(90, 188, 57, 29);
+		pLevelauswahl.add(btnLevel12);
+		
+		JButton btnLevel13 = new JButton("13");
+		btnLevel13.setOpaque(false);
+		btnLevel13.setForeground(Color.WHITE);
+		btnLevel13.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel13.setBorderPainted(false);
+		btnLevel13.setBackground(Color.BLACK);
+		btnLevel13.setBounds(152, 188, 57, 29);
+		pLevelauswahl.add(btnLevel13);
+		
+		JButton btnLevel14 = new JButton("14");
+		btnLevel14.setOpaque(false);
+		btnLevel14.setForeground(Color.WHITE);
+		btnLevel14.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel14.setBorderPainted(false);
+		btnLevel14.setBackground(Color.BLACK);
+		btnLevel14.setBounds(208, 188, 57, 29);
+		pLevelauswahl.add(btnLevel14);
+		
+		JButton btnLevel15 = new JButton("15");
+		btnLevel15.setOpaque(false);
+		btnLevel15.setForeground(Color.WHITE);
+		btnLevel15.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel15.setBorderPainted(false);
+		btnLevel15.setBackground(Color.BLACK);
+		btnLevel15.setBounds(264, 188, 57, 29);
+		pLevelauswahl.add(btnLevel15);
+		
+		JButton btnLevel16 = new JButton("16");
+		btnLevel16.setOpaque(false);
+		btnLevel16.setForeground(Color.WHITE);
+		btnLevel16.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel16.setBorderPainted(false);
+		btnLevel16.setBackground(Color.BLACK);
+		btnLevel16.setBounds(320, 188, 57, 29);
+		pLevelauswahl.add(btnLevel16);
+		
+		JButton btnLevel17 = new JButton("17");
+		btnLevel17.setOpaque(false);
+		btnLevel17.setForeground(Color.WHITE);
+		btnLevel17.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel17.setBorderPainted(false);
+		btnLevel17.setBackground(Color.BLACK);
+		btnLevel17.setBounds(376, 188, 57, 29);
+		pLevelauswahl.add(btnLevel17);
+		
+		JButton btnLevel18 = new JButton("18");
+		btnLevel18.setOpaque(false);
+		btnLevel18.setForeground(Color.WHITE);
+		btnLevel18.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel18.setBorderPainted(false);
+		btnLevel18.setBackground(Color.BLACK);
+		btnLevel18.setBounds(432, 188, 57, 29);
+		pLevelauswahl.add(btnLevel18);
+		
+		JButton btnLevel19 = new JButton("19");
+		btnLevel19.setOpaque(false);
+		btnLevel19.setForeground(Color.WHITE);
+		btnLevel19.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel19.setBorderPainted(false);
+		btnLevel19.setBackground(Color.BLACK);
+		btnLevel19.setBounds(488, 188, 57, 29);
+		pLevelauswahl.add(btnLevel19);
+		
+		JButton btnLevel20 = new JButton("20");
+		btnLevel20.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnLevel20.setOpaque(false);
+		btnLevel20.setForeground(Color.WHITE);
+		btnLevel20.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel20.setBorderPainted(false);
+		btnLevel20.setBackground(Color.BLACK);
+		btnLevel20.setBounds(544, 188, 57, 29);
+		pLevelauswahl.add(btnLevel20);
 		
 		pPause = new JPanel();
+		pPause.setOpaque(false);
 		pPause.setBackground(Color.DARK_GRAY);
 		contentPane.add(pPause, "name_24353100108700");
 		pPause.setLayout(null);
 		
-		btnPause_1 = new JButton("Pause");
-		btnPause_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				showPauseMenu();
-			}
-		});
-		btnPause_1.setBounds(29, 354, 0, 0);
-		btnPause_1.setMnemonic('P');
-		btnPause_1.setBackground(Color.BLACK);
-		pPause.add(btnPause_1);
-		pPause.setVisible(true);
+		
+		
 		
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -412,16 +614,17 @@ public class StartScreen extends JFrame {
 	public static void setLaenge(int laenge) {
 		StartScreen.laenge = laenge;
 	}
-	private void setupPauseMenu() {
+	public static void setupPauseMenu() {
         // Create a modal dialog for the pause menu
-      
-        pPause.setSize(200, 150);
+        pPause.setSize(640, 468);
         pPause.setLayout(new BorderLayout());
-        // Add a label to indicate the game is paused
-        JLabel pausedLabel = new JLabel("Game Paused", SwingConstants.CENTER);
-        pPause.add(pausedLabel, BorderLayout.CENTER);
-
-        // Create a button to resume
+        lblpausiert = new JLabel("Spiel pausiert", SwingConstants.CENTER);
+		lblpausiert.setForeground(new Color(255, 255, 255));
+		lblpausiert.setBounds(264, 121, 91, 27);
+		pPause.add(lblpausiert, BorderLayout.CENTER);
+		pPause.setVisible(true);
+		lblpausiert.setFont(Main.KnightWarriors);
+       // Create a button to resume
         JButton resumeButton = new JButton("Resume");
         resumeButton.addActionListener(new ActionListener() {
             @Override
@@ -429,11 +632,11 @@ public class StartScreen extends JFrame {
                 hidePauseMenu();
             }
         }); }
-	 private void showPauseMenu() {
+	 public static void showPauseMenu() {
 	       
 	        pPause.setVisible(true);
 	    }
-	  private void hidePauseMenu() {
+	  public static void hidePauseMenu() {
 	        pPause.setVisible(false);
 	  }
 }

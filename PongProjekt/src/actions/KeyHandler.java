@@ -14,14 +14,12 @@ public class KeyHandler implements KeyListener {
 		gamelogic = spiellogik;
 	}
 	
-	@Override
+	
 	public  void keyTyped(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_P) {
-			
-		}
+		
 	}
 
-	@Override
+	
 	public  void keyPressed(KeyEvent e) {			//key tipp zum bewegen tippen
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -32,8 +30,16 @@ public class KeyHandler implements KeyListener {
 			gamelogic.keyUparrowpressed = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			gamelogic.keyDownarrowpressed = true;
-		}else if (e.getKeyCode() == KeyEvent.VK_Q) {
-			gamelogic.keypausearrowpressed = true;
+		}else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			gamelogic.keypausearrowpressed =! gamelogic.keypausearrowpressed;
+			StartScreen.setupPauseMenu();
+		if (gamelogic.keypausearrowpressed) {
+			
+			StartScreen.showPauseMenu();
+		}
+		else {
+			StartScreen.hidePauseMenu();
+		}
 		}
 		
 		if (e.getKeyCode() == KeyEvent.VK_W) {
@@ -43,7 +49,8 @@ public class KeyHandler implements KeyListener {
 		}
 	}
 
-	@Override
+
+
 	public  void keyReleased(KeyEvent e) {			//key tipp zum bewegen loslassen
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -54,8 +61,6 @@ public class KeyHandler implements KeyListener {
 			gamelogic.keyUparrowpressed = false;
 		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			gamelogic.keyDownarrowpressed = false;
-		}else if (e.getKeyCode() == KeyEvent.VK_Q) {
-			gamelogic.keypausearrowpressed = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			gamelogic.keyUPWarrowpressed = false;

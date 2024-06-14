@@ -24,7 +24,7 @@ public class Shop extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	static Shop Shopframe;						   //Zum Frame erstllen + Name wegen verwirrung
+	public static Shop Shopframe;						   //Zum Frame erstllen + Name wegen verwirrung
 	private static int breite, laenge; //Panel massse -> werden in Set geändert
 	
 	
