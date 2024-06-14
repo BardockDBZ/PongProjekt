@@ -102,7 +102,7 @@ public class StartScreen extends JFrame {
 			JLabel lbStartScreenTitel = new JLabel("Pong ");
 			lbStartScreenTitel.setForeground(new Color(255, 255, 255));
 			lbStartScreenTitel.setHorizontalAlignment(SwingConstants.CENTER);
-			lbStartScreenTitel.setFont(Main.KnightWarriors);
+			lbStartScreenTitel.setFont(Main.KnightWarriors.deriveFont(35F));
 		
 		JButton btnStory = new JButton("Geschichte");
 		btnStory.setHorizontalAlignment(SwingConstants.LEFT);
@@ -127,6 +127,7 @@ public class StartScreen extends JFrame {
 		});
 		
 		JButton btnEndless = new JButton("Endlos");
+		btnEndless.setToolTipText("Kämpfe bis zum Ende, oder gibt es eins?");
 		btnEndless.setHorizontalAlignment(SwingConstants.LEFT);
 		btnEndless.setForeground(new Color(255, 255, 255));
 		btnEndless.setOpaque(false);
@@ -163,6 +164,7 @@ public class StartScreen extends JFrame {
 		
 		
 		JButton btnClassic = new JButton("Klassisch");
+		btnClassic.setToolTipText("Der Klassische Pong Modus");
 		btnClassic.setHorizontalAlignment(SwingConstants.LEFT);
 		btnClassic.setForeground(new Color(255, 255, 255));
 		btnClassic.setOpaque(false);
@@ -186,6 +188,7 @@ public class StartScreen extends JFrame {
 		});
 		
 		JButton btnMultiplayer = new JButton("Mehrspieler");
+		btnMultiplayer.setToolTipText("Kämpfe gegen deinen Freund!");
 		btnMultiplayer.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMultiplayer.setForeground(new Color(255, 255, 255));
 		btnMultiplayer.setBorderPainted(false);
@@ -230,44 +233,49 @@ public class StartScreen extends JFrame {
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblShop, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addComponent(lblShop, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 478, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblSettings, GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE))
+							.addComponent(lblSettings, GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE)
+							.addContainerGap())
 						.addGroup(gl_pStartScreen.createSequentialGroup()
-							.addGap(145)
-							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnStory, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-								.addComponent(btnEndless, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnMultiplayer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnClassic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap())
+							.addComponent(btnStory, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+							.addGap(392))
+						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addComponent(btnClassic, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+							.addGap(453))
+						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addComponent(btnEndless, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+							.addGap(453))
+						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addComponent(btnMultiplayer, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+							.addGap(453))
+						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(453, Short.MAX_VALUE))))
 		);
 		gl_pStartScreen.setVerticalGroup(
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
 					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pStartScreen.createSequentialGroup()
-							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblSettings))
-							.addGap(65)
-							.addComponent(btnStory)
-							.addGap(18)
-							.addComponent(btnClassic)
-							.addGap(18)
-							.addComponent(btnEndless)
-							.addGap(18)
-							.addComponent(btnMultiplayer))
+						.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblSettings))
 						.addComponent(lblShop))
+					.addPreferredGap(ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+					.addComponent(btnStory)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnClassic)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnEndless)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnMultiplayer)
 					.addGap(18)
 					.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-					.addGap(128))
+					.addGap(79))
 		);
 		pStartScreen.setLayout(gl_pStartScreen);
 		
@@ -357,7 +365,7 @@ public class StartScreen extends JFrame {
 		lblLevelwaehlen.setForeground(Color.WHITE);
 		lblLevelwaehlen.setBounds(69, 40, 485, 37);
 		pLevelauswahl.add(lblLevelwaehlen);
-		lblLevelwaehlen.setFont(Main.KnightWarriors.deriveFont(20F));
+		lblLevelwaehlen.setFont(Main.KnightWarriors.deriveFont(35F));
 		
 		JLabel lblShop_1 = new JLabel("");
 		lblShop_1.addMouseListener(new MouseAdapter() {
@@ -389,14 +397,14 @@ public class StartScreen extends JFrame {
 		btnLevel1.setBorderPainted(false);
 		btnLevel1.setOpaque(false);
 		btnLevel1.setBackground(new Color(0, 0, 0));
-		btnLevel1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel1.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel1.setBounds(40, 148, 46, 29);
 		pLevelauswahl.add(btnLevel1);
 		
 		JButton btnLevel2 = new JButton("2");
 		btnLevel2.setOpaque(false);
 		btnLevel2.setForeground(Color.WHITE);
-		btnLevel2.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel2.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel2.setBorderPainted(false);
 		btnLevel2.setBackground(Color.BLACK);
 		btnLevel2.setBounds(96, 148, 46, 29);
@@ -405,7 +413,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel3 = new JButton("3");
 		btnLevel3.setOpaque(false);
 		btnLevel3.setForeground(Color.WHITE);
-		btnLevel3.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel3.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel3.setBorderPainted(false);
 		btnLevel3.setBackground(Color.BLACK);
 		btnLevel3.setBounds(152, 148, 46, 29);
@@ -414,7 +422,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel4 = new JButton("4");
 		btnLevel4.setOpaque(false);
 		btnLevel4.setForeground(Color.WHITE);
-		btnLevel4.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel4.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel4.setBorderPainted(false);
 		btnLevel4.setBackground(Color.BLACK);
 		btnLevel4.setBounds(208, 148, 46, 29);
@@ -423,7 +431,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel5 = new JButton("5");
 		btnLevel5.setOpaque(false);
 		btnLevel5.setForeground(Color.WHITE);
-		btnLevel5.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel5.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel5.setBorderPainted(false);
 		btnLevel5.setBackground(Color.BLACK);
 		btnLevel5.setBounds(264, 148, 46, 29);
@@ -432,7 +440,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel6 = new JButton("6");
 		btnLevel6.setOpaque(false);
 		btnLevel6.setForeground(Color.WHITE);
-		btnLevel6.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel6.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel6.setBorderPainted(false);
 		btnLevel6.setBackground(Color.BLACK);
 		btnLevel6.setBounds(320, 148, 46, 29);
@@ -441,7 +449,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel7 = new JButton("7");
 		btnLevel7.setOpaque(false);
 		btnLevel7.setForeground(Color.WHITE);
-		btnLevel7.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel7.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel7.setBorderPainted(false);
 		btnLevel7.setBackground(Color.BLACK);
 		btnLevel7.setBounds(376, 148, 46, 29);
@@ -450,7 +458,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel8 = new JButton("8");
 		btnLevel8.setOpaque(false);
 		btnLevel8.setForeground(Color.WHITE);
-		btnLevel8.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel8.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel8.setBorderPainted(false);
 		btnLevel8.setBackground(Color.BLACK);
 		btnLevel8.setBounds(432, 148, 46, 29);
@@ -459,7 +467,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel9 = new JButton("9");
 		btnLevel9.setOpaque(false);
 		btnLevel9.setForeground(Color.WHITE);
-		btnLevel9.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel9.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel9.setBorderPainted(false);
 		btnLevel9.setBackground(Color.BLACK);
 		btnLevel9.setBounds(488, 148, 46, 29);
@@ -468,7 +476,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel10 = new JButton("10");
 		btnLevel10.setOpaque(false);
 		btnLevel10.setForeground(Color.WHITE);
-		btnLevel10.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel10.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel10.setBorderPainted(false);
 		btnLevel10.setBackground(Color.BLACK);
 		btnLevel10.setBounds(544, 148, 57, 29);
@@ -477,7 +485,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel11 = new JButton("11");
 		btnLevel11.setOpaque(false);
 		btnLevel11.setForeground(Color.WHITE);
-		btnLevel11.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel11.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel11.setBorderPainted(false);
 		btnLevel11.setBackground(Color.BLACK);
 		btnLevel11.setBounds(29, 188, 57, 29);
@@ -486,7 +494,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel12 = new JButton("12");
 		btnLevel12.setOpaque(false);
 		btnLevel12.setForeground(Color.WHITE);
-		btnLevel12.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel12.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel12.setBorderPainted(false);
 		btnLevel12.setBackground(Color.BLACK);
 		btnLevel12.setBounds(90, 188, 57, 29);
@@ -495,7 +503,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel13 = new JButton("13");
 		btnLevel13.setOpaque(false);
 		btnLevel13.setForeground(Color.WHITE);
-		btnLevel13.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel13.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel13.setBorderPainted(false);
 		btnLevel13.setBackground(Color.BLACK);
 		btnLevel13.setBounds(152, 188, 57, 29);
@@ -504,7 +512,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel14 = new JButton("14");
 		btnLevel14.setOpaque(false);
 		btnLevel14.setForeground(Color.WHITE);
-		btnLevel14.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel14.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel14.setBorderPainted(false);
 		btnLevel14.setBackground(Color.BLACK);
 		btnLevel14.setBounds(208, 188, 57, 29);
@@ -513,7 +521,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel15 = new JButton("15");
 		btnLevel15.setOpaque(false);
 		btnLevel15.setForeground(Color.WHITE);
-		btnLevel15.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel15.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel15.setBorderPainted(false);
 		btnLevel15.setBackground(Color.BLACK);
 		btnLevel15.setBounds(264, 188, 57, 29);
@@ -522,7 +530,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel16 = new JButton("16");
 		btnLevel16.setOpaque(false);
 		btnLevel16.setForeground(Color.WHITE);
-		btnLevel16.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel16.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel16.setBorderPainted(false);
 		btnLevel16.setBackground(Color.BLACK);
 		btnLevel16.setBounds(320, 188, 57, 29);
@@ -531,7 +539,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel17 = new JButton("17");
 		btnLevel17.setOpaque(false);
 		btnLevel17.setForeground(Color.WHITE);
-		btnLevel17.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel17.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel17.setBorderPainted(false);
 		btnLevel17.setBackground(Color.BLACK);
 		btnLevel17.setBounds(376, 188, 57, 29);
@@ -540,7 +548,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel18 = new JButton("18");
 		btnLevel18.setOpaque(false);
 		btnLevel18.setForeground(Color.WHITE);
-		btnLevel18.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel18.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel18.setBorderPainted(false);
 		btnLevel18.setBackground(Color.BLACK);
 		btnLevel18.setBounds(432, 188, 57, 29);
@@ -549,7 +557,7 @@ public class StartScreen extends JFrame {
 		JButton btnLevel19 = new JButton("19");
 		btnLevel19.setOpaque(false);
 		btnLevel19.setForeground(Color.WHITE);
-		btnLevel19.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel19.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnLevel19.setBorderPainted(false);
 		btnLevel19.setBackground(Color.BLACK);
 		btnLevel19.setBounds(488, 188, 57, 29);
@@ -562,7 +570,7 @@ public class StartScreen extends JFrame {
 		});
 		btnLevel20.setOpaque(false);
 		btnLevel20.setForeground(Color.WHITE);
-		btnLevel20.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnLevel20.setFont(Main.KnightWarriors.deriveFont(24F));
 		btnLevel20.setBorderPainted(false);
 		btnLevel20.setBackground(Color.BLACK);
 		btnLevel20.setBounds(544, 188, 57, 29);

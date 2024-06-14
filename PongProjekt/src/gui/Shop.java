@@ -58,7 +58,7 @@ public class Shop extends JFrame {
 		JLabel lblShop = new JLabel("Shop");
 		lblShop.setForeground(new Color(255, 255, 255));
 		lblShop.setHorizontalAlignment(SwingConstants.CENTER);
-		lblShop.setFont(Main.KnightWarriors);
+		lblShop.setFont(Main.KnightWarriors.deriveFont(35F));
 		lblShop.setBounds(0, 0, 484, 36);
 		contentPane.add(lblShop);
 		
