@@ -141,7 +141,7 @@ public class BeweglichesRechteck extends GameObject {
 				xGeschwindigkeit = -xGeschwindigkeit;
 				yGeschwindigkeit += (this.positionY - (Stein.positionY + Stein.groesseY / 2)) / 10;
 				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
-
+				
 				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
 					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
 				}
@@ -152,7 +152,7 @@ public class BeweglichesRechteck extends GameObject {
 				yGeschwindigkeit += 1;
 			}
 		}
-	}
+	} 
 	public static void GegnerKI() {
 		BeweglichesRechteck ball = GameLogic.getBall();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();

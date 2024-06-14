@@ -40,6 +40,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.Writer;
+import javax.swing.UIManager;
 
 public class StartScreen extends JFrame {
 
@@ -102,12 +103,15 @@ public class StartScreen extends JFrame {
 			lbStartScreenTitel.setForeground(new Color(255, 255, 255));
 			lbStartScreenTitel.setHorizontalAlignment(SwingConstants.CENTER);
 			lbStartScreenTitel.setFont(Main.KnightWarriors);
-			
-			JLabel lbStory = new JLabel("Geschichte:");
-			lbStory.setForeground(new Color(255, 255, 255));
-			lbStory.setFont(Main.KnightWarriors);
 		
 		JButton btnStory = new JButton("Geschichte");
+		btnStory.setHorizontalAlignment(SwingConstants.LEFT);
+		btnStory.setBorderPainted(false);
+		btnStory.setOpaque(false);
+		btnStory.setBackground(new Color(0, 0, 0));
+		btnStory.setToolTipText("Bringt dich zur Geschichte des Spiels und zur Levelauswahl");
+		btnStory.setForeground(new Color(255, 255, 255));
+		btnStory.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnStory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tausch(pStartScreen, pLevelauswahl);
@@ -122,11 +126,12 @@ public class StartScreen extends JFrame {
 			}
 		});
 		
-		JLabel lbEndless = new JLabel("Endlos:");
-		lbEndless.setForeground(new Color(255, 255, 255));
-		lbEndless.setFont(Main.KnightWarriors);
-		
 		JButton btnEndless = new JButton("Endlos");
+		btnEndless.setHorizontalAlignment(SwingConstants.LEFT);
+		btnEndless.setForeground(new Color(255, 255, 255));
+		btnEndless.setOpaque(false);
+		btnEndless.setBorderPainted(false);
+		btnEndless.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnEndless.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameLogic.setSpiel(1);
@@ -141,7 +146,12 @@ public class StartScreen extends JFrame {
 		});
 		
 		btnVerlassen = new JButton("Verlassen");
+		btnVerlassen.setHorizontalAlignment(SwingConstants.LEFT);
+		btnVerlassen.setForeground(new Color(255, 255, 255));
+		btnVerlassen.setOpaque(false);
+		btnVerlassen.setBorderPainted(false);
 		btnVerlassen.setMnemonic('q');
+		btnVerlassen.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnVerlassen.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			option = JOptionPane.showConfirmDialog(null, "Bist du dir sicher, das Spiel zu beenden?", "Beenden", JOptionPane.OK_CANCEL_OPTION);
@@ -153,6 +163,11 @@ public class StartScreen extends JFrame {
 		
 		
 		JButton btnClassic = new JButton("Klassisch");
+		btnClassic.setHorizontalAlignment(SwingConstants.LEFT);
+		btnClassic.setForeground(new Color(255, 255, 255));
+		btnClassic.setOpaque(false);
+		btnClassic.setBorderPainted(false);
+		btnClassic.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnClassic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameLogic.setSpiel(3);
@@ -170,11 +185,12 @@ public class StartScreen extends JFrame {
 			}
 		});
 		
-		JLabel lblClassic = new JLabel("Klassisch:");
-		lblClassic.setForeground(new Color(255, 255, 255));
-		lblClassic.setFont(Main.KnightWarriors);
-		
 		JButton btnMultiplayer = new JButton("Mehrspieler");
+		btnMultiplayer.setHorizontalAlignment(SwingConstants.LEFT);
+		btnMultiplayer.setForeground(new Color(255, 255, 255));
+		btnMultiplayer.setBorderPainted(false);
+		btnMultiplayer.setOpaque(false);
+		btnMultiplayer.setFont(Main.KnightWarriors.deriveFont(25F));
 		btnMultiplayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameLogic.setSpiel(2);
@@ -187,10 +203,6 @@ public class StartScreen extends JFrame {
 				audioManager.stopSound(getName());
 			}
 		});
-		
-		JLabel lblMultiplayer = new JLabel("Mehrspieler:");
-		lblMultiplayer.setForeground(new Color(255, 255, 255));
-		lblMultiplayer.setFont(Main.KnightWarriors);	
 		
 		JLabel lblShop = new JLabel("");
 		lblShop.setAutoscrolls(true);
@@ -218,62 +230,44 @@ public class StartScreen extends JFrame {
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.TRAILING)
+					.addComponent(lblShop, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pStartScreen.createSequentialGroup()
-							.addComponent(lblShop, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 478, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pStartScreen.createSequentialGroup()
-									.addGap(18)
-									.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 478, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(lblSettings, GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE))
-								.addGroup(gl_pStartScreen.createSequentialGroup()
-									.addGap(28)
-									.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblClassic)
-										.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblMultiplayer)
-										.addComponent(lbEndless, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
-									.addGap(14)
-									.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(btnClassic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnMultiplayer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnEndless, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btnStory, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
-							.addContainerGap())
+							.addComponent(lblSettings, GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE))
 						.addGroup(gl_pStartScreen.createSequentialGroup()
-							.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-							.addGap(242))))
+							.addGap(145)
+							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnStory, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+								.addComponent(btnEndless, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnMultiplayer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnClassic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap())
 		);
 		gl_pStartScreen.setVerticalGroup(
 			gl_pStartScreen.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pStartScreen.createSequentialGroup()
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSettings))
-					.addGap(125)
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnStory)
-						.addComponent(lbStory, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnClassic)
-						.addComponent(lblClassic))
-					.addGap(7)
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnEndless)
-						.addComponent(lbEndless, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnMultiplayer)
-						.addComponent(lblMultiplayer))
+					.addGroup(gl_pStartScreen.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pStartScreen.createSequentialGroup()
+							.addGroup(gl_pStartScreen.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lbStartScreenTitel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblSettings))
+							.addGap(65)
+							.addComponent(btnStory)
+							.addGap(18)
+							.addComponent(btnClassic)
+							.addGap(18)
+							.addComponent(btnEndless)
+							.addGap(18)
+							.addComponent(btnMultiplayer))
+						.addComponent(lblShop))
 					.addGap(18)
 					.addComponent(btnVerlassen, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-					.addGap(98))
-				.addGroup(gl_pStartScreen.createSequentialGroup()
-					.addComponent(lblShop)
-					.addContainerGap())
+					.addGap(128))
 		);
 		pStartScreen.setLayout(gl_pStartScreen);
 		
@@ -289,21 +283,29 @@ public class StartScreen extends JFrame {
 		pEinstellungen.add(lbEinstellungen);
 		
 		btnSpeichern = new JButton("Speichern");
+		btnSpeichern.setForeground(new Color(255, 255, 255));
+		btnSpeichern.setOpaque(false);
+		btnSpeichern.setBorderPainted(false);
+		btnSpeichern.setFont(Main.KnightWarriors.deriveFont(20F));
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSpeichern.setBounds(57, 326, 107, 23);
+		btnSpeichern.setBounds(86, 326, 153, 23);
 		pEinstellungen.add(btnSpeichern);
 		
-		btnBack = new JButton("Zurück");
+		btnBack = new JButton("Einstellungen verlassen");
+		btnBack.setForeground(new Color(255, 255, 255));
+		btnBack.setOpaque(false);
+		btnBack.setBorderPainted(false);
+		btnBack.setFont(Main.KnightWarriors.deriveFont(20F));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			tausch(pEinstellungen,pStartScreen);				//Von Einstellungen zum Start Screen
 			}
 		});
 		
-		btnBack.setBounds(269, 326, 90, 23);
+		btnBack.setBounds(249, 326, 277, 23);
 		pEinstellungen.add(btnBack);
 		
 		slider = new JSlider();
@@ -325,7 +327,11 @@ public class StartScreen extends JFrame {
 		lblSoundVolume.setFont(Main.KnightWarriors);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setOpaque(false);
+		comboBox.setBorder(UIManager.getBorder("CheckBoxMenuItem.border"));
+		comboBox.setBackground(new Color(0, 0, 0));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Deutsch", "English", "Italiano"}));
+		comboBox.setFont(Main.KnightWarriors);
 		comboBox.setBounds(247, 142, 200, 22);
 		pEinstellungen.add(comboBox);
 		
@@ -561,6 +567,19 @@ public class StartScreen extends JFrame {
 		btnLevel20.setBackground(Color.BLACK);
 		btnLevel20.setBounds(544, 188, 57, 29);
 		pLevelauswahl.add(btnLevel20);
+		
+		JButton btnLevelBack = new JButton("Zurueck");
+		btnLevelBack.setForeground(new Color(255, 255, 255));
+		btnLevelBack.setOpaque(false);
+		btnLevelBack.setBorderPainted(false);
+		btnLevelBack.setFont(Main.KnightWarriors.deriveFont(25F));
+		btnLevelBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tausch(pLevelauswahl, pStartScreen);
+			}
+		});
+		btnLevelBack.setBounds(432, 319, 122, 23);
+		pLevelauswahl.add(btnLevelBack);
 		
 		pPause = new JPanel();
 		pPause.setOpaque(false);

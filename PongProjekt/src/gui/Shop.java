@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import actions.Main;
+import actions.audioManager;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -32,6 +33,10 @@ public class Shop extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					audioManager.playSound("/actions/resources/Shop.wav");
+					float volume = StartScreen.slider.getValue();
+			        audioManager.setVolume(volume);
+			        StartScreen.slider.getValue();
 					Shopframe = new Shop();
 					Shopframe.setVisible(true);
 				} catch (Exception e) {
@@ -58,9 +63,13 @@ public class Shop extends JFrame {
 		contentPane.add(lblShop);
 		
 	
-		JButton btnSchliessen = new JButton("Shop schließen");
-		btnSchliessen.setBackground(new Color(128, 128, 255));
-		btnSchliessen.setBounds(44, 339, 114, 23);
+		JButton btnSchliessen = new JButton("Shop verlassen");
+		btnSchliessen.setForeground(new Color(255, 255, 255));
+		btnSchliessen.setOpaque(false);
+		btnSchliessen.setBorderPainted(false);
+		btnSchliessen.setBackground(new Color(0, 0, 0));
+		btnSchliessen.setBounds(26, 339, 181, 23);
+		btnSchliessen.setFont(Main.KnightWarriors.deriveFont(20F));
 		contentPane.add(btnSchliessen);
 		btnSchliessen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
