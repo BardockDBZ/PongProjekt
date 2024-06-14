@@ -33,9 +33,9 @@ public class BeweglichesRechteck extends GameObject {
 
 	public void actionPerformed(ActionEvent e) {
 		
-		if(GameLogic.keypausearrowpressed) {}
+		if(GameLogic.keypausearrowpressed) {
 		
-		else {
+		}else {
 			start();
 			if(GameLogic.getSpiel() == 0) {
 				Levelsystem();
