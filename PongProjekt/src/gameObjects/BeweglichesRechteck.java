@@ -23,18 +23,22 @@ public class BeweglichesRechteck extends GameObject {
 	private final int maxgeschwindigkeit = 3;
 	private static int GegenerPunkte = 0;
 	public static int SpielerPunkte = 0;
-	private  int xGeschwindigkeit = GameLogic.getGeschwindigkeitBall(), yGeschwindigkeit = GameLogic.getGeschwindigkeitBall();
+	private  int xGeschwindigkeit = GameLogic.getGeschwindigkeitBall(),
+			yGeschwindigkeit = GameLogic.getGeschwindigkeitBall();
 	final int minYGeschwindigkeit = 1;
-	 
+
+
+
+
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
 		schritteInGleicherRichtung = 0;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+
 		if(GameLogic.keypausearrowpressed) {
-		
+
 		}else {
 			start();
 			if(GameLogic.getSpiel() == 0) {
@@ -59,7 +63,7 @@ public class BeweglichesRechteck extends GameObject {
 				collisionwithwall();
 				collisionWithPaddle();
 			}
-			
+
 		}
 	}
 
@@ -98,8 +102,16 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 		BeweglichesRechteck sicherheitSpiele = GameLogic.getSicherheitSpieler();
 		BeweglichesRechteck Stein = GameLogic.getStein();
-	
+		BeweglichesRechteck Stein2 = GameLogic.getStein2();
+		BeweglichesRechteck Stein3 = GameLogic.getStein3();
+		BeweglichesRechteck Stein4 = GameLogic.getStein4();
+		BeweglichesRechteck Stein5 = GameLogic.getStein5();
+		BeweglichesRechteck Stein6 = GameLogic.getStein6();
+		BeweglichesRechteck Stein7 = GameLogic.getStein7();
+		BeweglichesRechteck Stein8 = GameLogic.getStein8();
 		
+
+
 		if(this.positionX <= sicherheitSpiele.positionX + sicherheitSpiele.groesseX &&
 				this.positionX + this.groesseX >= sicherheitSpiele.positionX &&
 				this.positionY <= sicherheitSpiele.positionY + sicherheitSpiele.groesseY &&
@@ -133,7 +145,7 @@ public class BeweglichesRechteck extends GameObject {
 				}
 
 			}
-			
+
 			if (this.positionX <= Stein.positionX + Stein.groesseX &&
 					this.positionX + this.groesseX >= Stein.positionX &&
 					this.positionY <= Stein.positionY + Stein.groesseY &&
@@ -141,17 +153,125 @@ public class BeweglichesRechteck extends GameObject {
 				xGeschwindigkeit = -xGeschwindigkeit;
 				yGeschwindigkeit += (this.positionY - (Stein.positionY + Stein.groesseY / 2)) / 10;
 				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
-				
+
 				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
 					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
 				}
 
 			}
-			
-			if(yGeschwindigkeit == 0) {				//wenn alles schief geht und y trotzdem 0 ist 
-				yGeschwindigkeit += 1;
+
+			if (this.positionX <= Stein2.positionX + Stein2.groesseX &&
+					this.positionX + this.groesseX >= Stein2.positionX &&
+					this.positionY <= Stein2.positionY + Stein2.groesseY &&
+					this.positionY + this.groesseY >= Stein2.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein2.positionY + Stein2.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
 			}
+
+			if (this.positionX <= Stein3.positionX + Stein3.groesseX &&
+					this.positionX + this.groesseX >= Stein3.positionX &&
+					this.positionY <= Stein3.positionY + Stein3.groesseY &&
+					this.positionY + this.groesseY >= Stein3.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein3.positionY + Stein3.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				
+			}
+			
+			if (this.positionX <= Stein4.positionX + Stein4.groesseX &&
+					this.positionX + this.groesseX >= Stein4.positionX &&
+					this.positionY <= Stein4.positionY + Stein4.groesseY &&
+					this.positionY + this.groesseY >= Stein4.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein4.positionY + Stein4.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				
+			}
+			
+			
+			if (this.positionX <= Stein5.positionX + Stein5.groesseX &&
+					this.positionX + this.groesseX >= Stein5.positionX &&
+					this.positionY <= Stein5.positionY + Stein5.groesseY &&
+					this.positionY + this.groesseY >= Stein5.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein5.positionY + Stein5.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				
+			}
+			
+			if (this.positionX <= Stein6.positionX + Stein6.groesseX &&
+					this.positionX + this.groesseX >= Stein6.positionX &&
+					this.positionY <= Stein6.positionY + Stein6.groesseY &&
+					this.positionY + this.groesseY >= Stein6.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein6.positionY + Stein6.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				
+			}
+			
+			if (this.positionX <= Stein7.positionX + Stein7.groesseX &&
+					this.positionX + this.groesseX >= Stein7.positionX &&
+					this.positionY <= Stein7.positionY + Stein7.groesseY &&
+					this.positionY + this.groesseY >= Stein7.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein7.positionY + Stein7.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				
+			}
+			
+			
+			
+			
+			if (this.positionX <= Stein8.positionX + Stein8.groesseX &&
+					this.positionX + this.groesseX >= Stein8.positionX &&
+					this.positionY <= Stein8.positionY + Stein8.groesseY &&
+					this.positionY + this.groesseY >= Stein8.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Stein8.positionY + Stein8.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				
+			}
+			
+			
+				if(yGeschwindigkeit == 0) {				//wenn alles schief geht und y trotzdem 0 ist 
+					yGeschwindigkeit += 1;
+				
+			}
+
+
+
+
 		}
+
 	} 
 	public static void GegnerKI() {
 		BeweglichesRechteck ball = GameLogic.getBall();
@@ -195,9 +315,9 @@ public class BeweglichesRechteck extends GameObject {
 			Classic.RefreshPoints();
 		}
 	}
-	
-     
-     
+
+
+
 	public void Gewonnen() {
 		if (getGegnerPunkte() == PunkteGewonen ) {
 			setGegenerPunkte(0);
@@ -432,4 +552,6 @@ public class BeweglichesRechteck extends GameObject {
 	public static void setPunkteGewonen(int punkteGewonen) {
 		PunkteGewonen = punkteGewonen;
 	}
+
+
 }

@@ -26,7 +26,19 @@ public class GameLogic {
 	private static BeweglichesRechteck rechteckgegner;
 	private static BeweglichesRechteck sicherheitSpieler;
 	private static BeweglichesRechteck sicherheitGegner;
-	private static BeweglichesRechteck Stein;
+	private static BeweglichesRechteck Stein1;
+	private static BeweglichesRechteck Stein2;
+	private static BeweglichesRechteck Stein3;
+	private static BeweglichesRechteck Stein4;
+	private static BeweglichesRechteck Stein5;
+	private static BeweglichesRechteck Stein6;
+	private static BeweglichesRechteck Stein7;
+	private static BeweglichesRechteck Stein8;
+	private static BeweglichesRechteck Ilusion1;
+	private static BeweglichesRechteck Ilusion2;
+	private static BeweglichesRechteck Ilusion3;
+	private static BeweglichesRechteck Ilusion4;
+	
 	private int breite = 10; 
 	private int hoehe = 100;
 	public static GameLogic instance;
@@ -35,7 +47,8 @@ public class GameLogic {
 	private static int GeschwindigkeitSpieler = 1;
 	private static int GeschwindigkeitGegner = 1;
 	private static int GeschwindigkeitBall = 1;
-	
+
+
 	public GameLogic() {
 
 		instance = this;
@@ -51,20 +64,111 @@ public class GameLogic {
 		spielObjekte.add(ball);
 
 		ball.richtung = 0;
-		
+
 		rechteckSpieler = new BeweglichesRechteck(75, 250, breite, hoehe);
 		spielObjekte.add(rechteckSpieler);
 		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
 		spielObjekte.add(rechteckgegner);
 		sicherheitSpieler = new BeweglichesRechteck(75, 298, breite - 1, hoehe + 2);
 		sicherheitGegner = new BeweglichesRechteck(705, 300, breite - 1, hoehe + 2);
+
+		Stein1 = new BeweglichesRechteck(0, 0, 0, 0); //Stein1
+		spielObjekte.add(Stein1);
+		Stein2=new BeweglichesRechteck(0, 0, 0, 0);//Stein2
+		spielObjekte.add(Stein2);
+		Stein3=new BeweglichesRechteck(0, 0, 0, 0);//Stein3
+		spielObjekte.add(Stein3);
+		Stein4 = new BeweglichesRechteck(0, 0, 0, 0);//Stein4
+		spielObjekte.add(Stein4);
+		Stein5=new BeweglichesRechteck(0, 0, 0, 0);//Stein5
+		spielObjekte.add(Stein5);
+		Stein6=new BeweglichesRechteck(0, 0, 0, 0);//Stein6
+		spielObjekte.add(Stein6);
+		Stein7 = new BeweglichesRechteck(0, 0, 0, 0);//Stein7
+		spielObjekte.add(Stein7);
+		Stein8=new BeweglichesRechteck(0, 0, 0, 0);//Stein8
+		spielObjekte.add(Stein8);
+		Ilusion1=new BeweglichesRechteck(0, 0, 0, 0);//Ilusion1
+		spielObjekte.add(Ilusion1);
+		Ilusion2 = new BeweglichesRechteck(0, 0, 0, 0);//ilusion2
+		spielObjekte.add(Ilusion2);
+		Ilusion3=new BeweglichesRechteck(0, 0, 0, 0);//Ilusion3
+		spielObjekte.add(Ilusion3);
+		Ilusion4=new BeweglichesRechteck(0, 0, 0, 0);//Ilusion4
+		spielObjekte.add(Ilusion4);
 		
+
 		if(true) {
+			// Alles inerhalb der "if(Spiel==0) {}" ist das level design
+
+			switch(9){
+
+			case 5: {
+				Stein1 = new BeweglichesRechteck(370, 250, 70, 70);
+				spielObjekte.add(Stein1);
+				
+			} break;
+
+
+			case 6: {
+				Stein1 = new BeweglichesRechteck(400, 150, 15, 250);
+				spielObjekte.add(Stein1);
+				
+			}break;
 			
+			case 7: {
+				Stein1 = new BeweglichesRechteck(270, 260, 250, 15);
+				spielObjekte.add(Stein1);
+				Stein2=new BeweglichesRechteck(270, 360, 250, 15);
+				spielObjekte.add(Stein2);
+				
+			}break;
 			
-			Stein = new BeweglichesRechteck(100, 100, 100, 100);
-			spielObjekte.add(Stein);
-	}
+			case 8: {
+				Stein1 = new BeweglichesRechteck(370, 0, 15, 130);
+				spielObjekte.add(Stein1);
+				Stein2=new BeweglichesRechteck(370, 450, 15, 130);
+				spielObjekte.add(Stein2);
+				Stein3=new BeweglichesRechteck(340, 240, 80, 80);
+				spielObjekte.add(Stein3);
+				
+			}break;
+			
+			case 9: {
+				Stein1 = new BeweglichesRechteck(200, 200, 20, 20); //Ecke1
+				spielObjekte.add(Stein1);
+				Stein2=new BeweglichesRechteck(400, 100, 20, 20);//Stein2
+				spielObjekte.add(Stein2);
+				Stein3=new BeweglichesRechteck(600, 150, 20, 20);//Ecke2
+				spielObjekte.add(Stein3);
+				Stein4 = new BeweglichesRechteck(100, 250, 20, 20);//Stein4
+				spielObjekte.add(Stein4);
+				Stein5=new BeweglichesRechteck(650, 350, 20, 20);//Ecke3
+				spielObjekte.add(Stein5);
+				Stein6=new BeweglichesRechteck(700, 250, 20, 20);//Stein6
+				spielObjekte.add(Stein6);
+				Stein7 = new BeweglichesRechteck(150, 350, 20, 20);//ecke4
+				spielObjekte.add(Stein7);
+				Stein8=new BeweglichesRechteck(400, 400, 20, 20);//Stein8
+				spielObjekte.add(Stein8);
+				
+			}break;
+
+			default : {
+				
+
+			}
+			}
+
+		}
+
+
+
+
+
+
+
+		//  0 : Story   1 : Endless      2: VS        3: Classic
 		if(Spiel == 0 || Spiel == 1 || Spiel == 2 || Spiel == 3) {	
 			gameTimer.scheduleAtFixedRate(new TimerTask(){
 				@Override
@@ -194,7 +298,7 @@ public class GameLogic {
 		GameLogic.ball = ball;
 	}
 	public static BeweglichesRechteck getStein() {
-		return Stein;
+		return Stein1;
 	}
 	public static int getSpiel() {
 		return Spiel;
@@ -250,4 +354,40 @@ public class GameLogic {
 	public static void setSicherheitGegner(BeweglichesRechteck sicherheitGegner) {
 		GameLogic.sicherheitGegner = sicherheitGegner;
 	}
+
+	public static BeweglichesRechteck getStein2() {
+		return Stein2;
+	}
+	public static void setStein2(BeweglichesRechteck stein2) {
+		Stein2 = stein2;
+	}
+	
+	public static BeweglichesRechteck getStein3() {
+		return Stein3;
+		}
+	
+	public static BeweglichesRechteck getStein4() {
+		return Stein4;
+		}
+	
+	
+	public static BeweglichesRechteck getStein5() {
+		return Stein5;
+		}
+	
+	public static BeweglichesRechteck getStein6() {
+		return Stein6;
+		}
+	
+	public static BeweglichesRechteck getStein7() {
+		return Stein7;
+		}
+	
+	public static BeweglichesRechteck getStein8() {
+		return Stein8;
+		}
+	
+	
+
+
 }
