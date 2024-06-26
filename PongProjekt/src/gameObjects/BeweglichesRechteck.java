@@ -27,8 +27,7 @@ public class BeweglichesRechteck extends GameObject {
 			yGeschwindigkeit = GameLogic.getGeschwindigkeitBall();
 	final int minYGeschwindigkeit = 1;
 
-
-
+	public static int BruchPunkte1=0;
 
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
@@ -109,8 +108,10 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck Stein6 = GameLogic.getStein6();
 		BeweglichesRechteck Stein7 = GameLogic.getStein7();
 		BeweglichesRechteck Stein8 = GameLogic.getStein8();
-		
+		BeweglichesRechteck Bruch1 = GameLogic.getBruch1();
 
+	
+		
 
 		if(this.positionX <= sicherheitSpiele.positionX + sicherheitSpiele.groesseX &&
 				this.positionX + this.groesseX >= sicherheitSpiele.positionX &&
@@ -261,6 +262,22 @@ public class BeweglichesRechteck extends GameObject {
 				
 			}
 			
+			if(BruchPunkte1<3) {
+			if (this.positionX <= Bruch1.positionX + Bruch1.groesseX &&
+					this.positionX + this.groesseX >= Bruch1.positionX &&
+					this.positionY <= Bruch1.positionY + Bruch1.groesseY &&
+					this.positionY + this.groesseY >= Bruch1.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Bruch1.positionY + Bruch1.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+				BruchPunkte1++; 
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				}}
+				
+			}
+			
 			
 				if(yGeschwindigkeit == 0) {				//wenn alles schief geht und y trotzdem 0 ist 
 					yGeschwindigkeit += 1;
@@ -272,7 +289,7 @@ public class BeweglichesRechteck extends GameObject {
 
 		}
 
-	} 
+	
 	public static void GegnerKI() {
 		BeweglichesRechteck ball = GameLogic.getBall();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
