@@ -38,7 +38,9 @@ public class GameLogic {
 	private static BeweglichesRechteck Ilusion2;
 	private static BeweglichesRechteck Ilusion3;
 	private static BeweglichesRechteck Bruch1;
-
+	private static BeweglichesRechteck Bruch2;
+	
+	private static BeweglichesRechteck ExtraGegner1;
 	
 	
 	
@@ -99,6 +101,11 @@ public class GameLogic {
 		spielObjekte.add(Ilusion3);
 		Bruch1=new BeweglichesRechteck(0, 0, 0, 0);//Bruch 1
 		spielObjekte.add(Bruch1);
+		Bruch2=new BeweglichesRechteck(0, 0, 0, 0);//Bruch 2
+		spielObjekte.add(Bruch2);
+		ExtraGegner1 = new BeweglichesRechteck(0, 0, 0, 0);
+		spielObjekte.add(ExtraGegner1);
+		
 		
 		
 		
@@ -106,7 +113,7 @@ public class GameLogic {
 		if(true) {
 			// Alles inerhalb der "if(Spiel==0) {}" ist das level design
 
-			switch(13){
+			switch(15){
 
 			case 5: {
 				Stein1 = new BeweglichesRechteck(370, 250, 70, 70);
@@ -204,8 +211,28 @@ public class GameLogic {
 			
 			
                  case 13:{	
-                Bruch1=new BeweglichesRechteck(540, 0, 15, 700);//Ilusion3
-         		spielObjekte.add(Bruch1);}break;
+                Bruch1=new BeweglichesRechteck(540, 0, 15, 700);//Bruch1
+         		spielObjekte.add(Bruch1);
+         		}break;
+         		
+                 case 14:{	
+                     Bruch1=new BeweglichesRechteck(550, 220, 50, 140);// Bruch1
+              		spielObjekte.add(Bruch1);
+              		 Bruch2=new BeweglichesRechteck(70, 250, 15, 100);// Bruch2
+               		spielObjekte.add(Bruch2);	
+               		
+               		Stein1 = new BeweglichesRechteck(570, 0, 15, 220);
+    				spielObjekte.add(Stein1);
+    				Stein2=new BeweglichesRechteck(570, 360, 15, 220);
+    				spielObjekte.add(Stein2);
+                 
+                 }break;
+			
+                 case 15:{	
+                	 ExtraGegner1 = new BeweglichesRechteck(505, 300, breite, hoehe-20);
+             		spielObjekte.add(ExtraGegner1);
+                 
+                 }break;
 			
 			
 			default : {
@@ -443,8 +470,14 @@ public class GameLogic {
 	public static BeweglichesRechteck getBruch1() {
 		return Bruch1;
 		}
-	
-	
+	public static BeweglichesRechteck getBruch2() {
+		return Bruch2;
+		}
 
+	
+	public static BeweglichesRechteck getExtraGegner1() {
+		
+		return ExtraGegner1;
+	}
 
 }

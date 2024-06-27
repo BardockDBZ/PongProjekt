@@ -27,7 +27,8 @@ public class BeweglichesRechteck extends GameObject {
 			yGeschwindigkeit = GameLogic.getGeschwindigkeitBall();
 	final int minYGeschwindigkeit = 1;
 
-	public static int BruchPunkte1=0;
+	private static int BruchPunkte1=0;
+	private  static int BruchPunkte2=0;
 
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
@@ -109,7 +110,8 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck Stein7 = GameLogic.getStein7();
 		BeweglichesRechteck Stein8 = GameLogic.getStein8();
 		BeweglichesRechteck Bruch1 = GameLogic.getBruch1();
-
+		BeweglichesRechteck Bruch2 = GameLogic.getBruch2();
+        BeweglichesRechteck ExtraGegener1= GameLogic.getExtraGegner1();
 	
 		
 
@@ -262,6 +264,21 @@ public class BeweglichesRechteck extends GameObject {
 				
 			}
 			
+			
+			if (this.positionX <= ExtraGegener1.positionX + ExtraGegener1.groesseX &&
+					this.positionX + this.groesseX >= ExtraGegener1.positionX &&
+					this.positionY <= ExtraGegener1.positionY + ExtraGegener1.groesseY &&
+					this.positionY + this.groesseY >= ExtraGegener1.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (ExtraGegener1.positionY + ExtraGegener1.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+				
+			}
+			
 			if(BruchPunkte1<3) {
 			if (this.positionX <= Bruch1.positionX + Bruch1.groesseX &&
 					this.positionX + this.groesseX >= Bruch1.positionX &&
@@ -275,6 +292,20 @@ public class BeweglichesRechteck extends GameObject {
 					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
 				}
 				}}
+			
+			if(BruchPunkte2<10) {
+				if (this.positionX <= Bruch2.positionX + Bruch2.groesseX &&
+						this.positionX + this.groesseX >= Bruch2.positionX &&
+						this.positionY <= Bruch2.positionY + Bruch2.groesseY &&
+						this.positionY + this.groesseY >= Bruch2.positionY) {
+					xGeschwindigkeit = -xGeschwindigkeit;
+					yGeschwindigkeit += (this.positionY - (Bruch2.positionY + Bruch2.groesseY / 2)) / 10;
+					yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+					BruchPunkte2++; 
+					if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+						yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+					}
+					}}
 				
 			}
 			
@@ -294,6 +325,8 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck ball = GameLogic.getBall();
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 		BeweglichesRechteck sicherheitGegner = GameLogic.getSicherheitGegner();
+		
+		BeweglichesRechteck ExtraGegner1 = GameLogic.getExtraGegner1();
 		if(GameLogic.keypausearrowpressed) {
 
 		}else {
@@ -312,6 +345,17 @@ public class BeweglichesRechteck extends GameObject {
 				// Sicherstellen, dass das Paddle nicht aus dem Bildschirmbereich bewegt wird
 				gegnerPaddle.positionY = Math.max(0, Math.min(gegnerPaddle.positionY, Classic.getScreenheight() - gegnerPaddle.groesseY));
 			}
+			
+			
+			
+			// KI des Extragegners
+			if (ball.positionY + ball.groesseY / 2 > ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY += GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach unten bewegen
+			} else if (ball.positionY + ball.groesseY / 2 < ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY -= GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach oben bewegen
+			}
+			
+			
 		}
 	}
 
@@ -346,6 +390,8 @@ public class BeweglichesRechteck extends GameObject {
 			System.out.println("Gegner hat gewonnen" );
 			Classic.Classicclose();
 			GameLogic.instance.stopGameTimer();
+			BruchPunkte1=0;
+			BruchPunkte2=0;
 		}else if(getSpielerPunkte() == PunkteGewonen) {
 			level++;
 			Inventar.TalerGewinn(1);
@@ -358,6 +404,8 @@ public class BeweglichesRechteck extends GameObject {
 			System.out.println("Spieler hat gewonnen" );
 			Classic.Classicclose();
 			GameLogic.instance.stopGameTimer();
+			BruchPunkte1=0;
+			BruchPunkte2=0;
 		}
 	}
 	public void EndlessPunkte() {
