@@ -16,7 +16,7 @@ public class audioManager {
 public static FloatControl volumeControl;
 public static Clip clip;
 public static void playSound(String soundFile) {
-
+if(false)
     try {
         // Use the class loader to find the resource
         File file = new File(audioManager.class.getResource(soundFile).getFile());

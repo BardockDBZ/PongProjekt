@@ -23,8 +23,8 @@ public class BeweglichesRechteck extends GameObject {
 	private final int maxgeschwindigkeit = 3;
 	private static int GegenerPunkte = 0;
 	public static int SpielerPunkte = 0;
-	private  int xGeschwindigkeit = GameLogic.getGeschwindigkeitBall(),
-			yGeschwindigkeit = GameLogic.getGeschwindigkeitBall();
+	private  int xGeschwindigkeit = 1,
+			     yGeschwindigkeit = 1;
 	final int minYGeschwindigkeit = 1;
 
 	private static int BruchPunkte1=0;
@@ -112,6 +112,7 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck Bruch1 = GameLogic.getBruch1();
 		BeweglichesRechteck Bruch2 = GameLogic.getBruch2();
         BeweglichesRechteck ExtraGegener1= GameLogic.getExtraGegner1();
+  
 	
 		
 
@@ -306,6 +307,8 @@ public class BeweglichesRechteck extends GameObject {
 						yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
 					}
 					}}
+			
+		
 				
 			}
 			
@@ -319,10 +322,16 @@ public class BeweglichesRechteck extends GameObject {
 
 
 		}
-
+	
+	
 	
 	public static void GegnerKI() {
 		BeweglichesRechteck ball = GameLogic.getBall();
+		BeweglichesRechteck extraball1 = GameLogic.getExtraBall1();
+		BeweglichesRechteck extraball2 = GameLogic.getExtraBall2();
+		
+		
+		
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 		BeweglichesRechteck sicherheitGegner = GameLogic.getSicherheitGegner();
 		
@@ -354,6 +363,36 @@ public class BeweglichesRechteck extends GameObject {
 			} else if (ball.positionY + ball.groesseY / 2 < ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
 				ExtraGegner1.positionY -= GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach oben bewegen
 			}
+			
+// Gegenr Ki Für Extraball 1
+			if(GameLogic.getBallon1()) {
+			if (extraball1.positionY + extraball1.groesseY / 2 > gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
+				gegnerPaddle.positionY += GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach unten bewegen
+			} else if (extraball1.positionY + extraball1.groesseY / 2 < gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
+				gegnerPaddle.positionY -= GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach oben bewegen
+			}
+			
+			
+			if (extraball1.positionY + extraball1.groesseY / 2 > ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY += GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach unten bewegen
+			} else if (extraball1.positionY + extraball1.groesseY / 2 < ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY -= GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach oben bewegen
+			}
+			}
+    // KI für Extraball 2	
+			if(GameLogic.getBallon2()) {
+			if (extraball2.positionY + extraball2.groesseY / 2 > gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
+				gegnerPaddle.positionY += GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach unten bewegen
+			} else if (extraball2.positionY + extraball2.groesseY / 2 < gegnerPaddle.positionY + gegnerPaddle.groesseY / 2) {
+				gegnerPaddle.positionY -= GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach oben bewegen
+			}
+			
+			if (extraball2.positionY + extraball2.groesseY / 2 > ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY += GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach unten bewegen
+			} else if (extraball2.positionY + extraball2.groesseY / 2 < ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY -= GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach oben bewegen
+			}
+		}
 			
 			
 		}

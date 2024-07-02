@@ -26,6 +26,7 @@ public class GameLogic {
 	private static BeweglichesRechteck rechteckgegner;
 	private static BeweglichesRechteck sicherheitSpieler;
 	private static BeweglichesRechteck sicherheitGegner;
+	
 	private static BeweglichesRechteck Stein1;
 	private static BeweglichesRechteck Stein2;
 	private static BeweglichesRechteck Stein3;
@@ -41,8 +42,15 @@ public class GameLogic {
 	private static BeweglichesRechteck Bruch2;
 	
 	private static BeweglichesRechteck ExtraGegner1;
+	private static BeweglichesRechteck ExtraBall1;
+	private static BeweglichesRechteck ExtraBall2;
+	private static boolean Ballon1;
+	private static boolean Ballon2;
+	private static boolean Bewegdteon1;
+
+
 	
-	
+
 	
 	private int breite = 10; 
 	private int hoehe = 100;
@@ -52,6 +60,11 @@ public class GameLogic {
 	private static int GeschwindigkeitSpieler = 1;
 	private static int GeschwindigkeitGegner = 1;
 	private static int GeschwindigkeitBall = 1;
+	
+	private static int Algorytmus1=0;
+	private static int Algorytmus2=0;
+
+	
 
 
 	public GameLogic() {
@@ -93,27 +106,37 @@ public class GameLogic {
 		spielObjekte.add(Stein7);
 		Stein8=new BeweglichesRechteck(0, 0, 0, 0);//Stein8
 		spielObjekte.add(Stein8);
+		
 		Ilusion1=new BeweglichesRechteck(0, 0, 0, 0);//Ilusion1
 		spielObjekte.add(Ilusion1);
 		Ilusion2 = new BeweglichesRechteck(0, 0, 0, 0);//ilusion2
 		spielObjekte.add(Ilusion2);
 		Ilusion3=new BeweglichesRechteck(0, 0, 0, 0);//Ilusion3
 		spielObjekte.add(Ilusion3);
+		
 		Bruch1=new BeweglichesRechteck(0, 0, 0, 0);//Bruch 1
 		spielObjekte.add(Bruch1);
 		Bruch2=new BeweglichesRechteck(0, 0, 0, 0);//Bruch 2
 		spielObjekte.add(Bruch2);
-		ExtraGegner1 = new BeweglichesRechteck(0, 0, 0, 0);
+		ExtraGegner1 = new BeweglichesRechteck(0, 0, 0, 0);   // Extragegner 
 		spielObjekte.add(ExtraGegner1);
+		ExtraBall1 = new BeweglichesRechteck(getX(), getY(), 0, 0);// ExtraBall1 
+		spielObjekte.add(ExtraBall1);
+		ExtraBall2 = new BeweglichesRechteck(getX(), getY(), 0, 0);// ExtraBall2
+		spielObjekte.add(ExtraBall2);
 		
 		
 		
+		 Ballon1=false;
+  		 Ballon2=false;
+  		 Bewegdteon1=false;
+  	
 		
 
 		if(true) {
 			// Alles inerhalb der "if(Spiel==0) {}" ist das level design
 
-			switch(15){
+			switch(19){
 
 			case 5: {
 				Stein1 = new BeweglichesRechteck(370, 250, 70, 70);
@@ -233,8 +256,49 @@ public class GameLogic {
              		spielObjekte.add(ExtraGegner1);
                  
                  }break;
+                 
+                 case 16:{	
+                	 ExtraBall1 = new BeweglichesRechteck(370, 300, 20, 20);
+             		spielObjekte.add(ExtraBall1);
+             	     Ballon1=true;
+             		
+                 }break;
 			
+                 case 17:{	
+                	 ExtraBall1 = new BeweglichesRechteck(370, 300, 20, 20);
+             		spielObjekte.add(ExtraBall1);
+             		ExtraBall2 = new BeweglichesRechteck(380, 340,20 , 20);
+             		spielObjekte.add(ExtraBall2);
+             		 ExtraGegner1 = new BeweglichesRechteck(20, 300, breite, hoehe-20);
+              		spielObjekte.add(ExtraGegner1);
+              		 Ballon1=true;
+              		 Ballon2=true;
+                 }break;
 			
+                 
+                 case 18:{	
+                	 ExtraBall1 = new BeweglichesRechteck(370, 300, 20, 20);
+             		spielObjekte.add(ExtraBall1);
+             		ExtraBall2 = new BeweglichesRechteck(380, 340,20 , 20);
+             		spielObjekte.add(ExtraBall2);
+             		 ExtraGegner1 = new BeweglichesRechteck(20, 300, breite, hoehe-20);
+              		spielObjekte.add(ExtraGegner1);
+              		 Ballon1=true;
+              		 Ballon2=true;
+              		 
+                }
+                 
+                 case 19:{	
+                	 Stein1 = new BeweglichesRechteck(280, 350, 40, 40);
+     				spielObjekte.add(Stein1);
+             	  	
+             	  	Bewegdteon1=true;
+             		
+              		 
+                }
+                 
+                 
+                 
 			default : {
 				
 
@@ -255,6 +319,9 @@ public class GameLogic {
 				@Override
 				public void run() {
 					ball.actionPerformed(null);
+					
+					if(Ballon1)	{ExtraBall1.actionPerformed(null);}
+				    if(Ballon2) {ExtraBall2.actionPerformed(null);}
 					counter++;
 					if(GameLogic.keypausearrowpressed) {
 
@@ -310,11 +377,27 @@ public class GameLogic {
 								}
 
 							}
+							
+							if(Bewegdteon1) {
+								if(Algorytmus1<200) {Stein1.positionX +=1;}
+								else if(Algorytmus1<400) {Stein1.positionY +=-1;}
+								else if(Algorytmus1<600) {Stein1.positionX +=-1;}
+								else if(Algorytmus1<800) {Stein1.positionY +=1;}
+								if(Algorytmus1>800) {Algorytmus1=0;}
+								Algorytmus1++;
 						}
+				
 					}
 					if(Spiel !=2) {
 						BeweglichesRechteck.GegnerKI();
 					}
+					
+					
+						
+					}
+						
+					
+
 				}
 			}, 0, 5);
 		}else {
@@ -479,5 +562,25 @@ public class GameLogic {
 		
 		return ExtraGegner1;
 	}
+
+	
+public static BeweglichesRechteck getExtraBall1() {
+		
+		return ExtraBall1;
+	}
+
+public static BeweglichesRechteck getExtraBall2() {
+	
+	return ExtraBall2;
+}
+
+
+public static boolean getBallon1() {
+	return Ballon1;
+}
+	
+public static boolean getBallon2() {
+	return Ballon2;
+}
 
 }
