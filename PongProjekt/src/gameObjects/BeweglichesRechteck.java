@@ -19,6 +19,7 @@ public class BeweglichesRechteck extends GameObject {
 	public int schritteInGleicherRichtung;
 	private static int  diameter = 27;
 	private static int level = 0;
+	private static int AbgeschlosseneLevel = 0;
 	private static int PunkteGewonen = -1;
 	private final int maxgeschwindigkeit = 3;
 	private static int GegenerPunkte = 0;
@@ -432,7 +433,6 @@ public class BeweglichesRechteck extends GameObject {
 			BruchPunkte1=0;
 			BruchPunkte2=0;
 		}else if(getSpielerPunkte() == PunkteGewonen) {
-			level++;
 			Inventar.TalerGewinn(1);
 			setGegenerPunkte(0);
 			setSpielerPunkte(0);
@@ -445,6 +445,10 @@ public class BeweglichesRechteck extends GameObject {
 			GameLogic.instance.stopGameTimer();
 			BruchPunkte1=0;
 			BruchPunkte2=0;
+			
+			if(GameLogic.getSpiel()==0&&level>AbgeschlosseneLevel) {
+				
+			AbgeschlosseneLevel=level;}
 		}
 	}
 	public void EndlessPunkte() {
@@ -656,6 +660,14 @@ public class BeweglichesRechteck extends GameObject {
 	public static void setPunkteGewonen(int punkteGewonen) {
 		PunkteGewonen = punkteGewonen;
 	}
+	
+	
+	public static int getAbgeLevel() {
+		return AbgeschlosseneLevel;
+	}
 
+	public static void setAbgeLevel(int pabgeschlosseneLevel) {
+		BeweglichesRechteck.AbgeschlosseneLevel = pabgeschlosseneLevel;
+	}
 
 }

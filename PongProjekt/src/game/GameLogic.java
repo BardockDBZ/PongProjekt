@@ -133,11 +133,18 @@ public class GameLogic {
   	
 		
 
-		if(true) {
+		if(Spiel==0) {
 			// Alles inerhalb der "if(Spiel==0) {}" ist das level design
 
-			switch(19){
+			switch(BeweglichesRechteck.getLevel()){
 
+			
+			case 1: {
+				Stein1 = new BeweglichesRechteck(370, 250, 70, 70);
+				spielObjekte.add(Stein1);
+				
+			} break;
+			
 			case 5: {
 				Stein1 = new BeweglichesRechteck(370, 250, 70, 70);
 				spielObjekte.add(Stein1);
