@@ -19,8 +19,8 @@ public class BeweglichesRechteck extends GameObject {
 	public int schritteInGleicherRichtung;
 	private static int  diameter = 27;
 	private static int level = 0;
-	private static int AbgeschlosseneLevel = 0;
-	private static int PunkteGewonen = -1;
+	private static int AbgeschlosseneLevel = 20;
+	private static int PunkteGewonen = 10;
 	private final int maxgeschwindigkeit = 3;
 	private static int GegenerPunkte = 0;
 	public static int SpielerPunkte = 0;
@@ -28,8 +28,10 @@ public class BeweglichesRechteck extends GameObject {
 			     yGeschwindigkeit = 1;
 	final int minYGeschwindigkeit = 1;
 
-	private static int BruchPunkte1=0;
+	private  static int BruchPunkte1=0;
 	private  static int BruchPunkte2=0;
+	
+   private boolean BossAngrif;
 
 	public BeweglichesRechteck(int posX, int posY, int breite, int hoehe) {
 		super(posX, posY, breite, hoehe);
@@ -113,6 +115,9 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck Bruch1 = GameLogic.getBruch1();
 		BeweglichesRechteck Bruch2 = GameLogic.getBruch2();
         BeweglichesRechteck ExtraGegener1= GameLogic.getExtraGegner1();
+        BeweglichesRechteck ExtraBall1= GameLogic.getExtraBall1();
+        BeweglichesRechteck ExtraBall2= GameLogic.getExtraBall2();
+        BeweglichesRechteck Boss= GameLogic.getBoss();
   
 	
 		
@@ -266,20 +271,7 @@ public class BeweglichesRechteck extends GameObject {
 				
 			}
 			
-			
-			if (this.positionX <= ExtraGegener1.positionX + ExtraGegener1.groesseX &&
-					this.positionX + this.groesseX >= ExtraGegener1.positionX &&
-					this.positionY <= ExtraGegener1.positionY + ExtraGegener1.groesseY &&
-					this.positionY + this.groesseY >= ExtraGegener1.positionY) {
-				xGeschwindigkeit = -xGeschwindigkeit;
-				yGeschwindigkeit += (this.positionY - (ExtraGegener1.positionY + ExtraGegener1.groesseY / 2)) / 10;
-				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
 
-				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
-					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
-				}
-				
-			}
 			
 			if(BruchPunkte1<3) {
 			if (this.positionX <= Bruch1.positionX + Bruch1.groesseX &&
@@ -295,7 +287,7 @@ public class BeweglichesRechteck extends GameObject {
 				}
 				}}
 			
-			if(BruchPunkte2<10) {
+			if(BruchPunkte2<5) {
 				if (this.positionX <= Bruch2.positionX + Bruch2.groesseX &&
 						this.positionX + this.groesseX >= Bruch2.positionX &&
 						this.positionY <= Bruch2.positionY + Bruch2.groesseY &&
@@ -303,24 +295,73 @@ public class BeweglichesRechteck extends GameObject {
 					xGeschwindigkeit = -xGeschwindigkeit;
 					yGeschwindigkeit += (this.positionY - (Bruch2.positionY + Bruch2.groesseY / 2)) / 10;
 					yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
-					BruchPunkte2++; 
 					if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
 						yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
 					}
 					}}
 			
-		
+			
+			if (this.positionX <= ExtraGegener1.positionX + ExtraGegener1.groesseX &&
+					this.positionX + this.groesseX >= ExtraGegener1.positionX &&
+					this.positionY <= ExtraGegener1.positionY + ExtraGegener1.groesseY &&
+					this.positionY + this.groesseY >= ExtraGegener1.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (ExtraGegener1.positionY + ExtraGegener1.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
 				
 			}
+		
+			
+			if (this.positionX !=ExtraBall1.positionX &&this.positionY !=ExtraBall1.positionY) {
+			if (this.positionX <= ExtraBall1.positionX + ExtraBall1.groesseX &&
+					this.positionX + this.groesseX >= ExtraBall1.positionX &&
+					this.positionY <= ExtraBall1.positionY + ExtraBall1.groesseY &&
+					this.positionY + this.groesseY >= ExtraBall1.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (ExtraBall1.positionY + ExtraBall1.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+			}}
 			
 			
+			
+			if (this.positionX !=ExtraBall2.positionX &&this.positionY !=ExtraBall2.positionY) {
+			if (this.positionX <= ExtraBall2.positionX + ExtraBall2.groesseX &&
+					this.positionX + this.groesseX >= ExtraBall2.positionX &&
+					this.positionY <= ExtraBall2.positionY + ExtraBall2.groesseY &&
+					this.positionY + this.groesseY >= ExtraBall2.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (ExtraBall2.positionY + ExtraBall2.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+			}}
+			
+			
+			if (this.positionX <= Boss.positionX + Boss.groesseX &&
+					this.positionX + this.groesseX >= Boss.positionX &&
+					this.positionY <= Boss.positionY + Boss.groesseY &&
+					this.positionY + this.groesseY >= Boss.positionY) {
+				xGeschwindigkeit = -xGeschwindigkeit;
+				yGeschwindigkeit += (this.positionY - (Boss.positionY + Boss.groesseY / 2)) / 10;
+				yGeschwindigkeit = Math.max(-maxgeschwindigkeit, Math.min(yGeschwindigkeit, maxgeschwindigkeit));
+				setSpielerPunkte(SpielerPunkte + 1);  
+				if (Math.abs(yGeschwindigkeit) < minYGeschwindigkeit) {									//wert wird positiv gemacht	
+					yGeschwindigkeit = (int) (minYGeschwindigkeit * Math.signum(yGeschwindigkeit));		//winkel verschiebung nicht mehr nur 45 grad
+				}
+
+			}
+
+			
+			if(BossAngrif) {xGeschwindigkeit = -10;}
 				if(yGeschwindigkeit == 0) {				//wenn alles schief geht und y trotzdem 0 ist 
 					yGeschwindigkeit += 1;
 				
 			}
 
 
-
+		}
 
 		}
 	
@@ -331,11 +372,10 @@ public class BeweglichesRechteck extends GameObject {
 		BeweglichesRechteck extraball1 = GameLogic.getExtraBall1();
 		BeweglichesRechteck extraball2 = GameLogic.getExtraBall2();
 		
-		
+		BeweglichesRechteck Spieler = GameLogic.getRechteckSpieler();
 		
 		BeweglichesRechteck gegnerPaddle = GameLogic.getRechteckGegner();
 		BeweglichesRechteck sicherheitGegner = GameLogic.getSicherheitGegner();
-		
 		BeweglichesRechteck ExtraGegner1 = GameLogic.getExtraGegner1();
 		if(GameLogic.keypausearrowpressed) {
 
@@ -357,12 +397,12 @@ public class BeweglichesRechteck extends GameObject {
 			}
 			
 			
+			// KI Extragegner Auser betrib
 			
-			// KI des Extragegners
-			if (ball.positionY + ball.groesseY / 2 > ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
-				ExtraGegner1.positionY += GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach unten bewegen
-			} else if (ball.positionY + ball.groesseY / 2 < ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
-				ExtraGegner1.positionY -= GameLogic.getGeschwindigkeitGegner()/2; // Paddle nach oben bewegen
+			if (Spieler.positionY + Spieler.groesseY / 2 > ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY += GameLogic.getGeschwindigkeitGegner(); // Paddle nach unten bewegen
+			} else if (Spieler.positionY + Spieler.groesseY / 2 < ExtraGegner1.positionY + ExtraGegner1.groesseY / 2) {
+				ExtraGegner1.positionY -= GameLogic.getGeschwindigkeitGegner();// Paddle nach oben bewegen
 			}
 			
 // Gegenr Ki Für Extraball 1
@@ -446,8 +486,8 @@ public class BeweglichesRechteck extends GameObject {
 			BruchPunkte1=0;
 			BruchPunkte2=0;
 			
+			if(GameLogic.getSpiel()==0){Inventar.TalerGewinn(level/2);}
 			if(GameLogic.getSpiel()==0&&level>AbgeschlosseneLevel) {
-				
 			AbgeschlosseneLevel=level;}
 		}
 	}
@@ -669,5 +709,15 @@ public class BeweglichesRechteck extends GameObject {
 	public static void setAbgeLevel(int pabgeschlosseneLevel) {
 		BeweglichesRechteck.AbgeschlosseneLevel = pabgeschlosseneLevel;
 	}
+	
+	public static int getBruchPunkte(){
+		return BruchPunkte1;
+		}
+	
+	public static int getBruchPunkte2(){
+		return BruchPunkte2;
+		}
+
+public void setBossAngriff(boolean B) {BossAngrif=B;}
 
 }

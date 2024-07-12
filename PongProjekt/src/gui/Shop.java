@@ -62,6 +62,7 @@ public class Shop extends JFrame {
 		lblShop.setBounds(0, 0, 484, 36);
 		contentPane.add(lblShop);
 		
+		
 	
 		JButton btnSchliessen = new JButton("Shop verlassen");
 		btnSchliessen.setForeground(new Color(255, 255, 255));
@@ -71,6 +72,13 @@ public class Shop extends JFrame {
 		btnSchliessen.setBounds(26, 339, 181, 23);
 		btnSchliessen.setFont(Main.KnightWarriors.deriveFont(20F));
 		contentPane.add(btnSchliessen);
+		
+		JLabel lblText = new JLabel("Das geschaeft ist zur zeit Geschlossen");
+		lblText.setHorizontalAlignment(SwingConstants.CENTER);
+		lblText.setForeground(Color.WHITE);
+		lblText.setFont(Main.KnightWarriors.deriveFont(28F));
+		lblText.setBounds(0, 119, 484, 168);
+		contentPane.add(lblText);
 		btnSchliessen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			StartScreen.FrameErstellen();

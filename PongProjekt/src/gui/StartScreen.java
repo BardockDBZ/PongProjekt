@@ -60,7 +60,9 @@ public class StartScreen extends JFrame {
 	public static JPanel pPause;
 	private static JLabel lblpausiert;
 	
-	private static int AbgeschlosseneLevel = 0;
+	private static String Text[][] =new String[3][4];
+	
+
 
 	/**
 	 * Launch the application.
@@ -930,7 +932,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/Undertale OST- 100 - Megalovania.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -946,11 +948,10 @@ public class StartScreen extends JFrame {
 		}
 		
 		if(BeweglichesRechteck.getAbgeLevel()>=19) {
-		JButton btnLevel20 = new JButton("20");
+		JButton btnLevel20 = new JButton("^");
 		btnLevel20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BeweglichesRechteck.setLevel(20);
-				
 				GameLogic.setSpiel(0);
 				GameLogic.setCounter(0);
 				GameLogic spiellogik = new GameLogic();
@@ -963,6 +964,7 @@ public class StartScreen extends JFrame {
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
+		        
 			}
 		});
 		btnLevel20.setOpaque(false);
@@ -1066,14 +1068,5 @@ public class StartScreen extends JFrame {
 	  public static void hidePauseMenu() {
 	        pPause.setVisible(false);
 	  }
-
-
-	public static int getAbgeschlosseneLevel() {
-		return AbgeschlosseneLevel;
-	}
-
-
-	public static void setAbgeschlosseneLevel(int abgeschlosseneLevel) {
-		AbgeschlosseneLevel = abgeschlosseneLevel;
-	}
+	
 }
