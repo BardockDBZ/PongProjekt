@@ -165,7 +165,7 @@ public class StartScreen extends JFrame {
 		btnVerlassen.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			option = JOptionPane.showConfirmDialog(null, "Bist du dir sicher, das Spiel zu beenden?", "Beenden", JOptionPane.OK_CANCEL_OPTION);
-			if (option == JOptionPane.CANCEL_OPTION) {
+			if (option == JOptionPane.YES_OPTION) {
 				System.exit(0);	
 				}
 			}
@@ -197,7 +197,7 @@ public class StartScreen extends JFrame {
 		});
 		
 		JButton btnMultiplayer = new JButton("Mehrspieler");
-		btnMultiplayer.setToolTipText("Kämpfe gegen deinen Freund!");
+		btnMultiplayer.setToolTipText("Kämpfe gegen einen Mitspieler!");
 		btnMultiplayer.setHorizontalAlignment(SwingConstants.LEFT);
 		btnMultiplayer.setForeground(new Color(255, 255, 255));
 		btnMultiplayer.setBorderPainted(false);

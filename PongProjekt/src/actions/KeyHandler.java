@@ -24,7 +24,7 @@ public class KeyHandler implements KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			gamelogic.keyLeftarrowpressed = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		}else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			gamelogic.keyRightarrowpressed = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			gamelogic.keyUparrowpressed = true;

@@ -655,7 +655,7 @@ public class BeweglichesRechteck extends GameObject {
 		case 20: {					//Level 20
 			if (GameLogic.getCounter()==0) {
 				System.out.println("level : " + getLevel());
-			}		}
+			}		} break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + level);
 		}

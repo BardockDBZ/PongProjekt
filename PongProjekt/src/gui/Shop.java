@@ -73,7 +73,7 @@ public class Shop extends JFrame {
 		btnSchliessen.setFont(Main.KnightWarriors.deriveFont(20F));
 		contentPane.add(btnSchliessen);
 		
-		JLabel lblText = new JLabel("Das geschaeft ist zur zeit Geschlossen");
+		JLabel lblText = new JLabel("Das Geschaeft ist zurzeit Geschlossen");
 		lblText.setHorizontalAlignment(SwingConstants.CENTER);
 		lblText.setForeground(Color.WHITE);
 		lblText.setFont(Main.KnightWarriors.deriveFont(28F));
