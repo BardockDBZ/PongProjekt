@@ -492,13 +492,14 @@ public class BeweglichesRechteck extends GameObject {
 		}
 	}
 	public void EndlessPunkte() {
-
+		
 		if(positionX ==  Classic.getScreenwidth() - diameter ) {
 			setSpielerPunkte(SpielerPunkte + 1);   
 			positionX = GameLogic.getX();
 			positionY = GameLogic.getY();
 			yGeschwindigkeit = -yGeschwindigkeit;
 			System.out.println("Spieler hat : " + getSpielerPunkte());
+			Classic.RefreshPoints();
 
 		}
 	}

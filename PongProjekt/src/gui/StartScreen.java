@@ -60,7 +60,7 @@ public class StartScreen extends JFrame {
 	public static JPanel pPause;
 	private static JLabel lblpausiert;
 	
-	private static String Text[][] =new String[3][4];
+	//private static String Text[][] =new String[3][4];
 	
 
 
@@ -146,6 +146,11 @@ public class StartScreen extends JFrame {
 				Startclose();	//StartScreen Schließen -> soll Nach Verlieren der Runde als Abfrage wieder Erstellt werden
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
+				audioManager.stopSound(getName());
+				audioManager.playSound("/actions/resources/Megalovania.wav");
+				float volume = StartScreen.slider.getValue();
+		        audioManager.setVolume(volume);
+		        StartScreen.slider.getValue();
 				
 			}
 		});
@@ -208,6 +213,10 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
+				audioManager.playSound("/actions/resources/Bonetrousle.wav");
+				float volume = StartScreen.slider.getValue();
+		        audioManager.setVolume(volume);
+		        StartScreen.slider.getValue();
 			}
 		});
 		
@@ -342,7 +351,7 @@ public class StartScreen extends JFrame {
 		comboBox.setOpaque(false);
 		comboBox.setBorder(UIManager.getBorder("CheckBoxMenuItem.border"));
 		comboBox.setBackground(new Color(0, 0, 0));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Deutsch", "English", "Italiano"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Deutsch", "auch Deutsch", "sehr Deutsch"}));
 		comboBox.setFont(Main.KnightWarriors);
 		comboBox.setBounds(247, 142, 200, 22);
 		pEinstellungen.add(comboBox);
@@ -409,7 +418,7 @@ public class StartScreen extends JFrame {
 					BeweglichesRechteck.setGegenerPunkte(0);
 					BeweglichesRechteck.setSpielerPunkte(0);
 					audioManager.stopSound(getName());
-					audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+					audioManager.playSound("/actions/resources/GhostFight.wav");
 					float volume = StartScreen.slider.getValue();
 			        audioManager.setVolume(volume);
 			        StartScreen.slider.getValue();
@@ -439,7 +448,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/GhostFight.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -468,7 +477,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/GhostFight.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -497,7 +506,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/DeathByGlamour.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -526,7 +535,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/DeathByGlamour.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -555,7 +564,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/DeathByGlamour.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -584,7 +593,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/DeathByGlamour.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -613,7 +622,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/SpiderDance.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -642,7 +651,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/SpiderDance.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -671,7 +680,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/SpiderDance.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -700,7 +709,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/SpiderDance.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -729,7 +738,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/Heartache.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -758,7 +767,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/Heartache.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -787,7 +796,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/SpearOfJustice.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -816,7 +825,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/SpearOfJustice.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -845,7 +854,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/SpearOfJustice.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -874,7 +883,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/BattleAgainstATrueHero.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -903,7 +912,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/BattleAgainstATrueHero.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -932,7 +941,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/Undertale OST- 100 - Megalovania.wav");
+				audioManager.playSound("/actions/resources/HopesAndDreams.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();
@@ -960,7 +969,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/EnemyApproaching.wav");
+				audioManager.playSound("/actions/resources/twash.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();

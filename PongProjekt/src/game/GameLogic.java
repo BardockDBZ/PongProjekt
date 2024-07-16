@@ -90,6 +90,7 @@ public class GameLogic {
 
 		ball.richtung = 0;
 
+	
 		rechteckSpieler = new BeweglichesRechteck(75, 250, breite, hoehe);
 		spielObjekte.add(rechteckSpieler);
 		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
@@ -364,6 +365,22 @@ public class GameLogic {
                 		
      				
                  }break;
+                 
+                 case 20:{	
+
+             		ball = new BeweglichesRechteck(getX(), getY(), 0, 20);
+             		spielObjekte.add(ball);
+
+
+             	
+             		rechteckSpieler = new BeweglichesRechteck(75, 250, 0, hoehe);
+             		spielObjekte.add(rechteckSpieler);
+             		rechteckgegner = new BeweglichesRechteck(705, 300, 0, hoehe);
+             		spielObjekte.add(rechteckgegner);
+             		
+     				
+                 }break;
+                 
                  
 			default : {
 				
