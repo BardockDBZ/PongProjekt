@@ -57,11 +57,13 @@ public class Classic {
 		pointsLabel.setFont(Main.KnightWarriors.deriveFont(70F));
 		pointsLabel.setVisible(true);
 		pointsLabel.setForeground(Color.white);
+		
 		pointsLabel1 = new JLabel("" + BeweglichesRechteck.getGegnerPunkte());
-		pointsLabel1.setBounds(489,48,200,69);;
+		pointsLabel1.setBounds(489,48,200,69);
+		if(GameLogic.getSpiel()==1){pointsLabel1.setBounds(0,0,0,0);pointsLabel.setBounds(379, 48, 200, 69);}
 		pointsLabel1.setFont(Main.KnightWarriors.deriveFont(70F));
 		pointsLabel1.setVisible(true);
-		pointsLabel1.setForeground(Color.white);
+		pointsLabel1.setForeground(Color.white);  
 		Counter1 = new JLabel("ACHTUNG");
 		Counter1.setBounds(293,433,200,69);
 		Counter1.setFont(Main.KnightWarriors.deriveFont(60F));
@@ -85,7 +87,10 @@ public class Classic {
 		Pongframe.getContentPane().add(lbldraw);
 		Pongframe.setVisible(true);
 			
-		
+		 if(GameLogic.getSpiel()==0&&BeweglichesRechteck.getLevel()==20) {pointsLabel.setBounds(0, 148, 800, 69);
+		 pointsLabel.setText(" Herzlichen   Glueckwunsch" );
+		 pointsLabel1.setBounds(0,0,0,0);
+		 }
 		
 	}
 
@@ -125,6 +130,11 @@ public class Classic {
 	public static void RefreshPoints() {
 		pointsLabel.setText("" + BeweglichesRechteck.getSpielerPunkte());
 		pointsLabel1.setText("" + BeweglichesRechteck.getGegnerPunkte());
+		
+		if(GameLogic.getSpiel()==1) {pointsLabel.setText("" + BeweglichesRechteck.getSpielerPunkte());
+		pointsLabel1.setText("" );}
+		
+	
 	}
 	public static void RefreshRate() {
 		

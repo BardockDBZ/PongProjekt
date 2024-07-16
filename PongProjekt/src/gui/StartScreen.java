@@ -351,7 +351,7 @@ public class StartScreen extends JFrame {
 		comboBox.setOpaque(false);
 		comboBox.setBorder(UIManager.getBorder("CheckBoxMenuItem.border"));
 		comboBox.setBackground(new Color(0, 0, 0));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Deutsch", "English", "Italiano"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Deutsch", "auch Deutsch", "sehr Deutsch"}));
 		comboBox.setFont(Main.KnightWarriors);
 		comboBox.setBounds(247, 142, 200, 22);
 		pEinstellungen.add(comboBox);
@@ -969,7 +969,7 @@ public class StartScreen extends JFrame {
 				BeweglichesRechteck.setGegenerPunkte(0);
 				BeweglichesRechteck.setSpielerPunkte(0);
 				audioManager.stopSound(getName());
-				audioManager.playSound("/actions/resources/HopesAndDreams.wav");
+				audioManager.playSound("/actions/resources/twash.wav");
 				float volume = StartScreen.slider.getValue();
 		        audioManager.setVolume(volume);
 		        StartScreen.slider.getValue();

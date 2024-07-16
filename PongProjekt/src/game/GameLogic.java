@@ -81,6 +81,7 @@ public class GameLogic {
 
 		ball.richtung = 0;
 
+	
 		rechteckSpieler = new BeweglichesRechteck(75, 250, breite, hoehe);
 		spielObjekte.add(rechteckSpieler);
 		rechteckgegner = new BeweglichesRechteck(705, 300, breite, hoehe);
@@ -226,125 +227,62 @@ public class GameLogic {
 				Ilusion1 = new BeweglichesRechteck(320, 120, 150, 300);
 				spielObjekte.add(Ilusion1);
 
-			}
-				break;
+               	  	Algorithmus3=true;
+                	 
+                	 ExtraBall1 = new BeweglichesRechteck(getX(), getY(), 20, 20);
+      				spielObjekte.add(ExtraBall1);
+      			
+       				
+       				Ballon1=true;
+       				
+     				
+                 }break;
+                 
+                 case 19:{	
+                	rechteckgegner.positionX=900;
+                	Stein4=new BeweglichesRechteck(700, 0, 30, 900);// Bruch2
+                		spielObjekte.add(Stein4);	
+                		
+                		 Boss = new BeweglichesRechteck(625, 250, 30, 30);
+                    	 spielObjekte.add(Boss);
+                    	 
+                     Stein1 = new BeweglichesRechteck(550, 175, 150, 15);
+           				spielObjekte.add(Stein1);
+           				Stein2=new BeweglichesRechteck(550, 175, 15, 150);
+           				spielObjekte.add(Stein2);
+           				Stein3=new BeweglichesRechteck(550, 325, 150, 15);
+           				spielObjekte.add(Stein3);
+           				
+                    	 
+                    	 Algorithmus4=true;
+                    	 
+                    	 ExtraBall1 = new BeweglichesRechteck(getX(), getY(), 20, 20);
+           				spielObjekte.add(ExtraBall1);
+                    	 
+                      	
+                                      
+                		
+     				
+                 }break;
+                 
+                 case 20:{	
 
-			case 12: {
-				Bruch1 = new BeweglichesRechteck(540, 0, 15, 700);// Bruch1
-				spielObjekte.add(Bruch1);
-			}
-				break;
+             		ball = new BeweglichesRechteck(getX(), getY(), 0, 20);
+             		spielObjekte.add(ball);
 
-			case 13: {
 
-				Bruch1 = new BeweglichesRechteck(550, 220, 50, 140);// Bruch1
-				spielObjekte.add(Bruch1);
-				Bruch2 = new BeweglichesRechteck(70, 250, 15, 100);// Bruch2
-				spielObjekte.add(Bruch2);
-
-				Stein1 = new BeweglichesRechteck(570, 0, 15, 220);
-				spielObjekte.add(Stein1);
-				Stein2 = new BeweglichesRechteck(570, 360, 15, 220);
-				spielObjekte.add(Stein2);
-
-			}
-				break;
-
-			case 14: {
-				Stein1 = new BeweglichesRechteck(280, 350, 40, 40);
-				spielObjekte.add(Stein1);
-				Algorithmus1 = true;
-
-			}
-				break;
-
-			case 15: {
-				Stein1 = new BeweglichesRechteck(400, 0, 15, 220);
-				spielObjekte.add(Stein1);
-				Stein2 = new BeweglichesRechteck(400, 360, 15, 220);
-				spielObjekte.add(Stein2);
-
-				Algorithmus2 = true;
-
-			}
-				break;
-
-			case 16: {
-				ball = new BeweglichesRechteck(getX(), getY(), 5, 5);
-				spielObjekte.add(ball);
-
-			}
-				break;
-
-			case 17: {
-				ExtraBall1 = new BeweglichesRechteck(getX(), getY(), 20, 20);
-				spielObjekte.add(ExtraBall1);
-				ExtraBall2 = new BeweglichesRechteck(getX(), getY(), 20, 20);
-				spielObjekte.add(ExtraBall2);
-
-				Ballon1 = true;
-				Ballon2 = true;
-
-			}
-				break;
-
-			case 18: {
-
-				Stein1 = new BeweglichesRechteck(400, 0, 15, 220);
-				spielObjekte.add(Stein1);
-				Stein2 = new BeweglichesRechteck(400, 360, 15, 220);
-				spielObjekte.add(Stein2);
-
-				Algorithmus2 = true;
-
-				Stein3 = new BeweglichesRechteck(350, 200, 10, 10);
-				spielObjekte.add(Stein3);
-				Stein4 = new BeweglichesRechteck(400, 200, 10, 10);
-				spielObjekte.add(Stein4);
-				Stein5 = new BeweglichesRechteck(450, 200, 10, 10);
-				spielObjekte.add(Stein5);
-
-				Stein6 = new BeweglichesRechteck(350, 400, 10, 10);
-				spielObjekte.add(Stein6);
-				Stein7 = new BeweglichesRechteck(400, 400, 10, 10);
-				spielObjekte.add(Stein7);
-				Stein8 = new BeweglichesRechteck(450, 400, 10, 10);
-				spielObjekte.add(Stein8);
-
-				Algorithmus3 = true;
-
-				ExtraBall1 = new BeweglichesRechteck(getX(), getY(), 20, 20);
-				spielObjekte.add(ExtraBall1);
-
-				Ballon1 = true;
-
-			}
-				break;
-
-			case 19: {
-				rechteckgegner.positionX = 900;
-				Stein4 = new BeweglichesRechteck(700, 0, 30, 900);// Bruch2
-				spielObjekte.add(Stein4);
-
-				Boss = new BeweglichesRechteck(625, 250, 30, 30);
-				spielObjekte.add(Boss);
-
-				Stein1 = new BeweglichesRechteck(550, 175, 150, 15);
-				spielObjekte.add(Stein1);
-				Stein2 = new BeweglichesRechteck(550, 175, 15, 150);
-				spielObjekte.add(Stein2);
-				Stein3 = new BeweglichesRechteck(550, 325, 150, 15);
-				spielObjekte.add(Stein3);
-
-				Algorithmus4 = true;
-
-				ExtraBall1 = new BeweglichesRechteck(getX(), getY(), 20, 20);
-				spielObjekte.add(ExtraBall1);
-
-			}
-				break;
-
-			default: {
+             	
+             		rechteckSpieler = new BeweglichesRechteck(75, 250, 0, hoehe);
+             		spielObjekte.add(rechteckSpieler);
+             		rechteckgegner = new BeweglichesRechteck(705, 300, 0, hoehe);
+             		spielObjekte.add(rechteckgegner);
+             		
+     				
+                 }break;
+                 
+                 
+			default : {
+				
 
 			}
 			}
@@ -745,3 +683,4 @@ public class GameLogic {
 	}
 
 }
+// Git Hub Reagirt nicht
