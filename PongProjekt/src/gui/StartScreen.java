@@ -954,7 +954,7 @@ public class StartScreen extends JFrame {
 					BeweglichesRechteck.setGegenerPunkte(0);
 					BeweglichesRechteck.setSpielerPunkte(0);
 					audioManager.stopSound(getName());
-					audioManager.playSound("/actions/resources/Megalovania.wav");
+					audioManager.playSound("/actions/resources/HopesAndDreams.wav");
 					float volume = StartScreen.slider.getValue();
 					audioManager.setVolume(volume);
 					StartScreen.slider.getValue();
